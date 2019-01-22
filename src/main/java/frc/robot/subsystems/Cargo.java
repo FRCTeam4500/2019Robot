@@ -1,5 +1,23 @@
-package frc.robot.subsystems;
+package main.java.frc.robot.subsystems;
 
-public class cargo extends Subsystem {
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
+
+public class Cargo extends Subsystem {
+     
+    private TalonSRX leftGrab;
+    private TalonSRX rightGrab;
+    private TalonSRX topGrab;
+    
 }
+
+
+
+
+
+
+
+
+
+
