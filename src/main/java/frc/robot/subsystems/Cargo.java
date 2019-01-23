@@ -11,9 +11,9 @@ public class Cargo extends Subsystem {
     private TalonSRX topGrab;
 
     public Cargo() {
-            leftGrab = new TalonSRX(RobotMap.LEFTGRAB)
-            rightGrab = new TalonSRX(RobotMap.RIGHTGRAB)
-            topGrab = new TalonSRX(RobotMap.TOPGRAB)
+            leftGrab = new TalonSRX(RobotMap.LEFTGRAB);
+            rightGrab = new TalonSRX(RobotMap.RIGHTGRAB);
+            topGrab = new TalonSRX(RobotMap.TOPGRAB);
     }
     
 }
