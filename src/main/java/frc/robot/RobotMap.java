@@ -31,7 +31,15 @@ public class RobotMap {
 
     public final static double angleP = null, angleI = null, angleD = null, angleF = null;
     public final static int angleV = null, angleA = null;
+    
+    /*
+     * =================== Cargo ===================
+     */
 
+    public final static int leftGrab = null;
+    public final static int rightGrab = null;
+    public final static int topGrab = null;
+    
     /*
      * =================== Configuration ===================
      */
