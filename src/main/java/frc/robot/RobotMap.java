@@ -39,6 +39,7 @@ public class RobotMap {
     public final static int leftGrab = null;
     public final static int rightGrab = null;
     public final static int topGrab = null;
+    public final static int angleGrab = null;
     
     /*
      * =================== Configuration ===================
