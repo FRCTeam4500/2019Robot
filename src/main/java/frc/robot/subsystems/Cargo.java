@@ -23,7 +23,9 @@ public class Cargo extends Subsystem {
     }
     
     public void setMotors(){
-    
+        leftGrab.set(speed);
+        rightGrab.set(-speed);
+        topGrab.set(speed);
     }
 
     public void setAngle(){
