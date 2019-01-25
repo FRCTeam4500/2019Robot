@@ -17,7 +17,18 @@ public class Cargo extends Subsystem {
             topGrab = new TalonSRX(RobotMap.TOPGRAB);
             angleGrab = new TalonSRX(RobotMap.ANGLEGRAB);
     }
+
+    public void initDefaultCommand() {
+        //Default Command for Subsystem
+    }
     
+    public void setMotors(){
+    
+    }
+
+    public void setAngle(){
+
+    }
 }
 
 
