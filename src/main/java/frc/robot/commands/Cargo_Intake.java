@@ -12,20 +12,26 @@ import frc.robot.Robot;
 
 public class Cargo_Intake extends Command {
     
-    public Cargo_Intake(double sideSpeed) {
+    private double sideSpeed;
+    private double topSpeed;
+
+    public Cargo_Intake(double sideSpeed, double topSpeed) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.swerve);
+        requires(Robot.cargo);
+        this.sideSpeed = sideSpeed;
+        this.topSpeed = topSpeed;
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.swerve.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        Robot.cargo.setMotor(sideSpeed, topSpeed);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
