@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
 
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
+    public static Cargo cargo;
     
     public static OI oi;
     
@@ -41,7 +42,8 @@ public class Robot extends TimedRobot {
 		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false); 
 		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false);
 		
-		swerve = new Swerve(fl, fr, bl, br);
+        swerve = new Swerve(fl, fr, bl, br);
+        cargo = new Cargo();
 		
         oi = new OI();
     }
