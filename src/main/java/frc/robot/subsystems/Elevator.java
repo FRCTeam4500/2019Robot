@@ -1,9 +1,18 @@
-package main.java.frc.robot.subsystems;
+package frc.robot.subsystems;
 
-public class Elevator{
+import TalonSRX;
+
+public class Elevator extends Subsystems {
+    private TalonSRX elevatorMotor;
     
-    public Elevator(){
 
+    public Elevator() {
+        elevatorMotor = new TalonSRX(RobotMap.ELEVATORMOTOR);
     }
+
+    public void setLevel(int level) {
+        elevatorMotor.set(ControlMode.Position, level);
+    }
+
 
 }
