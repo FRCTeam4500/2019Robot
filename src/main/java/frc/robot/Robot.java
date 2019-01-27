@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.Robot_Group_PreConfigure;
+import frc.robot.interfaces.wrappers.TalonSRXMotor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
@@ -46,8 +47,12 @@ public class Robot extends TimedRobot {
 		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false);
 		
         swerve = new Swerve(fl, fr, bl, br);
-        cargo = new Cargo();
-        elevator = new Elevator();
+        cargo = new Cargo(
+            new TalonSRXMotor(RobotMap.leftGrab), 
+            new TalonSRXMotor(RobotMap.rightGrab), 
+            new TalonSRXMotor(RobotMap.topGrab), 
+            new TalonSRXMotor(RobotMap.angleGrab));
+        elevator = new Elevator(new TalonSRXMotor(RobotMap.ELEVATORMOTOR));
         
         oi = new OI();
     }

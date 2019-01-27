@@ -1,9 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
 import frc.robot.interfaces.IMotor;
-import frc.robot.interfaces.wrappers.TalonSRXMotor;
 
 public class Cargo extends Subsystem {
      
@@ -12,11 +10,11 @@ public class Cargo extends Subsystem {
     private IMotor topGrab;
     private IMotor angleGrab;
 
-    public Cargo() {
-            leftGrab = new TalonSRXMotor(RobotMap.leftGrab);
-            rightGrab = new TalonSRXMotor(RobotMap.rightGrab);
-            topGrab = new TalonSRXMotor(RobotMap.topGrab);
-            angleGrab = new TalonSRXMotor(RobotMap.angleGrab);
+    public Cargo(IMotor leftGrab, IMotor rightGrab, IMotor topGrab, IMotor angleGrab) {
+        this.leftGrab = leftGrab;
+        this.rightGrab = rightGrab;
+        this.topGrab = topGrab;
+        this.angleGrab = angleGrab;
     }
 
     public void initDefaultCommand() {
