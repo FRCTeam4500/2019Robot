@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Swerve_Drive;
@@ -21,7 +23,7 @@ public class Swerve extends Subsystem {
 
     private WheelModule fl, fr, bl, br;
 
-    private ADXRS450_Gyro gyro;
+    private AHRS gyro;
 
     /**
      * Constructor that takes each of the four modules that make up swerve drive
@@ -36,7 +38,7 @@ public class Swerve extends Subsystem {
     	this.br = br;
         this.bl = bl;
     	
-    	gyro = new ADXRS450_Gyro();
+    	gyro = new AHRS(SPI.Port.kMXP);
     }
 
     
