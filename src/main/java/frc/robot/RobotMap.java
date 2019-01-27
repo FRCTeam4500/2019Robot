@@ -19,36 +19,36 @@ public class RobotMap {
     /*
      * =================== Elevator ===================
      */
-    public final static int ELEVATORMOTOR = 0;
-    public final static int ELEVATORLOW = 0;
-    public final static int ELEVATORMEDIUM = 10;
-    public final static int ELEVATORHIGH = 20;
+    public final static int ELEVATOR_MOTOR = 0;
+    public final static int ELEVATOR_LOW = 0;
+    public final static int ELEVATOR_MEDIUM = 10;
+    public final static int ELEVATOR_HIGH = 20;
 
 
     /*
      * =================== Drivetrain ===================
      */
 
-    public final static int FLSPEEDPORT = 0, FLANGLEPORT = 0;
-    public final static int FRSPEEDPORT = 0, FRANGLEPORT = 0;
-    public final static int BLSPEEDPORT = 0, BLANGLEPORT = 0;
-    public final static int BRSPEEDPORT = 0, BRANGLEPORT = 0;
+    public final static int FL_SPEED_PORT = 0, FL_ANGLE_PORT = 0;
+    public final static int FR_SPEED_PORT = 0, FR_ANGLE_PORT = 0;
+    public final static int BL_SPEED_PORT = 0, BL_ANGLE_PORT = 0;
+    public final static int BR_SPEED_PORT = 0, BR_ANGLE_PORT = 0;
 
     public final static double L = 0;
     public final static double W = 0;
-    public final static double COUNTPERDEG = 0;
+    public final static double COUNT_PER_DEG = 0;
 
-    public final static double angleP = 0, angleI = 0, angleD = 0, angleF = 0;
-    public final static int angleV = 0, angleA = 0;
+    public final static double ANGLE_P = 0, ANGLE_I = 0, ANGLE_D = 0, ANGLE_F = 0;
+    public final static int ANGLE_V = 0, ANGLE_A = 0;
     
     /*
      * =================== Cargo ===================
      */
 
-    public final static int leftGrab = 0;
-    public final static int rightGrab = 0;
-    public final static int topGrab = 0;
-    public final static int angleGrab = 0;
+    public final static int LEFT_GRAB = 0;
+    public final static int RIGHT_GRAB = 0;
+    public final static int TOP_GRAB = 0;
+    public final static int ANGLE_GRAB = 0;
     
     /*
      * =================== Configuration ===================
@@ -63,22 +63,22 @@ public class RobotMap {
      * =================== Auto ===================
      */
 
-    public final static double wheelDiameter = 0;
-	public final static double wheelBaseWidth = 0;
-	public final static double wheelBaseDepth = 0;
+    public final static double WHEEL_DIAMETER = 0;
+	public final static double WHEEL_BASE_WIDTH = 0;
+	public final static double WHEEL_BASE_DEPTH = 0;
 	
-	public final static double flKv = 0;
-	public final static double flKa = 0;
+	public final static double FL_KV = 0;
+	public final static double FL_KA = 0;
 	
-	public final static double frKv = 0;
-	public final static double frKa = 0;
+	public final static double FR_KV = 0;
+	public final static double FR_KA = 0;
 	
-	public final static double blKv = 0;
-	public final static double blKa = 0;
+	public final static double BL_KV = 0;
+	public final static double BL_KA = 0;
 	
-	public final static double brKv = 0;
-	public final static double brKa = 0;
-	public final static int ticksPerRotation = 0;
+	public final static double BR_KV = 0;
+	public final static double BR_KA = 0;
+	public final static int TICKS_PER_ROTATION = 0;
 
      /*
      * =================== Methods ===================

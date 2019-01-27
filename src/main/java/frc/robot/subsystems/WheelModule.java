@@ -47,13 +47,13 @@ public class WheelModule extends Subsystem {
 
         angleMotor.setSensorPhase(false);
         angleMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
-        angleMotor.config_kP(0, RobotMap.angleP, RobotMap.TIMEOUT); // 0.8
-        angleMotor.config_kI(0, RobotMap.angleI, RobotMap.TIMEOUT);
-        angleMotor.config_kD(0, RobotMap.angleD, RobotMap.TIMEOUT); // 80
-        angleMotor.config_kF(0, RobotMap.angleF, RobotMap.TIMEOUT);
+        angleMotor.config_kP(0, RobotMap.ANGLE_P, RobotMap.TIMEOUT); // 0.8
+        angleMotor.config_kI(0, RobotMap.ANGLE_I, RobotMap.TIMEOUT);
+        angleMotor.config_kD(0, RobotMap.ANGLE_D, RobotMap.TIMEOUT); // 80
+        angleMotor.config_kF(0, RobotMap.ANGLE_F, RobotMap.TIMEOUT);
         angleMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
-        angleMotor.configMotionCruiseVelocity(RobotMap.angleV, RobotMap.TIMEOUT);
-        angleMotor.configMotionAcceleration(RobotMap.angleA, RobotMap.TIMEOUT); // 1800
+        angleMotor.configMotionCruiseVelocity(RobotMap.ANGLE_V, RobotMap.TIMEOUT);
+        angleMotor.configMotionAcceleration(RobotMap.ANGLE_A, RobotMap.TIMEOUT); // 1800
         angleMotor.setInverted(inverted);
     }
 
@@ -74,7 +74,7 @@ public class WheelModule extends Subsystem {
      */
     public double adjustAngle(double angle) {
         double target = 0;
-        double current = Math.round(angleMotor.getSelectedSensorPosition(0) / RobotMap.COUNTPERDEG);
+        double current = Math.round(angleMotor.getSelectedSensorPosition(0) / RobotMap.COUNT_PER_DEG);
         double Rcurrent = 0;
         double dir = Math.abs(current) % 360;
         if (current >= 180) { // OLD: > and <
@@ -123,7 +123,7 @@ public class WheelModule extends Subsystem {
         }
         lastAngle = angle;
 
-        angle *= RobotMap.COUNTPERDEG;
+        angle *= RobotMap.COUNT_PER_DEG;
 
         speedMotor.set(ControlMode.PercentOutput, speed);
         angleMotor.set(ControlMode.MotionMagic, angle);

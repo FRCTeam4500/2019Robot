@@ -41,18 +41,18 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        bl = new WheelModule(RobotMap.BLANGLEPORT, RobotMap.BLSPEEDPORT, "bl", false); 
-		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false);
-		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false); 
-		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false);
+        bl = new WheelModule(RobotMap.BL_ANGLE_PORT, RobotMap.BL_SPEED_PORT, "bl", false);
+		br = new WheelModule(RobotMap.BR_ANGLE_PORT, RobotMap.BR_SPEED_PORT, "br", false);
+		fl = new WheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, "fl", false);
+		fr = new WheelModule(RobotMap.FR_ANGLE_PORT, RobotMap.FR_SPEED_PORT, "fr", false);
 		
         swerve = new Swerve(fl, fr, bl, br);
         cargo = new Cargo(
-            new TalonSRXMotor(RobotMap.leftGrab), 
-            new TalonSRXMotor(RobotMap.rightGrab), 
-            new TalonSRXMotor(RobotMap.topGrab), 
-            new TalonSRXMotor(RobotMap.angleGrab));
-        elevator = new Elevator(new TalonSRXMotor(RobotMap.ELEVATORMOTOR));
+            new TalonSRXMotor(RobotMap.LEFT_GRAB), 
+            new TalonSRXMotor(RobotMap.RIGHT_GRAB), 
+            new TalonSRXMotor(RobotMap.TOP_GRAB), 
+            new TalonSRXMotor(RobotMap.ANGLE_GRAB));
+        elevator = new Elevator(new TalonSRXMotor(RobotMap.ELEVATOR_MOTOR));
         
         oi = new OI();
     }
