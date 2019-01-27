@@ -17,6 +17,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RobotMap {
     /*
+     * =================== Elevator ===================
+     */
+    public final static int ELEVATORMOTOR = 0;
+    public final static int ELEVATORLOW = 0;
+    public final static int ELEVATORMEDIUM = 10;
+    public final static int ELEVATORHIGH = 20;
+
+
+    /*
      * =================== Drivetrain ===================
      */
 
@@ -44,6 +53,7 @@ public class RobotMap {
     /*
      * =================== Configuration ===================
      */
+    
 
     public final static double DEADZONE_XY = 0.2;
     public final static double DEADZONE_Z = 0.4;

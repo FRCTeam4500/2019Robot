@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import java.awt.Button;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -21,11 +23,20 @@ public class OI {
     Joystick driveStick;
     
     Button driveResetGyro;
-    
+	Button elevatorLow;
+	Button elevatorMedium;
+	Button elevatorHigh;
+
     public OI() {
         if (!driveStick.getName().equals("")) {
 			driveResetGyro = new JoystickButton(driveStick, 7);
-            driveResetGyro.whenPressed(new Swerve_GyroReset());
+			elevatorLow = new JoystickButton(drivestick, 11);
+			elevatorMedium = new JoystickButton(drivestick, 9);
+			elevatorHigh = new JoystickButton (drivestick, 7)
+			driveResetGyro.whenPressed(new Swerve_GyroReset());
+			elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
+			elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
+			elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
         }
     }
 
@@ -44,4 +55,6 @@ public class OI {
 	public double getSlider() {
 		return driveStick.getThrottle();
 	}
+
+	
 }

@@ -26,6 +26,8 @@ public class Robot extends TimedRobot {
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
     public static Cargo cargo;
+    public static Swerve swere;
+    public static Elevator elevator;
     
     public static OI oi;
     
