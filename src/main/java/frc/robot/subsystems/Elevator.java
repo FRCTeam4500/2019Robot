@@ -1,8 +1,12 @@
 package frc.robot.subsystems;
 
-import TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class Elevator extends Subsystems {
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+
+public class Elevator extends Subsystem {
     private TalonSRX elevatorMotor;
     
 
@@ -12,6 +16,11 @@ public class Elevator extends Subsystems {
 
     public void setLevel(int level) {
         elevatorMotor.set(ControlMode.Position, level);
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+
     }
 
 

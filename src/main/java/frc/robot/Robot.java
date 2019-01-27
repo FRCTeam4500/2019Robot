@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.Robot_Group_PreConfigure;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
+import frc.robot.subsystems.Cargo;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,7 +28,6 @@ public class Robot extends TimedRobot {
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
     public static Cargo cargo;
-    public static Swerve swere;
     public static Elevator elevator;
     
     public static OI oi;

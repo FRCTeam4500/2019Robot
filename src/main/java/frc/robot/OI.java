@@ -7,11 +7,10 @@
 
 package frc.robot;
 
-import java.awt.Button;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Elevator_SetLevel;
 import frc.robot.commands.Swerve_GyroReset;
 
 /**
@@ -30,9 +29,9 @@ public class OI {
     public OI() {
         if (!driveStick.getName().equals("")) {
 			driveResetGyro = new JoystickButton(driveStick, 7);
-			elevatorLow = new JoystickButton(drivestick, 11);
-			elevatorMedium = new JoystickButton(drivestick, 9);
-			elevatorHigh = new JoystickButton (drivestick, 7)
+			elevatorLow = new JoystickButton(driveStick, 11);
+			elevatorMedium = new JoystickButton(driveStick, 9);
+			elevatorHigh = new JoystickButton (driveStick, 7);
 			driveResetGyro.whenPressed(new Swerve_GyroReset());
 			elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
 			elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));

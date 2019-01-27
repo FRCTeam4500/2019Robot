@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package main.java.frc.robot.commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
@@ -30,7 +30,7 @@ public class Cargo_Release extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.cargo.setMotor(-sideSpeed, -topSpeed);
+        Robot.cargo.setMotors(-sideSpeed, -topSpeed);
 
     }
 

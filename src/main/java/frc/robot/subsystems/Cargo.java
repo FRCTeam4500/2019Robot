@@ -1,8 +1,10 @@
-package main.java.frc.robot.subsystems;
+package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team4500.robot.RobotMap;
+import frc.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Cargo extends Subsystem {
      
@@ -12,10 +14,10 @@ public class Cargo extends Subsystem {
     private TalonSRX angleGrab;
 
     public Cargo() {
-            leftGrab = new TalonSRX(RobotMap.LEFTGRAB);
-            rightGrab = new TalonSRX(RobotMap.RIGHTGRAB);
-            topGrab = new TalonSRX(RobotMap.TOPGRAB);
-            angleGrab = new TalonSRX(RobotMap.ANGLEGRAB);
+            leftGrab = new TalonSRX(RobotMap.leftGrab);
+            rightGrab = new TalonSRX(RobotMap.rightGrab);
+            topGrab = new TalonSRX(RobotMap.topGrab);
+            angleGrab = new TalonSRX(RobotMap.angleGrab);
     }
 
     public void initDefaultCommand() {
