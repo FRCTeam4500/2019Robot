@@ -25,9 +25,10 @@ public class Robot extends TimedRobot {
 
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
+    public static Cargo cargo;
     
     public static OI oi;
-
+    
     Command m_autonomousCommand;
 
     /**
@@ -40,8 +41,9 @@ public class Robot extends TimedRobot {
 		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false);
 		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false); 
 		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false);
-        
-		swerve = new Swerve(fl, fr, bl, br);
+		
+        swerve = new Swerve(fl, fr, bl, br);
+        cargo = new Cargo();
 		
         oi = new OI();
     }
