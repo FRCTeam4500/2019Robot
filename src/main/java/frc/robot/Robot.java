@@ -47,7 +47,8 @@ public class Robot extends TimedRobot {
 		
         swerve = new Swerve(fl, fr, bl, br);
         cargo = new Cargo();
-		
+        elevator = new Elevator();
+        
         oi = new OI();
     }
 
