@@ -1,14 +1,12 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 import frc.robot.subsystems.Elevator;
 
-public class Elevator_SetLevel extends Command {
+public class Elevator_SetLevel extends Elevator_BaseCommand {
     int level;
     public Elevator_SetLevel(Elevator elevator, int level) {
         // Use requires() here to declare subsystem dependencies
-        requires(elevator);
+        super(elevator);
         this.level = level;
     }
 
@@ -20,7 +18,7 @@ public class Elevator_SetLevel extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.elevator.setLevel(level);
+        super.elevator.setLevel(level);
     }
 
     // Make this return true when this Command no longer needs to run execute()
