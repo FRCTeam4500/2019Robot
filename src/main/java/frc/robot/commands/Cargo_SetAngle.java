@@ -7,16 +7,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.Cargo;
 
-public class Cargo_SetAngle extends Command {
+public class Cargo_SetAngle extends Cargo_BaseCommand {
     
     private double angle;
 
-    public Cargo_SetAngle(double angle) {
+    public Cargo_SetAngle(Cargo cargo, double angle) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.cargo);
+        super(cargo);
         this.angle = angle;
     }
 
