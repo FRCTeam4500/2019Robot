@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
 import frc.robot.subsystems.Cargo;
 
 public class Cargo_Release extends Cargo_BaseCommand {
@@ -30,7 +29,7 @@ public class Cargo_Release extends Cargo_BaseCommand {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.cargo.setMotors(-sideSpeed, -topSpeed);
+        super.cargo.setMotors(-sideSpeed, -topSpeed);
 
     }
 

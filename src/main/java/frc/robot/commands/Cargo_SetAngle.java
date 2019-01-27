@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
 import frc.robot.subsystems.Cargo;
 
 public class Cargo_SetAngle extends Cargo_BaseCommand {
@@ -23,7 +22,7 @@ public class Cargo_SetAngle extends Cargo_BaseCommand {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.cargo.setAngle(angle);
+        super.cargo.setAngle(angle);
     }
 
     // Called repeatedly when this Command is scheduled to run

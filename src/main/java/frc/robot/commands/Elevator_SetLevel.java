@@ -2,12 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.Elevator;
 
 public class Elevator_SetLevel extends Command {
     int level;
-    public Elevator_SetLevel(int level) {
+    public Elevator_SetLevel(Elevator elevator, int level) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.elevator);
+        requires(elevator);
         this.level = level;
     }
 
