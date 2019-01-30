@@ -3,7 +3,7 @@ package frc.robot.utility;
 public class PIDController {
     
     private double kP, kI, kD;
-    private double allowableError, lastError = 0;
+    private double allowableError, lastError = 0, sumOfErrors = 0;
     private PIDInputInterface<Double> pidInput;
     private PIDOutputInterface<Double> pidOutput;
 
@@ -16,7 +16,7 @@ public class PIDController {
         this.pidOutput = pidOutput;
     }
 
-    public double getPIDInput() {
+    private double getPIDInput() {
         return pidInput.get();
     }
 
@@ -24,7 +24,8 @@ public class PIDController {
         double error = target - getPIDInput();
         // double output = kP * error +
         //                 kD * ((error - lastError) / 0.05);
-        double output = pidOutput.get(error, lastError, kP, kI, kD);
+        sumOfErrors += error;
+        double output = pidOutput.get(error, lastError, sumOfErrors, kP, kI, kD);
         lastError = error;
         return output;
     }
