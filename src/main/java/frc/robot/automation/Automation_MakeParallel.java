@@ -20,6 +20,7 @@ public class Automation_MakeParallel extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Controllers.ultrasonicAlignmentController.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
