@@ -38,8 +38,8 @@ public class RobotMap {
     public final static double W = 29.75;
     public final static double COUNTPERDEG = 16.2539;
 
-    public final static double angleP = null, angleI = null, angleD = null, angleF = null;
-    public final static int angleV = null, angleA = null;
+    public final static double angleP = 0, angleI = 0, angleD = 0, angleF = 0;
+    public final static int angleV = 0, angleA = 0;
 
     /*
      * =================== Configuration ===================
@@ -54,22 +54,22 @@ public class RobotMap {
      * =================== Auto ===================
      */
 
-    public final static double wheelDiameter = null;
-	public final static double wheelBaseWidth = null;
-	public final static double wheelBaseDepth = null;
+    public final static double wheelDiameter = 0;
+	public final static double wheelBaseWidth = 0;
+	public final static double wheelBaseDepth = 0;
 	
-	public final static double flKv = null;
-	public final static double flKa = null;
+	public final static double flKv = 0;
+	public final static double flKa = 0;
 	
-	public final static double frKv = null;
-	public final static double frKa = null;
+	public final static double frKv = 0;
+	public final static double frKa = 0;
 	
-	public final static double blKv = null;
-	public final static double blKa = null;
+	public final static double blKv = 0;
+	public final static double blKa = 0;
 	
-	public final static double brKv = null;
-	public final static double brKa = null;
-	public final static int ticksPerRotation = null;
+	public final static double brKv = 0;
+	public final static double brKa = 0;
+	public final static int ticksPerRotation = 0;
 
      /*
      * =================== Methods ===================
