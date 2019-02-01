@@ -30,7 +30,7 @@ public class Elevator extends Subsystem {
 		elevatorMotor.config_IntegralZone(0, 60, RobotMap.TIMEOUT);
 		elevatorMotor.config_kF(0, 0, RobotMap.TIMEOUT);
 	}
-    }
+    
 
 
     public void setLevel(int level) {

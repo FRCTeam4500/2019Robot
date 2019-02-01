@@ -30,13 +30,13 @@ public class OI {
 	   driveStick = new Joystick(0);
 		if (!driveStick.getName().equals("")) {
 			driveResetGyro = new JoystickButton(driveStick, 7);
-s			elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
+			driveResetGyro.whenPressed(new Swerve_GyroReset());
 			elevatorLow = new JoystickButton(driveStick, 11);
+			elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
 			elevatorMedium = new JoystickButton(driveStick, 9);
 			elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
 			elevatorHigh = new JoystickButton(driveStick, 7);
             elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
-			driveResetGyro.whenPressed(new Swerve_GyroReset());
         }
     }
 

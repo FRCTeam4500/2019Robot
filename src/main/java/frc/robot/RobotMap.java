@@ -19,7 +19,7 @@ public class RobotMap {
     /*
      * =================== Elevator ===================
      */
-    public final static int ELEVATORMOTOR = 0;
+    public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 0;
     public final static int ELEVATORMEDIUM = 10;
     public final static int ELEVATORHIGH = 20;
@@ -29,14 +29,14 @@ public class RobotMap {
      * =================== Drivetrain ===================
      */
 
-    public final static int FLSPEEDPORT = null, FLANGLEPORT = null;
-    public final static int FRSPEEDPORT = null, FRANGLEPORT = null;
-    public final static int BLSPEEDPORT = null, BLANGLEPORT = null;
-    public final static int BRSPEEDPORT = null, BRANGLEPORT = null;
-
-    public final static double L = null;
-    public final static double W = null;
-    public final static double COUNTPERDEG = null;
+    public final static int FLSPEEDPORT = 7, FLANGLEPORT = 6;
+    public final static int FRSPEEDPORT = 4, FRANGLEPORT = 3;
+    public final static int BLSPEEDPORT = 9, BLANGLEPORT = 8;
+    public final static int BRSPEEDPORT = 1, BRANGLEPORT = 2;
+    // units dont matter for L and W
+    public final static double L = 29.75;
+    public final static double W = 29.75;
+    public final static double COUNTPERDEG = 16.2539;
 
     public final static double angleP = null, angleI = null, angleD = null, angleF = null;
     public final static int angleV = null, angleA = null;
