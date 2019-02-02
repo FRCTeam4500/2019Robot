@@ -18,11 +18,6 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
 		elevatorMotor.setNeutralMode(NeutralMode.Brake);
 
-
-
-
-
-
        /*  int absolutePosition = elevatorMotor.getSelectedSensorPosition(0);
 		
 		elevatorMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
