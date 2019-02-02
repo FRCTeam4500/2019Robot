@@ -20,9 +20,9 @@ public class RobotMap {
      * =================== Elevator ===================
      */
     public final static int ELEVATORMOTOR = 5;
-    public final static int ELEVATORLOW = 0;
-    public final static int ELEVATORMEDIUM = 10;
-    public final static int ELEVATORHIGH = 20;
+    public final static int ELEVATORLOW = 6530;
+    public final static int ELEVATORMEDIUM = 13060;
+    public final static int ELEVATORHIGH = 19600;
     public final static int ELEVATORMAX = 26127;
 
 
@@ -79,6 +79,7 @@ public class RobotMap {
      public static void dashboardDisplay() {
          SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
          SmartDashboard.putNumber("Elevator Position", Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
+         SmartDashboard.putNumber("Elevator Error", Robot.elevator.getElevatorMotor().getClosedLoopError());
      }
 
 }
