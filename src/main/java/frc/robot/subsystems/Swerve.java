@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Swerve_Drive;
@@ -20,8 +23,11 @@ public class Swerve extends Subsystem {
     // here. Call these from Commands.
 
     private WheelModule fl, fr, bl, br;
+    
+    private AHRS gyro;
 
-    private ADXRS450_Gyro gyro;
+    private Ultrasonic leftSonic;
+    private Ultrasonic rightSonic;
 
     /**
      * Constructor that takes each of the four modules that make up swerve drive
@@ -36,7 +42,11 @@ public class Swerve extends Subsystem {
     	this.br = br;
         this.bl = bl;
     	
-    	gyro = new ADXRS450_Gyro();
+        gyro = new AHRS(SPI.Port.kMXP);
+        
+        leftSonic = new Ultrasonic(1, 1);
+        // leftSonic.setAutomaticMode(true);
+        rightSonic = new Ultrasonic(1, 1);
     }
 
     
@@ -48,14 +58,28 @@ public class Swerve extends Subsystem {
     /*
      * ===================== gyro methods =====================
      */
-
+    
     public void resetGyro() {
         gyro.reset();
     }
-
+    
     public double getGyro() {
         return gyro.getAngle();
     }
+    
+    /*
+     * ===================== ultrasonic methods =====================
+     */
+
+    public double getLeftSonic() {
+        return leftSonic.getRangeMM();
+    }
+
+    public double getRightSonic() {
+        return rightSonic.getRangeMM();
+    }
+
+
 
     /*
      * ===================== helper methods =====================

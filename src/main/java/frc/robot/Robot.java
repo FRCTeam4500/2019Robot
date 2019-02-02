@@ -10,10 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
+import frc.robot.utility.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +30,7 @@ public class Robot extends TimedRobot {
     public static Swerve swerve;
     public static Elevator elevator;
     
+    public static Vision vision;
     public static OI oi;
 
     Command m_autonomousCommand;
@@ -45,6 +48,9 @@ public class Robot extends TimedRobot {
         
         swerve = new Swerve(fl, fr, bl, br);
         elevator = new Elevator();
+        
+        vision = new Vision();
+        Controllers.createControllers();
 		
         oi = new OI();
     }
@@ -111,6 +117,7 @@ public class Robot extends TimedRobot {
         // }
         Command preconfigure = new Robot_Group_PreConfigure();
         preconfigure.start();
+        preconfigure.close();
     }
 
     /**
