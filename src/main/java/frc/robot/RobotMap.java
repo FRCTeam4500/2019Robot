@@ -24,6 +24,11 @@ public class RobotMap {
     public final static int ELEVATORMEDIUM = 13060;
     public final static int ELEVATORHIGH = 19600;
     public final static int ELEVATORMAX = 26127;
+ /*
+     * =================== Arm ===================
+     */
+    public final static int ROTATIONALMOTOR = 0; 
+    public final static double ARMANGLE = 0;
 
 
     /*

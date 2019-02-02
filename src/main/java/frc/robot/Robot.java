@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
     public static Elevator elevator;
+	public static Arm arm;
     
     public static Vision vision;
     public static OI oi;
@@ -50,6 +52,7 @@ public class Robot extends TimedRobot {
         
         swerve = new Swerve(fl, fr, bl, br);
         elevator = new Elevator();
+        arm = new Arm();
         
         vision = new Vision();
         Controllers.createControllers();
