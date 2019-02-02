@@ -44,9 +44,9 @@ public class Swerve extends Subsystem {
     	
         gyro = new AHRS(SPI.Port.kMXP);
         
-        leftSonic = new Ultrasonic(1, 1);
+        // leftSonic = new Ultrasonic(1, 1);
         // leftSonic.setAutomaticMode(true);
-        rightSonic = new Ultrasonic(1, 1);
+        // rightSonic = new Ultrasonic(1, 1);
     }
 
     

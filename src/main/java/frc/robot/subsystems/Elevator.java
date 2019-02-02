@@ -18,6 +18,15 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
 		elevatorMotor.setNeutralMode(NeutralMode.Brake);
 
+		elevatorMotor.configForwardSoftLimitEnable(true);
+		elevatorMotor.configForwardSoftLimitThreshold(RobotMap.ELEVATORMAX-200, RobotMap.TIMEOUT);
+		elevatorMotor.configReverseSoftLimitEnable(true);
+		elevatorMotor.configReverseSoftLimitThreshold(0, RobotMap.TIMEOUT);
+		elevatorMotor.config_kP(0, 0, RobotMap.TIMEOUT);
+		elevatorMotor.config_kI(0, 0, RobotMap.TIMEOUT);
+		elevatorMotor.config_kD(0, 0, RobotMap.TIMEOUT);
+		elevatorMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
+
        /*  int absolutePosition = elevatorMotor.getSelectedSensorPosition(0);
 		
 		elevatorMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
@@ -27,18 +36,16 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configForwardSoftLimitEnable(true, RobotMap.TIMEOUT);
 		elevatorMotor.configReverseSoftLimitEnable(true, RobotMap.TIMEOUT);
 		
-		elevatorMotor.config_kP(0, 0.8, RobotMap.TIMEOUT);
-		elevatorMotor.config_kI(0, 0.008, RobotMap.TIMEOUT);
-		elevatorMotor.config_kD(0, 8, RobotMap.TIMEOUT);
-		elevatorMotor.config_IntegralZone(0, 60, RobotMap.TIMEOUT);
 		elevatorMotor.config_kF(0, 0, RobotMap.TIMEOUT); */
 	}
-    
-
 
     public void setLevel(int level) {
         elevatorMotor.set(ControlMode.Position, level);
-    }
+	}
+	
+	public TalonSRX getElevatorMotor() {
+		return elevatorMotor;
+	}
 
     @Override
     protected void initDefaultCommand() {

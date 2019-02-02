@@ -23,6 +23,7 @@ public class RobotMap {
     public final static int ELEVATORLOW = 0;
     public final static int ELEVATORMEDIUM = 10;
     public final static int ELEVATORHIGH = 20;
+    public final static int ELEVATORMAX = 26127;
 
 
     /*
@@ -38,8 +39,8 @@ public class RobotMap {
     public final static double W = 29.75;
     public final static double COUNTPERDEG = 16.2539;
 
-    public final static double angleP = 0, angleI = 0, angleD = 0, angleF = 0;
-    public final static int angleV = 0, angleA = 0;
+    public final static double angleP = 1.03858, angleI = 0.004, angleD = 8, angleF = 0.51;
+    public final static int angleV = 4012, angleA = 4012;
 
     /*
      * =================== Configuration ===================
@@ -77,6 +78,7 @@ public class RobotMap {
 
      public static void dashboardDisplay() {
          SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
+         SmartDashboard.putNumber("Elevator Position", Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
      }
 
 }
