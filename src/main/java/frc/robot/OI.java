@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Swerve_GyroReset;
-
+import frc.robot.commands.Cargo_Intake;
+import frc.robot.commands.Cargo_Release;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,7 +22,11 @@ public class OI {
 
     Joystick driveStick;
     
-    Button driveResetGyro;
+	Button driveResetGyro;
+	
+	Button Cargo_Intake;
+
+	Button Cargo_Release;
     
     public OI() {
         if (!driveStick.getName().equals("")) {
