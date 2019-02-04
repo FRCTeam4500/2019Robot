@@ -44,12 +44,6 @@ public class Hatch extends Subsystem {
       center.set(Value.kForward);
     }
   }
-  public Value getCenterMode(){
-    return center.get();
-  }
-  public void moveCenter(Value value){
-    center.set(value);
-  }
 
   public void extendSides(){
     left.set(Value.kForward);
@@ -69,11 +63,4 @@ public class Hatch extends Subsystem {
     }
   }
 
-  public Value getSidesMode(){
-    return left.get();
-  }
-  public void moveSides(Value value){
-    left.set(value);
-    right.set(value);
-  }
 }
