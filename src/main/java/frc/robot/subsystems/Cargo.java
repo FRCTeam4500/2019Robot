@@ -1,8 +1,10 @@
-package main.java.frc.robot.subsystems;
+package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team4500.robot.RobotMap;
+import frc.robot.RobotMap;
 
 public class Cargo extends Subsystem {
      
