@@ -60,6 +60,13 @@ public class RobotMap {
 	public final static double brKv = 0;
 	public final static double brKa = 0;
 	public final static int ticksPerRotation = 0;
+	public static final int RIGHT_HATCH_SOLENOID = 0;
+	public static final int LEFT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
+	public static final int LEFT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
+	public static final int RIGHT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
+	public static final int RIGHT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
+	public static final int MIDDLE_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
+	public static final int MIDDLE_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
 
      /*
      * =================== Methods ===================
