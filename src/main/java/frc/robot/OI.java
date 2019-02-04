@@ -24,14 +24,16 @@ public class OI {
     
 	Button driveResetGyro;
 	
-	Button Cargo_Intake;
-
-	Button Cargo_Release;
+	Button cargoIntake, cargoRelease;
     
     public OI() {
         if (!driveStick.getName().equals("")) {
 			driveResetGyro = new JoystickButton(driveStick, 7);
-            driveResetGyro.whenPressed(new Swerve_GyroReset());
+			driveResetGyro.whenPressed(new Swerve_GyroReset());
+			
+			cargoIntake = new JoystickButton(driveStick, 9);
+			cargoIntake.whenPressed(new Cargo_Intake(.5, .5));
+			cargoIntake.whenReleased(new Cargo_Intake(0, 0));
         }
     }
 
