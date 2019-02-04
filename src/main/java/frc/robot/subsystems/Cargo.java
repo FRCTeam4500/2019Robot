@@ -30,9 +30,6 @@ public class Cargo extends Subsystem {
         topGrab.set(ControlMode.PercentOutput, topSpeed);
     }
 
-    // public void setAngle(double angle){
-    //     angleGrab.set(ControlMode.Position, angle);
-    // }
 }
 
 
