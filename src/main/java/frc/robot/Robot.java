@@ -7,11 +7,12 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Elevator;
@@ -35,6 +36,9 @@ public class Robot extends TimedRobot {
     public static Vision vision;
     public static OI oi;
 
+    public static Preferences pref;
+    public static SendableChooser<Boolean> pidChooser;
+
     Command m_autonomousCommand;
 
     /**
@@ -44,14 +48,18 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         bl = new WheelModule(RobotMap.BLANGLEPORT, RobotMap.BLSPEEDPORT, "bl", false, true); 
-		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false, true);
-		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false, false); 
+		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false, false);
+		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false, true); 
 		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false, false);
         
         swerve = new Swerve(fl, fr, bl, br);
         elevator = new Elevator();
         
         vision = new Vision();
+
+        pidChooser = new SendableChooser<Boolean>();
+        pidChooser.setDefaultOption("Disable", false);
+        pidChooser.addOption("Enable", true);
         Controllers.createControllers();
 		
         oi = new OI();
@@ -136,6 +144,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        elevator.getElevatorMotor().set(ControlMode.PercentOutput, 0.1);
+        double[] center = vision.getCenter();
+        SmartDashboard.putNumber("Data sent to robot", center[0]);
     }
 }

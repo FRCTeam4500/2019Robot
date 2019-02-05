@@ -126,13 +126,11 @@ public class WheelModule extends Subsystem {
         lastAngle = angle;
 
         angle *= RobotMap.COUNTPERDEG;
-
-        if(id.equals("fl")) {
-            speedMotor.set(ControlMode.PercentOutput, speed);
-            // angleMotor.set(ControlMode.PercentOutput, 1);
-            angleMotor.set(ControlMode.MotionMagic, angle);
-            SmartDashboard.putNumber("Angle Error", angleMotor.getClosedLoopError());
-        }
+        
+        speedMotor.set(ControlMode.PercentOutput, speed);
+        // angleMotor.set(ControlMode.PercentOutput, 1);
+        angleMotor.set(ControlMode.MotionMagic, angle);
+        // SmartDashboard.putNumber("Angle Error", angleMotor.getClosedLoopError());
     }
 
     public void driveAtVoltage(double voltage) {

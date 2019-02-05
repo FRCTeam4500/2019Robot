@@ -28,7 +28,7 @@ public class OI {
 
     public OI() {
 	   	driveStick = new Joystick(0);
-		driveResetGyro = new JoystickButton(driveStick, 7);
+		driveResetGyro = new JoystickButton(driveStick, 8);
 		driveResetGyro.whenPressed(new Swerve_GyroReset());
 		elevatorLow = new JoystickButton(driveStick, 11);
 		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));

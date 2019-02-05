@@ -14,7 +14,6 @@ public class Elevator_SetLevel extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        System.out.println("level " + level);
         Robot.elevator.setLevel(level);
     }
 

@@ -20,9 +20,9 @@ public class RobotMap {
      * =================== Elevator ===================
      */
     public final static int ELEVATORMOTOR = 5;
-    public final static int ELEVATORLOW = 6530;
+    public final static int ELEVATORLOW = 10;
     public final static int ELEVATORMEDIUM = 13060;
-    public final static int ELEVATORHIGH = 19600;
+    public final static int ELEVATORHIGH = 25000;
     public final static int ELEVATORMAX = 26127;
 
 
@@ -49,6 +49,12 @@ public class RobotMap {
 
     public final static double DEADZONE_XY = 0.2;
     public final static double DEADZONE_Z = 0.4;
+    public static double imgW;
+    public static double imgH;
+    public static double imgCenterW;
+    public static double imgCenterH;
+    public static double focalLength;
+    public static final double FOV = 68.5;
     public final static int TIMEOUT = 0;
     
      /*
