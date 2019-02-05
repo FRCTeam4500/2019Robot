@@ -34,6 +34,10 @@ public class OI {
 			cargoIntake = new JoystickButton(driveStick, 9);
 			cargoIntake.whenPressed(new Cargo_Intake(.5, .5));
 			cargoIntake.whenReleased(new Cargo_Intake(0, 0));
+
+			cargoRelease = new JoystickButton(driveStick, 11);
+			cargoIntake.whenPressed(new Cargo_Release(.5, .5));
+			cargoIntake.whenReleased(new Cargo_Release(0, 0));
         }
     }
 
