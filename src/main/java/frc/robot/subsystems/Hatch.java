@@ -20,7 +20,7 @@ public class Hatch extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DoubleSolenoid left, right, center;
+  private DoubleSolenoid left, right, center;
   public Hatch(){
     left = new DoubleSolenoid(RobotMap.LEFT_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.LEFT_HATCH_SOLENOID_REVERSE_CHANNEL);
     right = new DoubleSolenoid(RobotMap.RIGHT_HATCH_SOLENOID_FORWARD_CHANNEL,RobotMap.RIGHT_HATCH_SOLENOID_REVERSE_CHANNEL);
