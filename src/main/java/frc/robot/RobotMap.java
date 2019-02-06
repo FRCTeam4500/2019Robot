@@ -43,25 +43,40 @@ public class RobotMap {
     public final static int angleV = 4012, angleA = 4012;
 
     /*
-     * =================== Configuration ===================
+     * =================== Joystick Configuration ===================
      */
     
-
+    
     public final static double DEADZONE_XY = 0.2;
     public final static double DEADZONE_Z = 0.4;
+    // How sensitive the Z axis is. Set to 0 for no effect, 1 to square the fucntion, 2 to cube it, etc
+    public final static int SENSITIVITY_Z = 2;
+    
+    
+    
+    /*
+     * =================== Vision Configuration ===================
+     */
+    
     public static double imgW;
     public static double imgH;
     public static double imgCenterW;
     public static double imgCenterH;
     public static double focalLength;
     public static final double FOV = 68.5;
+    
+    /*
+    * =================== Other ===================
+    */
+    
     public final static int TIMEOUT = 0;
     
-     /*
+    /*
      * =================== Auto ===================
      */
 
     public final static double wheelDiameter = 0;
+    public final static double wheelDiameterMM = 0;
 	public final static double wheelBaseWidth = 0;
 	public final static double wheelBaseDepth = 0;
 	

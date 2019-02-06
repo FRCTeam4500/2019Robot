@@ -20,21 +20,23 @@ import frc.robot.commands.Swerve_GyroReset;
  */
 public class OI {
 
-    Joystick driveStick;
+	Joystick driveStick;
+	Joystick controlStick;
     
     Button driveResetGyro;
 	Button elevatorLow, elevatorMedium, elevatorHigh;
 	
 
     public OI() {
-	   	driveStick = new Joystick(0);
+		driveStick = new Joystick(0);
+		controlStick = new Joystick(1);   
 		driveResetGyro = new JoystickButton(driveStick, 8);
 		driveResetGyro.whenPressed(new Swerve_GyroReset());
-		elevatorLow = new JoystickButton(driveStick, 11);
+		elevatorLow = new JoystickButton(controlStick, 11);
 		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-		elevatorMedium = new JoystickButton(driveStick, 9);
+		elevatorMedium = new JoystickButton(controlStick, 9);
 		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-		elevatorHigh = new JoystickButton(driveStick, 7);
+		elevatorHigh = new JoystickButton(controlStick, 7);
 		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
     }
 
@@ -47,12 +49,11 @@ public class OI {
 	}
 	
 	public double getZ() {
-		return Math.abs(driveStick.getZ()) > RobotMap.DEADZONE_Z ? driveStick.getZ() : 0;
+		double z = driveStick.getZ();
+		return Math.abs(z) > RobotMap.DEADZONE_Z ? z*Math.pow(z, 2) : 0;
 	}
 	
 	public double getSlider() {
 		return driveStick.getThrottle();
 	}
-
-	
 }

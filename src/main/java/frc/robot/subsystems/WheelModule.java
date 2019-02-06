@@ -133,6 +133,17 @@ public class WheelModule extends Subsystem {
         // SmartDashboard.putNumber("Angle Error", angleMotor.getClosedLoopError());
     }
 
+    public void setSpeed(double speed) {
+        speedMotor.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void setAngle(double angle) {
+        angle = adjustAngle(angle);
+        angle *= RobotMap.COUNTPERDEG;
+
+        angleMotor.set(ControlMode.MotionMagic, angle);
+    }
+
     public void driveAtVoltage(double voltage) {
         speedMotor.set(ControlMode.PercentOutput, voltage / 12);
         angleMotor.set(ControlMode.MotionMagic, 0);
