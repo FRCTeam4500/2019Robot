@@ -16,7 +16,6 @@ public class Cargo_Release extends Command {
     private double topSpeed;
 
     public Cargo_Release(double sideSpeed, double topSpeed) {
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.cargo);
         this.sideSpeed = sideSpeed;
         this.topSpeed = topSpeed;
@@ -31,8 +30,6 @@ public class Cargo_Release extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
