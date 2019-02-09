@@ -7,20 +7,20 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Arm_SetRotation;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
-import frc.robot.utility.Vision;
+import frc.robot.utility.automation.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,7 +38,8 @@ public class Robot extends TimedRobot {
     public static Vision vision;
     public static OI oi;
 
-    Command m_autonomousCommand;
+    public static Preferences pref;
+    public static SendableChooser<Boolean> pidChooser;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -47,14 +48,18 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         bl = new WheelModule(RobotMap.BLANGLEPORT, RobotMap.BLSPEEDPORT, "bl", false, true); 
-		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false, true);
-		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false, false); 
+		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false, false);
+		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false, true); 
 		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false, false);
         
         swerve = new Swerve(fl, fr, bl, br);
         arm = new Arm();
         
         vision = new Vision();
+
+        pidChooser = new SendableChooser<Boolean>();
+        pidChooser.setDefaultOption("Disable", false);
+        pidChooser.addOption("Enable", true);
         Controllers.createControllers();
 
 /*         Shuffleboard.getTab("SmartDashboard").add("Low", new Arm_SetRotation(0)).withWidget(BuiltInWidgets.kCommand);
@@ -144,6 +149,5 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
         RobotMap.dashboardDisplay();
-        arm.fullspeed();
     }
 }

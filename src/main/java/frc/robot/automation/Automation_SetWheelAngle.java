@@ -7,33 +7,37 @@
 
 package frc.robot.automation;
 
+import java.util.stream.IntStream;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Automation_MakeParallel extends Command {
+public class Automation_SetWheelAngle extends Command {
+
+  private double x, y, z;
   
-  public Automation_MakeParallel() {
-    // Use requires() here to declare subsystem dependencies
+  public Automation_SetWheelAngle(double x, double y, double z) {
     requires(Robot.swerve);
+    this.x = x;
+    this.y = y;
+    this.z = z;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Controllers.ultrasonicAlignmentController.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double output = Controllers.ultrasonicAlignmentController.getPIDOutput(0);
-    Robot.swerve.calculateVectors(0, 0, output);
+    Robot.swerve.setAngle(x, y, z);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Controllers.ultrasonicAlignmentController.targetReached(0);
+    return IntStream.of(Robot.swerve.getAngleError()).sum() <= 5;
   }
 
   // Called once after isFinished returns true
