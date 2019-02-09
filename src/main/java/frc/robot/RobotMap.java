@@ -47,9 +47,9 @@ public class RobotMap {
     * =================== Cargo ===================
     */
     
-    public final static int LEFTGRAB = 0;
-    public final static int RIGHTGRAB = 0;
-    public final static int TOPGRAB = 0;
+    public final static int LEFTGRAB = 11;
+    public final static int RIGHTGRAB = 10;
+    public final static int TOPGRAB = 13;
     
     
     /*
@@ -91,6 +91,7 @@ public class RobotMap {
     */
     
     public final static int TIMEOUT = 0;
+    public final static int COMPRESSOR = 0;
     
     /*
     * =================== Auto ===================

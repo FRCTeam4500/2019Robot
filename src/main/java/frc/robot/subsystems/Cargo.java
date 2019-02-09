@@ -1,21 +1,26 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 public class Cargo extends Subsystem {
-    
-    private TalonSRX leftGrab;
-    private TalonSRX rightGrab;
+
+    private VictorSPX leftGrab;
+    private VictorSPX rightGrab;
     private TalonSRX topGrab;
     
     public Cargo() {
-        leftGrab = new TalonSRX(RobotMap.LEFTGRAB);
-        rightGrab = new TalonSRX(RobotMap.RIGHTGRAB);
+        leftGrab = new VictorSPX(RobotMap.LEFTGRAB);
+        rightGrab = new VictorSPX(RobotMap.RIGHTGRAB);
         topGrab = new TalonSRX(RobotMap.TOPGRAB);
+        leftGrab.setNeutralMode(NeutralMode.Brake);
+        rightGrab.setNeutralMode(NeutralMode.Brake);
+        topGrab.setNeutralMode(NeutralMode.Brake);
     }
     
     @Override

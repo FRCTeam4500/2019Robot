@@ -39,24 +39,24 @@ public class OI {
 		/*===============================
 				Elevator Buttons
 		===============================*/
-		elevatorLow = new JoystickButton(controlStick, 11);
-		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-		elevatorMedium = new JoystickButton(controlStick, 9);
-		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-		elevatorHigh = new JoystickButton(controlStick, 7);
-		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
+		// elevatorLow = new JoystickButton(controlStick, 11);
+		// elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
+		// elevatorMedium = new JoystickButton(controlStick, 9);
+		// elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
+		// elevatorHigh = new JoystickButton(controlStick, 7);
+		// elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
 
 		/*===============================
 				Cargo Buttons
 		===============================*/
 
 		cargoIntake = new JoystickButton(driveStick, 9);
-		cargoIntake.whenPressed(new Cargo_Intake(.5, .5));
+		cargoIntake.whenPressed(new Cargo_Intake(.8, .8));
 		cargoIntake.whenReleased(new Cargo_Intake(0, 0));
 
 		cargoRelease = new JoystickButton(driveStick, 11);
-		cargoIntake.whenPressed(new Cargo_Release(.5, .5));
-		cargoIntake.whenReleased(new Cargo_Release(0, 0));
+		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
+		cargoRelease.whenReleased(new Cargo_Release(0, 0));
     }
 
     public double getX() {

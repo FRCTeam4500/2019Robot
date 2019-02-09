@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Cargo;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.PneumaticsCompressor;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
 import frc.robot.utility.Vision;
@@ -32,8 +32,9 @@ public class Robot extends TimedRobot {
 
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
-    public static Cargo cargo;
     public static Elevator elevator;
+    public static Cargo cargo;
+    public static PneumaticsCompressor compress; 
     
     public static Vision vision;
     public static OI oi;
@@ -55,7 +56,8 @@ public class Robot extends TimedRobot {
         swerve = new Swerve(fl, fr, bl, br);
         elevator = new Elevator();
         cargo = new Cargo();
-        
+        // compress = new PneumaticsCompressor();
+
         vision = new Vision();
 
         pidChooser = new SendableChooser<Boolean>();
