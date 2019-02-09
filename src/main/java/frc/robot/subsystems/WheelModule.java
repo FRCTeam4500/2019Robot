@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
@@ -34,7 +35,7 @@ public class WheelModule extends Subsystem {
      *                  code)
      * @param inverted  should the angle motor be inverted
      */
-    public WheelModule(int anglePort, int speedPort, String id, boolean inverted) {
+    public WheelModule(int anglePort, int speedPort, String id, boolean angleInverted, boolean speedInverted) {
         this.id = id;
 
         angleMotor = new TalonSRX(anglePort);
@@ -42,6 +43,7 @@ public class WheelModule extends Subsystem {
 
         speedMotor.configPeakOutputForward(1);
         speedMotor.configPeakOutputReverse(-1);
+        speedMotor.setInverted(speedInverted);
 
         angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
 
@@ -51,10 +53,10 @@ public class WheelModule extends Subsystem {
         angleMotor.config_kI(0, RobotMap.angleI, RobotMap.TIMEOUT);
         angleMotor.config_kD(0, RobotMap.angleD, RobotMap.TIMEOUT); // 80
         angleMotor.config_kF(0, RobotMap.angleF, RobotMap.TIMEOUT);
-        angleMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
+        angleMotor.config_IntegralZone(0, 50, RobotMap.TIMEOUT);
         angleMotor.configMotionCruiseVelocity(RobotMap.angleV, RobotMap.TIMEOUT);
         angleMotor.configMotionAcceleration(RobotMap.angleA, RobotMap.TIMEOUT); // 1800
-        angleMotor.setInverted(inverted);
+        angleMotor.setInverted(angleInverted);
     }
 
     @Override
@@ -124,8 +126,21 @@ public class WheelModule extends Subsystem {
         lastAngle = angle;
 
         angle *= RobotMap.COUNTPERDEG;
-
+        
         speedMotor.set(ControlMode.PercentOutput, speed);
+        // angleMotor.set(ControlMode.PercentOutput, 1);
+        angleMotor.set(ControlMode.MotionMagic, angle);
+        // SmartDashboard.putNumber("Angle Error", angleMotor.getClosedLoopError());
+    }
+
+    public void setSpeed(double speed) {
+        speedMotor.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void setAngle(double angle) {
+        angle = adjustAngle(angle);
+        angle *= RobotMap.COUNTPERDEG;
+
         angleMotor.set(ControlMode.MotionMagic, angle);
     }
 
