@@ -7,13 +7,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Cargo;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
+import frc.robot.utility.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,10 +33,13 @@ public class Robot extends TimedRobot {
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
     public static Cargo cargo;
+    public static Elevator elevator;
     
+    public static Vision vision;
     public static OI oi;
-    
-    Command m_autonomousCommand;
+
+    public static Preferences pref;
+    public static SendableChooser<Boolean> pidChooser;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -38,13 +47,21 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        bl = new WheelModule(RobotMap.BLANGLEPORT, RobotMap.BLSPEEDPORT, "bl", false); 
-		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false);
-		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false); 
-		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false);
-		
+        bl = new WheelModule(RobotMap.BLANGLEPORT, RobotMap.BLSPEEDPORT, "bl", false, true); 
+		br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false, false);
+		fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false, true); 
+		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false, false);
+        
         swerve = new Swerve(fl, fr, bl, br);
+        elevator = new Elevator();
         cargo = new Cargo();
+        
+        vision = new Vision();
+
+        pidChooser = new SendableChooser<Boolean>();
+        pidChooser.setDefaultOption("Disable", false);
+        pidChooser.addOption("Enable", true);
+        Controllers.createControllers();
 		
         oi = new OI();
     }
@@ -111,6 +128,7 @@ public class Robot extends TimedRobot {
         // }
         Command preconfigure = new Robot_Group_PreConfigure();
         preconfigure.start();
+        preconfigure.close();
     }
 
     /**
@@ -127,5 +145,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
+        RobotMap.dashboardDisplay();
     }
 }

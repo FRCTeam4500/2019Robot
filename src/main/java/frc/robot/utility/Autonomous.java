@@ -36,7 +36,7 @@ public class Autonomous {
         trajectory = Pathfinder.readFromCSV(f);
 
         SwerveModifier modifier = new SwerveModifier(trajectory);
-        modifier.modify(RobotMap.wheelBaseWidth, RobotMap.wheelBaseDepth, mode);
+        // modifier.modify(RobotMap.wheelBaseWidth, RobotMap.wheelBaseDepth, mode);
 
         // modifier = new SwerveModifier(trajectory).modify(RobotMap.wheelBaseWidth,
         // RobotMap.wheelBaseDepth, SwerveModifier.Mode.SWERVE_DEFAULT);
@@ -56,12 +56,12 @@ public class Autonomous {
         // 0));
         //
         blFollower = new EncoderFollower(modifier.getBackLeftTrajectory());
-        blFollower.configureEncoder(swerve.getBL().getDrivePosition(), RobotMap.ticksPerRotation,
-                RobotMap.wheelDiameter);
+        // blFollower.configureEncoder(swerve.getBL().getDrivePosition(), RobotMap.ticksPerRotation,
+        //         RobotMap.wheelDiameter);
 
         brFollower = new EncoderFollower(modifier.getBackRightTrajectory());
-        brFollower.configureEncoder(swerve.getBR().getDrivePosition(), RobotMap.ticksPerRotation,
-                RobotMap.wheelDiameter);
+        // brFollower.configureEncoder(swerve.getBR().getDrivePosition(), RobotMap.ticksPerRotation,
+        //         RobotMap.wheelDiameter);
 
         deltaP[3][0] = swerve.getBL().getDrivePosition();
         deltaP[4][0] = swerve.getBR().getDrivePosition();

@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Swerve_Drive;
@@ -20,8 +23,8 @@ public class Swerve extends Subsystem {
     // here. Call these from Commands.
 
     private WheelModule fl, fr, bl, br;
-
-    private ADXRS450_Gyro gyro;
+    
+    private AHRS gyro;
 
     /**
      * Constructor that takes each of the four modules that make up swerve drive
@@ -36,7 +39,7 @@ public class Swerve extends Subsystem {
     	this.br = br;
         this.bl = bl;
     	
-    	gyro = new ADXRS450_Gyro();
+        gyro = new AHRS(SPI.Port.kMXP);
     }
 
     
@@ -48,11 +51,11 @@ public class Swerve extends Subsystem {
     /*
      * ===================== gyro methods =====================
      */
-
+    
     public void resetGyro() {
         gyro.reset();
     }
-
+    
     public double getGyro() {
         return gyro.getAngle();
     }
@@ -121,6 +124,40 @@ public class Swerve extends Subsystem {
         bl.drive(blSpeed, blAngle);
         fr.drive(frSpeed, frAngle);
         fl.drive(flSpeed, flAngle);
+    }
+
+    public void setSpeed(double speed) {
+        br.setSpeed(speed);
+        bl.setSpeed(speed);
+        fr.setSpeed(speed);
+        fl.setSpeed(speed);
+    }
+
+    public void setAngle(double x, double y, double z) {
+        double L = RobotMap.L;
+        double W = RobotMap.W;
+        double r = Math.sqrt((L * L) + (W * W));
+        y *= -1;
+
+        double gyro = getGyro() * Math.PI / 180;
+        double temp = y * Math.cos(gyro) + x * Math.sin(gyro);
+        x = -y * Math.sin(gyro) + x * Math.cos(gyro);
+        y = temp;
+
+        double a = x - z * (L / r) + 0;
+        double b = x + z * (L / r);
+        double c = y - z * (W / r) + 0;
+        double d = y + z * (W / r);
+
+        double brAngle = (Math.atan2(a, c) * 180 / Math.PI);
+        double blAngle = (Math.atan2(a, d) * 180 / Math.PI);
+        double frAngle = (Math.atan2(b, c) * 180 / Math.PI);
+        double flAngle = (Math.atan2(b, d) * 180 / Math.PI);
+
+        br.setAngle(brAngle);
+        bl.setAngle(blAngle);
+        fr.setAngle(frAngle);
+        fl.setAngle(flAngle);
     }
 
     /**
