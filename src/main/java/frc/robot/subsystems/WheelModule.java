@@ -165,6 +165,10 @@ public class WheelModule extends Subsystem {
         return speedMotor.getSelectedSensorPosition(0);
     }
 
+    public void setDrivePosition(int position) {
+        speedMotor.setSelectedSensorPosition(position);
+    }
+
     public double getVoltage() {
         return speedMotor.getMotorOutputVoltage();
     }

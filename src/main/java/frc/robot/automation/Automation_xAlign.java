@@ -26,11 +26,11 @@ public class Automation_xAlign extends Command {
     Controllers.xAlignmentController.reset();
 
     double[] data = Robot.vision.getCenter();
-    double Z = (Robot.swerve.getLeftSonic() + Robot.swerve.getRightSonic()) / 2;
-    double X = Z * ((data[0] - RobotMap.imgCenterW) / RobotMap.focalLength);
-    this.xTicks = X * (RobotMap.ticksPerRotation / (Math.PI * RobotMap.wheelDiameterMM));
-    System.out.println("X: " + X);
-    System.out.println("XTicks: " + xTicks);
+    // double Z = (Robot.swerve.getLeftSonic() + Robot.swerve.getRightSonic()) / 2;
+    // double X = Z * ((data[0] - RobotMap.imgCenterW) / RobotMap.focalLength);
+    this.xTicks = 0;//X * (RobotMap.ticksPerRotation / (Math.PI * RobotMap.wheelDiameterMM));
+    // System.out.println("X: " + X);
+    // System.out.println("XTicks: " + xTicks);
   }
 
   // Called repeatedly when this Command is scheduled to run

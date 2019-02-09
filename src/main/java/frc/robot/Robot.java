@@ -39,8 +39,6 @@ public class Robot extends TimedRobot {
     public static Preferences pref;
     public static SendableChooser<Boolean> pidChooser;
 
-    Command m_autonomousCommand;
-
     /**
      * This function is run when the robot is first started up and should be used
      * for any initialization code.
@@ -144,7 +142,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        double[] center = vision.getCenter();
-        SmartDashboard.putNumber("Data sent to robot", center[0]);
+        RobotMap.dashboardDisplay();
     }
 }

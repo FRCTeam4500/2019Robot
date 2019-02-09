@@ -49,8 +49,16 @@ public class RobotMap {
     
     public final static double DEADZONE_XY = 0.2;
     public final static double DEADZONE_Z = 0.4;
-    // How sensitive the Z axis is. Set to 0 for no effect, 1 to square the fucntion, 2 to cube it, etc
+    // How sensitive the Z axis is. 
+    // 0 = no effect
+    // 1 = square the output
+    // 2 = cube the output
     public final static int SENSITIVITY_Z = 2;
+    // Reduces the maximum output for the Z axis. 
+    // 1 = full speed
+    // 2 = half speed
+    // etc
+    public final static int REDUCER_Z = 1;
     
     
     
@@ -64,6 +72,9 @@ public class RobotMap {
     public static double imgCenterH;
     public static double focalLength;
     public static final double FOV = 68.5;
+
+    public final static double wheelDiameterCM = 7.62;
+    public final static double robotRotationalRadiusCM = 42;
     
     /*
     * =================== Other ===================
@@ -75,10 +86,10 @@ public class RobotMap {
      * =================== Auto ===================
      */
 
-    public final static double wheelDiameter = 0;
-    public final static double wheelDiameterMM = 0;
-	public final static double wheelBaseWidth = 0;
-	public final static double wheelBaseDepth = 0;
+    // public final static double wheelDiameter = 0;
+    // public final static double wheelDiameterMM = 0;
+	// public final static double wheelBaseWidth = 0;
+	// public final static double wheelBaseDepth = 0;
 	
 	public final static double flKv = 0;
 	public final static double flKa = 0;

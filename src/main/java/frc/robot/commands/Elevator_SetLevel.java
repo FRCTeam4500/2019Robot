@@ -4,9 +4,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Elevator_SetLevel extends Command {
+    
     private int level;
+    
     public Elevator_SetLevel(int level) {
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.elevator);
         this.level = level;
     }

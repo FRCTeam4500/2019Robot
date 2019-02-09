@@ -32,6 +32,10 @@ public class OI {
 		controlStick = new Joystick(1);   
 		driveResetGyro = new JoystickButton(driveStick, 8);
 		driveResetGyro.whenPressed(new Swerve_GyroReset());
+
+		/*===============================
+				Elevator Buttons
+		===============================*/
 		elevatorLow = new JoystickButton(controlStick, 11);
 		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
 		elevatorMedium = new JoystickButton(controlStick, 9);
@@ -50,7 +54,7 @@ public class OI {
 	
 	public double getZ() {
 		double z = driveStick.getZ();
-		return Math.abs(z) > RobotMap.DEADZONE_Z ? z*Math.pow(z, 2) : 0;
+		return Math.abs(z) > RobotMap.DEADZONE_Z ? (z*Math.pow(z, RobotMap.SENSITIVITY_Z)) / RobotMap.REDUCER_Z : 0;
 	}
 	
 	public double getSlider() {

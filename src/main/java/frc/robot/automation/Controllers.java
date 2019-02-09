@@ -5,12 +5,13 @@ import frc.robot.RobotMap;
 import frc.robot.utility.PIDController;
 
 public class Controllers {
-    public static PIDController ultrasonicAlignmentController = null;
+    public static PIDController rotationalAlignmentController = null;
     public static PIDController xAlignmentController = null;
 
     public static void createControllers() {
-        ultrasonicAlignmentController = new PIDController("ultra", 0, 0, 0, 5, () -> {
-            return Robot.swerve.getLeftSonic() - Robot.swerve.getRightSonic();
+        rotationalAlignmentController = new PIDController("rotational", 0, 0, 0, 5, () -> {
+            return (double) Robot.swerve.getFL().getDrivePosition();
+            //return Robot.swerve.getLeftSonic() - Robot.swerve.getRightSonic();
         });
 
         xAlignmentController = new PIDController("vision", 0, 0, 0, 5, () -> {

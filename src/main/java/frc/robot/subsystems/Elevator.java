@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 public class Elevator extends Subsystem {
-    private TalonSRX elevatorMotor;
+	
+	private TalonSRX elevatorMotor;
     
-
     public Elevator() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATORMOTOR);
 		elevatorMotor.setSelectedSensorPosition(0, 0, RobotMap.TIMEOUT);
@@ -22,6 +22,7 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configForwardSoftLimitThreshold(RobotMap.ELEVATORMAX-200, RobotMap.TIMEOUT);
 		elevatorMotor.configReverseSoftLimitEnable(true);
 		elevatorMotor.configReverseSoftLimitThreshold(0, RobotMap.TIMEOUT);
+		
 		elevatorMotor.config_kP(0, 1.25908, RobotMap.TIMEOUT);
 		elevatorMotor.config_kI(0, 0.016, RobotMap.TIMEOUT);
 		elevatorMotor.config_kD(0, 12.5908, RobotMap.TIMEOUT);
@@ -29,18 +30,11 @@ public class Elevator extends Subsystem {
 		elevatorMotor.config_IntegralZone(0, 50, RobotMap.TIMEOUT);
 		elevatorMotor.configMotionCruiseVelocity(4760); // 1190
 		elevatorMotor.configMotionAcceleration(4760);
-		
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
 
-       /*  int absolutePosition = elevatorMotor.getSelectedSensorPosition(0);
-		
-		elevatorMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
-		
-		elevatorMotor.configForwardSoftLimitThreshold(4800, RobotMap.TIMEOUT);
-		elevatorMotor.configReverseSoftLimitThreshold(-10, RobotMap.TIMEOUT);
-		elevatorMotor.configForwardSoftLimitEnable(true, RobotMap.TIMEOUT);
-		elevatorMotor.configReverseSoftLimitEnable(true, RobotMap.TIMEOUT);
-		
-		elevatorMotor.config_kF(0, 0, RobotMap.TIMEOUT); */
 	}
 
     public void setLevel(int level) {
@@ -51,10 +45,6 @@ public class Elevator extends Subsystem {
 		return elevatorMotor;
 	}
 
-    @Override
-    protected void initDefaultCommand() {
-
-    }
 
 
 }
