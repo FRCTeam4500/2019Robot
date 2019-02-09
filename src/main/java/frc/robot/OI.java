@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Arm_SetRotation;
-import frc.robot.commands.Elevator_SetLevel;
 import frc.robot.commands.Swerve_GyroReset;
 
 /**
@@ -24,7 +23,6 @@ public class OI {
     Joystick driveStick;
     
     Button driveResetGyro;
-	Button elevatorLow, elevatorMedium, elevatorHigh;
 	Button armAngle;
 	
 
@@ -32,12 +30,7 @@ public class OI {
 	   	driveStick = new Joystick(0);
 		driveResetGyro = new JoystickButton(driveStick, 7);
 		driveResetGyro.whenPressed(new Swerve_GyroReset());
-		elevatorLow = new JoystickButton(driveStick, 11);
-		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-		elevatorMedium = new JoystickButton(driveStick, 9);
-		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-		elevatorHigh = new JoystickButton(driveStick, 7);
-		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
+		
 		armAngle = new JoystickButton(driveStick, 10);
 		armAngle.whenPressed(new Arm_SetRotation(RobotMap.ARMANGLE));
 

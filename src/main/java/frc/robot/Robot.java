@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
 import frc.robot.utility.Vision;
@@ -31,7 +30,6 @@ public class Robot extends TimedRobot {
 
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
-    public static Elevator elevator;
 	public static Arm arm;
     
     public static Vision vision;
@@ -51,7 +49,6 @@ public class Robot extends TimedRobot {
 		fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false, false);
         
         swerve = new Swerve(fl, fr, bl, br);
-        elevator = new Elevator();
         arm = new Arm();
         
         vision = new Vision();
@@ -139,6 +136,5 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        elevator.getElevatorMotor().set(ControlMode.PercentOutput, 0.1);
     }
 }
