@@ -25,18 +25,17 @@ public class Arm extends Subsystem {
     
     public Arm(){
         rotationalMotor = new TalonSRX(RobotMap.ROTATIONALMOTOR);
-        rotationalMotor.setSelectedSensorPosition(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
         rotationalMotor.setNeutralMode(NeutralMode.Brake);
         
-        // rotationalrMotor.configForwardSoftLimitEnable(true);
-        // rotationalrMotor.configForwardSoftLimitThreshold(RobotMap.rotationalRMAX-200, RobotMap.TIMEOUT);
-        // rotationalrMotor.configReverseSoftLimitEnable(true);
-        // rotationalrMotor.configReverseSoftLimitThreshold(0, RobotMap.TIMEOUT);
+        rotationalMotor.configForwardSoftLimitEnable(true);
+        rotationalMotor.configForwardSoftLimitThreshold(RobotMap.ARM_MAX, RobotMap.TIMEOUT);
+        rotationalMotor.configReverseSoftLimitEnable(true);
+        rotationalMotor.configReverseSoftLimitThreshold(RobotMap.ARM_MIN, RobotMap.TIMEOUT);
         
-        rotationalMotor.config_kP(0, 0, RobotMap.TIMEOUT);
+        rotationalMotor.config_kP(0, 0.7, RobotMap.TIMEOUT);
         rotationalMotor.config_kI(0, 0, RobotMap.TIMEOUT);
-        rotationalMotor.config_kD(0, 0, RobotMap.TIMEOUT);
+        rotationalMotor.config_kD(0, 7.0, RobotMap.TIMEOUT);
         rotationalMotor.config_kF(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.configMotionCruiseVelocity(0);
@@ -51,5 +50,21 @@ public class Arm extends Subsystem {
     
     public void setRotation(double angle){
         rotationalMotor.set(ControlMode.Position, angle);
+    }
+
+    public void fullspeed() {
+        rotationalMotor.set(ControlMode.PercentOutput, -1);
+    }
+
+    public int getArmPosition(){
+        return rotationalMotor.getSelectedSensorPosition();
+    }
+
+    public int getArmVelocity() {
+        return rotationalMotor.getSelectedSensorVelocity();
+    }
+
+    public int getArmError() {
+        return rotationalMotor.getClosedLoopError();
     }
 }

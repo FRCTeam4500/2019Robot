@@ -23,16 +23,20 @@ public class OI {
     Joystick driveStick;
     
     Button driveResetGyro;
-	Button armAngle;
+	Button armAngleLow, armAngleMedium, armAngleHigh;
 	
 
     public OI() {
 	   	driveStick = new Joystick(0);
-		driveResetGyro = new JoystickButton(driveStick, 7);
-		driveResetGyro.whenPressed(new Swerve_GyroReset());
+		// driveResetGyro = new JoystickButton(driveStick, 7);
+		// driveResetGyro.whenPressed(new Swerve_GyroReset());
 		
-		armAngle = new JoystickButton(driveStick, 10);
-		armAngle.whenPressed(new Arm_SetRotation(RobotMap.ARMANGLE));
+		armAngleLow = new JoystickButton(driveStick, 7);
+		armAngleLow.whenPressed(new Arm_SetRotation(0));
+		armAngleMedium = new JoystickButton(driveStick, 9);
+		armAngleMedium.whenPressed(new Arm_SetRotation(900));
+		armAngleHigh = new JoystickButton(driveStick, 11);
+		armAngleHigh.whenPressed(new Arm_SetRotation(1800));
 
 
     }

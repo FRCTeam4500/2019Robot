@@ -12,7 +12,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.automation.Controllers;
+import frc.robot.commands.Arm_SetRotation;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Swerve;
@@ -53,7 +56,11 @@ public class Robot extends TimedRobot {
         
         vision = new Vision();
         Controllers.createControllers();
-		
+
+/*         Shuffleboard.getTab("SmartDashboard").add("Low", new Arm_SetRotation(0)).withWidget(BuiltInWidgets.kCommand);
+        Shuffleboard.getTab("SmartDashboard").add("Medium", new Arm_SetRotation(900)).withWidget(BuiltInWidgets.kCommand);
+        Shuffleboard.getTab("SmartDashboard").add("High", new Arm_SetRotation(1800)).withWidget(BuiltInWidgets.kCommand);
+ */		
         oi = new OI();
     }
 
@@ -136,5 +143,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
+        RobotMap.dashboardDisplay();
+        arm.fullspeed();
     }
 }

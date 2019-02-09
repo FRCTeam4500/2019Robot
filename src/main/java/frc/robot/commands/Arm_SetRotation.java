@@ -22,6 +22,7 @@ public class Arm_SetRotation extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        System.out.println("Initialized");
         Robot.arm.setRotation(angle);
     }
     
@@ -33,6 +34,7 @@ public class Arm_SetRotation extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+        System.out.println("Finished");
         return true;
     }
     
