@@ -15,8 +15,10 @@ public class Automation_Group_Test extends CommandGroup {
    * Add your docs here.
    */
   public Automation_Group_Test() {
-    
     requires(Robot.swerve);
-    addSequential(new Automation_MakeParallel());
+    addSequential(new Automation_SetWheelAngle(0, 0, 1));
+    addSequential(new Automation_xAlign());
+    addSequential(new Automation_SetWheelAngle(0, 1, 0));
+    addSequential(new Automation_xAlign());
   }
 }

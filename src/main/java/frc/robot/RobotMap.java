@@ -17,36 +17,79 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RobotMap {
     /*
+     * =================== Elevator ===================
+     */
+    public final static int ELEVATORMOTOR = 5;
+    public final static int ELEVATORLOW = 10;
+    public final static int ELEVATORMEDIUM = 13060;
+    public final static int ELEVATORHIGH = 25000;
+    public final static int ELEVATORMAX = 26127;
+
+
+    /*
      * =================== Drivetrain ===================
      */
 
-    public final static int FLSPEEDPORT = 0, FLANGLEPORT = 0;
-    public final static int FRSPEEDPORT = 0, FRANGLEPORT = 0;
-    public final static int BLSPEEDPORT = 0, BLANGLEPORT = 0;
-    public final static int BRSPEEDPORT = 0, BRANGLEPORT = 0;
+    public final static int FLSPEEDPORT = 7, FLANGLEPORT = 6;
+    public final static int FRSPEEDPORT = 4, FRANGLEPORT = 3;
+    public final static int BLSPEEDPORT = 9, BLANGLEPORT = 8;
+    public final static int BRSPEEDPORT = 1, BRANGLEPORT = 2;
+    // units dont matter for L and W
+    public final static double L = 29.75;
+    public final static double W = 29.75;
+    public final static double COUNTPERDEG = 16.2539;
 
-    public final static double L = 0;
-    public final static double W = 0;
-    public final static double COUNTPERDEG = 0;
-
-    public final static double angleP = 0, angleI = 0, angleD = 0, angleF = 0;
-    public final static int angleV = 0, angleA = 0;
+    public final static double angleP = 1.03858, angleI = 0.004, angleD = 8, angleF = 0.51;
+    public final static int angleV = 4012, angleA = 4012;
 
     /*
-     * =================== Configuration ===================
+     * =================== Joystick Configuration ===================
      */
-
+    
+    
     public final static double DEADZONE_XY = 0.2;
     public final static double DEADZONE_Z = 0.4;
+    // How sensitive the Z axis is. 
+    // 0 = no effect
+    // 1 = square the output
+    // 2 = cube the output
+    public final static int SENSITIVITY_Z = 2;
+    // Reduces the maximum output for the Z axis. 
+    // 1 = full speed
+    // 2 = half speed
+    // etc
+    public final static int REDUCER_Z = 1;
+    
+    
+    
+    /*
+     * =================== Vision Configuration ===================
+     */
+    
+    public static double imgW;
+    public static double imgH;
+    public static double imgCenterW;
+    public static double imgCenterH;
+    public static double focalLength;
+    public static final double FOV = 68.5;
+
+    public final static double wheelDiameterCM = 7.62;
+    public final static double robotRotationalRadiusCM = 42;
+    
+    /*
+    * =================== Other ===================
+    */
+    
     public final static int TIMEOUT = 0;
     
-     /*
+    /*
      * =================== Auto ===================
      */
 
-    public final static double wheelDiameter = 0;
-	public final static double wheelBaseWidth = 0;
-	public final static double wheelBaseDepth = 0;
+    // public final static double wheelDiameter = 0;
+    // public final static double wheelDiameterMM = 0;
+	// public final static double wheelBaseWidth = 0;
+	// public final static double wheelBaseDepth = 0;
 	
 	public final static double flKv = 0;
 	public final static double flKa = 0;
@@ -86,6 +129,8 @@ public class RobotMap {
 
      public static void dashboardDisplay() {
          SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
+         SmartDashboard.putNumber("Elevator Position", Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
+         SmartDashboard.putNumber("Elevator Error", Robot.elevator.getElevatorMotor().getClosedLoopError());
      }
 
 }

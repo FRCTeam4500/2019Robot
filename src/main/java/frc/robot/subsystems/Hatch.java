@@ -14,12 +14,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
- */
+* Add your docs here.
+*/
 public class Hatch extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
+  
   private DoubleSolenoid left, right, center;
   public Hatch(){
     left = new DoubleSolenoid(RobotMap.LEFT_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.LEFT_HATCH_SOLENOID_REVERSE_CHANNEL);
@@ -44,7 +44,7 @@ public class Hatch extends Subsystem {
       center.set(Value.kForward);
     }
   }
-
+  
   public void extendSides(){
     left.set(Value.kForward);
     right.set(Value.kForward);
@@ -62,5 +62,5 @@ public class Hatch extends Subsystem {
       left.set(Value.kForward);
     }
   }
-
+  
 }
