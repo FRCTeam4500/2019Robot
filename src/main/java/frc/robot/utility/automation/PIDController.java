@@ -1,4 +1,4 @@
-package frc.robot.utility;
+package frc.robot.utility.automation;
 
 import edu.wpi.first.wpilibj.Preferences;
 import frc.robot.Robot;
