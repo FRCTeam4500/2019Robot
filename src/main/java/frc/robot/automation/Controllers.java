@@ -1,11 +1,10 @@
 package frc.robot.automation;
 
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.utility.PIDController;
+import frc.robot.utility.automation.PIDController;
 
 public class Controllers {
-    public static PIDController rotationalAlignmentController = null;
+    public static frc.robot.utility.automation.PIDController rotationalAlignmentController = null;
     public static PIDController xAlignmentController = null;
 
     public static void createControllers() {

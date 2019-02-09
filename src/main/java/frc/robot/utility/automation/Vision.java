@@ -9,7 +9,7 @@ public class Vision {
 
     private NetworkTableInstance nt;
     private NetworkTable table;
-    private NetworkTableEntry centerX, centerY;
+    // private NetworkTableEntry centerX, centerY;
     private NetworkTableEntry centerDat;
     private NetworkTableEntry angleDat;
 
