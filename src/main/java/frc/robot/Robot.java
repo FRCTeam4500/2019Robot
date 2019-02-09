@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
     public static Elevator elevator;
+	public static Arm arm;
     
     public static Vision vision;
     public static OI oi;
@@ -51,6 +53,7 @@ public class Robot extends TimedRobot {
         
         swerve = new Swerve(fl, fr, bl, br);
         elevator = new Elevator();
+        arm = new Arm();
         
         vision = new Vision();
 
@@ -58,7 +61,11 @@ public class Robot extends TimedRobot {
         pidChooser.setDefaultOption("Disable", false);
         pidChooser.addOption("Enable", true);
         Controllers.createControllers();
-		
+
+/*         Shuffleboard.getTab("SmartDashboard").add("Low", new Arm_SetRotation(0)).withWidget(BuiltInWidgets.kCommand);
+        Shuffleboard.getTab("SmartDashboard").add("Medium", new Arm_SetRotation(900)).withWidget(BuiltInWidgets.kCommand);
+        Shuffleboard.getTab("SmartDashboard").add("High", new Arm_SetRotation(1800)).withWidget(BuiltInWidgets.kCommand);
+ */		
         oi = new OI();
     }
 

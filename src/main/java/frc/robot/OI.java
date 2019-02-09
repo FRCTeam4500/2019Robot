@@ -11,6 +11,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Arm_SetRotation;
 import frc.robot.commands.Elevator_SetLevel;
 import frc.robot.commands.Swerve_GyroReset;
 
@@ -24,14 +25,22 @@ public class OI {
 	Joystick controlStick;
     
     Button driveResetGyro;
-	Button elevatorLow, elevatorMedium, elevatorHigh;
+    Button elevatorLow, elevatorMedium, elevatorHigh;
+	Button armAngleLow, armAngleMedium, armAngleHigh;
 	
 
     public OI() {
 		driveStick = new Joystick(0);
 		controlStick = new Joystick(1);   
-		driveResetGyro = new JoystickButton(driveStick, 8);
-		driveResetGyro.whenPressed(new Swerve_GyroReset());
+		// driveResetGyro = new JoystickButton(driveStick, 7);
+		// driveResetGyro.whenPressed(new Swerve_GyroReset());
+		
+		armAngleLow = new JoystickButton(driveStick, 7);
+		armAngleLow.whenPressed(new Arm_SetRotation(0));
+		armAngleMedium = new JoystickButton(driveStick, 9);
+		armAngleMedium.whenPressed(new Arm_SetRotation(900));
+		armAngleHigh = new JoystickButton(driveStick, 11);
+		armAngleHigh.whenPressed(new Arm_SetRotation(1800));
 
 		/*===============================
 				Elevator Buttons
