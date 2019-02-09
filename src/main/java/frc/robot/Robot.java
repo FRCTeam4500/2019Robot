@@ -17,6 +17,7 @@ import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
+import frc.robot.utility.CameraInstance;
 import frc.robot.utility.automation.Vision;
 
 /**
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
     public static Elevator elevator;
     
     public static Vision vision;
+    public static CameraInstance camOne;
     public static OI oi;
 
     public static Preferences pref;
@@ -53,7 +55,8 @@ public class Robot extends TimedRobot {
         elevator = new Elevator();
         
         vision = new Vision();
-
+        camOne = new CameraInstance(CameraInstance.StreamType.SIMPLE,0);
+        camOne.start();
         pidChooser = new SendableChooser<Boolean>();
         pidChooser.setDefaultOption("Disable", false);
         pidChooser.addOption("Enable", true);
