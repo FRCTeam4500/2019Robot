@@ -30,7 +30,7 @@ public class RobotMap {
      */
     public final static int ROTATIONALMOTOR = 12; 
     public final static double ARMANGLE = 0;
-    public final static int ARM_MAX = 1600;
+    public final static int ARM_MAX = 2200;
     public final static int ARM_MIN = 0;
 
 

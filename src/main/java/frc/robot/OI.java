@@ -32,24 +32,27 @@ public class OI {
     public OI() {
 		driveStick = new Joystick(0);
 		controlStick = new Joystick(1);   
-		// driveResetGyro = new JoystickButton(driveStick, 7);
-		// driveResetGyro.whenPressed(new Swerve_GyroReset());
-		
-		armAngleLow = new JoystickButton(driveStick, 7);
+		driveResetGyro = new JoystickButton(driveStick, 7);
+		driveResetGyro.whenPressed(new Swerve_GyroReset());
+        
+        /*===============================
+                Arm Buttons
+        ===============================*/
+		armAngleLow = new JoystickButton(controlStick, 7);
 		armAngleLow.whenPressed(new Arm_SetRotation(0));
-		armAngleMedium = new JoystickButton(driveStick, 9);
+		armAngleMedium = new JoystickButton(controlStick, 9);
 		armAngleMedium.whenPressed(new Arm_SetRotation(900));
-		armAngleHigh = new JoystickButton(driveStick, 11);
-		armAngleHigh.whenPressed(new Arm_SetRotation(1800));
+		armAngleHigh = new JoystickButton(controlStick, 11);
+		armAngleHigh.whenPressed(new Arm_SetRotation(2196.0));
 
 		/*===============================
 				Elevator Buttons
 		===============================*/
-		elevatorLow = new JoystickButton(controlStick, 11);
+		elevatorLow = new JoystickButton(controlStick, 12);
 		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-		elevatorMedium = new JoystickButton(controlStick, 9);
+		elevatorMedium = new JoystickButton(controlStick, 10);
 		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-		elevatorHigh = new JoystickButton(controlStick, 7);
+		elevatorHigh = new JoystickButton(controlStick, 8);
 		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
     }
 
