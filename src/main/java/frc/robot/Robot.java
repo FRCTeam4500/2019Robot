@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.automation.Automation_Group_Test;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Arm;
@@ -114,6 +115,8 @@ public class Robot extends TimedRobot {
         // if (m_autonomousCommand != null) {
         // m_autonomousCommand.start();
         // }
+        Command cmd = new Automation_Group_Test();
+        cmd.start();
     }
 
     /**
@@ -132,6 +135,7 @@ public class Robot extends TimedRobot {
         Command preconfigure = new Robot_Group_PreConfigure();
         preconfigure.start();
         preconfigure.close();
+        swerve.enableDefaultCommand();
     }
 
     /**
@@ -149,5 +153,6 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
         RobotMap.dashboardDisplay();
+        arm.fullspeed();
     }
 }
