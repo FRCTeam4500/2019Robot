@@ -70,7 +70,10 @@ public class OI {
 
 		cargoRelease = new JoystickButton(driveStick, 2);
 		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
-		cargoRelease.whenReleased(new Cargo_Release(0, 0));
+        cargoRelease.whenReleased(new Cargo_Release(0, 0));
+
+        
+        
     }
 
     public double getX() {
