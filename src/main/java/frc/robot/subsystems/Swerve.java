@@ -45,6 +45,10 @@ public class Swerve extends Subsystem {
     
     @Override
     public void initDefaultCommand() {
+        // setDefaultCommand(new Swerve_Drive());
+    }
+    
+    public void enableDefaultCommand() {
         setDefaultCommand(new Swerve_Drive());
     }
 
@@ -154,6 +158,7 @@ public class Swerve extends Subsystem {
         double frAngle = (Math.atan2(b, c) * 180 / Math.PI);
         double flAngle = (Math.atan2(b, d) * 180 / Math.PI);
 
+        System.out.println("Setting angle to " + brAngle + " with an error of " + br.getAngleError());
         br.setAngle(brAngle);
         bl.setAngle(blAngle);
         fr.setAngle(frAngle);

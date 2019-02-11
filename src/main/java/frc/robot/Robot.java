@@ -14,7 +14,13 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
+import frc.robot.subsystems.Cargo;
+import frc.robot.automation.Automation_Group_Test;
+import frc.robot.automation.Controllers;
+import frc.robot.commands.Robot_Group_PreConfigure;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.PneumaticsCompressor;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
 import frc.robot.utility.CameraInstance;
@@ -32,6 +38,9 @@ public class Robot extends TimedRobot {
     public static WheelModule fl, fr, bl, br;
     public static Swerve swerve;
     public static Elevator elevator;
+	public static Arm arm;
+    public static Cargo cargo;
+    public static PneumaticsCompressor compress; 
     
     public static Vision vision;
     public static CameraInstance camOne;
@@ -53,7 +62,10 @@ public class Robot extends TimedRobot {
         
         swerve = new Swerve(fl, fr, bl, br);
         elevator = new Elevator();
-        
+        arm = new Arm();
+        cargo = new Cargo();
+        // compress = new PneumaticsCompressor();
+     
         vision = new Vision();
         camOne = new CameraInstance(CameraInstance.StreamType.SIMPLE,0);
         camOne.start();
@@ -61,7 +73,11 @@ public class Robot extends TimedRobot {
         pidChooser.setDefaultOption("Disable", false);
         pidChooser.addOption("Enable", true);
         Controllers.createControllers();
-		
+
+/*         Shuffleboard.getTab("SmartDashboard").add("Low", new Arm_SetRotation(0)).withWidget(BuiltInWidgets.kCommand);
+        Shuffleboard.getTab("SmartDashboard").add("Medium", new Arm_SetRotation(900)).withWidget(BuiltInWidgets.kCommand);
+        Shuffleboard.getTab("SmartDashboard").add("High", new Arm_SetRotation(1800)).withWidget(BuiltInWidgets.kCommand);
+ */		
         oi = new OI();
     }
 
@@ -110,6 +126,8 @@ public class Robot extends TimedRobot {
         // if (m_autonomousCommand != null) {
         // m_autonomousCommand.start();
         // }
+        Command cmd = new Automation_Group_Test();
+        cmd.start();
     }
 
     /**
@@ -128,6 +146,7 @@ public class Robot extends TimedRobot {
         Command preconfigure = new Robot_Group_PreConfigure();
         preconfigure.start();
         preconfigure.close();
+        swerve.enableDefaultCommand();
     }
 
     /**
@@ -145,5 +164,6 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
         RobotMap.dashboardDisplay();
+        arm.fullspeed();
     }
 }

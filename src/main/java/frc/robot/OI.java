@@ -11,8 +11,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Arm_SetRotation;
 import frc.robot.commands.Elevator_SetLevel;
 import frc.robot.commands.Swerve_GyroReset;
+import frc.robot.commands.Cargo_Intake;
+import frc.robot.commands.Cargo_Release;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,23 +28,49 @@ public class OI {
     
     Button driveResetGyro;
 	Button elevatorLow, elevatorMedium, elevatorHigh;
+	Button armAngleLow, armAngleMedium, armAngleHigh;
+	Button cargoIntake, cargoRelease;
 	
 
     public OI() {
 		driveStick = new Joystick(0);
-		controlStick = new Joystick(1);   
-		driveResetGyro = new JoystickButton(driveStick, 8);
+        controlStick = new Joystick(1); 
+          
+		driveResetGyro = new JoystickButton(driveStick, 7);
 		driveResetGyro.whenPressed(new Swerve_GyroReset());
+        
+        /*===============================
+                Arm Buttons
+        ===============================*/
+		armAngleLow = new JoystickButton(controlStick, 7);
+		armAngleLow.whenPressed(new Arm_SetRotation(0));
+		armAngleMedium = new JoystickButton(controlStick, 9);
+		armAngleMedium.whenPressed(new Arm_SetRotation(900));
+		armAngleHigh = new JoystickButton(controlStick, 11);
+		armAngleHigh.whenPressed(new Arm_SetRotation(2196.0));
 
 		/*===============================
 				Elevator Buttons
 		===============================*/
-		elevatorLow = new JoystickButton(controlStick, 11);
-		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-		elevatorMedium = new JoystickButton(controlStick, 9);
-		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-		elevatorHigh = new JoystickButton(controlStick, 7);
-		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
+
+        elevatorLow = new JoystickButton(controlStick, 12);
+        elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
+        elevatorMedium = new JoystickButton(controlStick, 10);
+        elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
+        elevatorHigh = new JoystickButton(controlStick, 8);
+        elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
+
+		/*===============================
+				Cargo Buttons
+		===============================*/
+
+		cargoIntake = new JoystickButton(driveStick, 1);
+		cargoIntake.whenPressed(new Cargo_Intake(.8, .8));
+		cargoIntake.whenReleased(new Cargo_Intake(0, 0));
+
+		cargoRelease = new JoystickButton(driveStick, 2);
+		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
+		cargoRelease.whenReleased(new Cargo_Release(0, 0));
     }
 
     public double getX() {

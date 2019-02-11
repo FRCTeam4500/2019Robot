@@ -10,26 +10,44 @@ package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+* The RobotMap is a mapping from the ports sensors and actuators are wired into
+* to a variable name. This provides flexibility changing wiring, makes checking
+* the wiring easier and significantly reduces the number of magic numbers
+* floating around.
+*/
 public class RobotMap {
+    
     /*
-     * =================== Elevator ===================
-     */
+    * =================== Elevator ===================
+    */
+
     public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 10;
     public final static int ELEVATORMEDIUM = 13060;
     public final static int ELEVATORHIGH = 25000;
-    public final static int ELEVATORMAX = 26127;
-
-
+    public final static int ELEVATORMAX = 26127;   
+   
     /*
-     * =================== Drivetrain ===================
+     * =================== Arm ===================
      */
 
+    public final static int ROTATIONALMOTOR = 12; 
+    public final static double ARMANGLE = 0;
+    public final static int ARM_MAX = 2200;
+    public final static int ARM_MIN = 0;
+    
+    /*
+    * =================== Cargo ===================
+    */
+    
+    public final static int LEFTGRAB = 11;
+    public final static int RIGHTGRAB = 10;
+    public final static int TOPGRAB = 13;
+    
+    /*
+    * =================== Drivetrain ===================
+    */
+    
     public final static int FLSPEEDPORT = 7, FLANGLEPORT = 6;
     public final static int FRSPEEDPORT = 4, FRANGLEPORT = 3;
     public final static int BLSPEEDPORT = 9, BLANGLEPORT = 8;
@@ -38,14 +56,13 @@ public class RobotMap {
     public final static double L = 29.75;
     public final static double W = 29.75;
     public final static double COUNTPERDEG = 16.2539;
-
+    
     public final static double angleP = 1.03858, angleI = 0.004, angleD = 8, angleF = 0.51;
     public final static int angleV = 4012, angleA = 4012;
-
-    /*
-     * =================== Joystick Configuration ===================
-     */
     
+    /*
+    * =================== Joystick Configuration ===================
+    */
     
     public final static double DEADZONE_XY = 0.2;
     public final static double DEADZONE_Z = 0.4;
@@ -63,8 +80,8 @@ public class RobotMap {
     
     
     /*
-     * =================== Vision Configuration ===================
-     */
+    * =================== Vision Configuration ===================
+    */
     
     public static double imgW;
     public static double imgH;
@@ -72,7 +89,7 @@ public class RobotMap {
     public static double imgCenterH;
     public static double focalLength;
     public static final double FOV = 68.5;
-
+    
     public final static double wheelDiameterCM = 7.62;
     public final static double robotRotationalRadiusCM = 42;
     
@@ -81,11 +98,12 @@ public class RobotMap {
     */
     
     public final static int TIMEOUT = 0;
+    public final static int COMPRESSOR = 0;
     
     /*
-     * =================== Auto ===================
-     */
-
+    * =================== Auto ===================
+    */
+    
     // public final static double wheelDiameter = 0;
     // public final static double wheelDiameterMM = 0;
 	// public final static double wheelBaseWidth = 0;
@@ -103,15 +121,17 @@ public class RobotMap {
 	public final static double brKv = 0;
 	public final static double brKa = 0;
 	public final static int ticksPerRotation = 0;
-
-     /*
-     * =================== Methods ===================
-     */
-
-     public static void dashboardDisplay() {
-         SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
-         SmartDashboard.putNumber("Elevator Position", Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
-         SmartDashboard.putNumber("Elevator Error", Robot.elevator.getElevatorMotor().getClosedLoopError());
-     }
-
+    
+    /*
+    * =================== Methods ===================
+    */
+    
+    public static void dashboardDisplay() {
+        SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
+        SmartDashboard.putNumber("Elevator Position", Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
+        SmartDashboard.putNumber("Elevator Error", Robot.elevator.getElevatorMotor().getClosedLoopError());
+        SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        SmartDashboard.putNumber("ArmVelocity", Robot.arm.getArmVelocity());
+        SmartDashboard.putNumber("ArmError", Robot.arm.getArmError());
+    }
 }

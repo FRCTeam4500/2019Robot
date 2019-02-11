@@ -24,28 +24,34 @@ public class Automation_rotAlign extends Command {
   @Override
   protected void initialize() {
     Controllers.rotationalAlignmentController.reset();
-    Robot.swerve.getFL().setDrivePosition(0);
+    Robot.swerve.getFR().setDrivePosition(0);
     double angle = Robot.vision.getAngle();
+    System.out.println("Angle is " + angle);
     double distanceToMove = (1024 * RobotMap.robotRotationalRadiusCM * angle) / (45 * RobotMap.wheelDiameterCM);
+    System.out.println("Distance to move is " + distanceToMove);
     this.distanceToMove = distanceToMove;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("----------");
     double output = Controllers.rotationalAlignmentController.getPIDOutput(distanceToMove);
+    System.out.println("Output is " + output);
     Robot.swerve.setSpeed(output);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Controllers.rotationalAlignmentController.targetReached(0);
+    return Controllers.rotationalAlignmentController.targetReached(distanceToMove);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+      Robot.swerve.setSpeed(0);
+      System.out.println("Target reached");
   }
 
   // Called when another command which requires one or more of the same
