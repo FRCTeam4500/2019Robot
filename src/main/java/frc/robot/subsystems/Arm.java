@@ -35,8 +35,8 @@ public class Arm extends Subsystem {
         
         rotationalMotor.config_kP(0, 0.70, RobotMap.TIMEOUT); // 0.7
         rotationalMotor.config_kI(0, 0, RobotMap.TIMEOUT);
-        rotationalMotor.config_kD(0, 7, RobotMap.TIMEOUT); // 7
-        rotationalMotor.config_kF(0, 0, RobotMap.TIMEOUT);
+        rotationalMotor.config_kD(0, 0, RobotMap.TIMEOUT); // 7
+        //rotationalMotor.config_kF(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.configMotionCruiseVelocity(0);

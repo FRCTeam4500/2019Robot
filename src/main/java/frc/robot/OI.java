@@ -45,9 +45,9 @@ public class OI {
 		armAngleLow = new JoystickButton(controlStick, 7);
 		armAngleLow.whenPressed(new Arm_SetRotation(0));
 		armAngleMedium = new JoystickButton(controlStick, 9);
-		armAngleMedium.whenPressed(new Arm_SetRotation(900));
+		armAngleMedium.whenPressed(new Arm_SetRotation(600));
 		armAngleHigh = new JoystickButton(controlStick, 11);
-		armAngleHigh.whenPressed(new Arm_SetRotation(2196.0));
+		armAngleHigh.whenPressed(new Arm_SetRotation(2000.0));
 
 		/*===============================
 				Elevator Buttons
