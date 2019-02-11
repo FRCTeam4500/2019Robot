@@ -19,6 +19,7 @@ import frc.robot.automation.Automation_Group_Test;
 import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.PneumaticsCompressor;
 import frc.robot.subsystems.Swerve;
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 	public static Arm arm;
     public static Cargo cargo;
     public static PneumaticsCompressor compress; 
+	public static Hatch hatch;
     
     public static Vision vision;
     public static CameraInstance camOne;
@@ -66,6 +68,8 @@ public class Robot extends TimedRobot {
         cargo = new Cargo();
         // compress = new PneumaticsCompressor();
      
+        hatch = new Hatch();
+        
         vision = new Vision();
         camOne = new CameraInstance(CameraInstance.StreamType.SIMPLE,0);
         camOne.start();

@@ -134,4 +134,23 @@ public class RobotMap {
         SmartDashboard.putNumber("ArmVelocity", Robot.arm.getArmVelocity());
         SmartDashboard.putNumber("ArmError", Robot.arm.getArmError());
     }
+    
+    /*
+    *====================== Hatch =========================
+    */
+	public static final int RIGHT_HATCH_SOLENOID = 0;
+	public static final int LEFT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
+	public static final int LEFT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
+	public static final int RIGHT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
+	public static final int RIGHT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
+	public static final int MIDDLE_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int MIDDLE_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
+    
+    /*
+    *======================= Hatch Joystick Buttons ======================
+    */
+	public static final int HATCH_EXTEND_BUTTON_CHANNEL = 0;
+	public static final int HATCH_POP_BUTTON_CHANNEL = 0;
+	public static final int HATCH_RETRACT_BUTTON_CHANNEL = 0;
+	public static final int HATCH_UNPOP_BUTTON_CHANNEL = 0;
 }

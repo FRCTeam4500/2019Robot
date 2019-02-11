@@ -12,6 +12,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Arm_SetRotation;
+import frc.robot.commands.Hatch_ExtendIntake;
+import frc.robot.commands.Hatch_PopHatch;
+import frc.robot.commands.Hatch_RetractIntake;
+import frc.robot.commands.Hatch_UnpopHatch;
 import frc.robot.commands.Elevator_SetLevel;
 import frc.robot.commands.Swerve_GyroReset;
 import frc.robot.commands.Cargo_Intake;
@@ -30,8 +34,8 @@ public class OI {
 	Button elevatorLow, elevatorMedium, elevatorHigh;
 	Button armAngleLow, armAngleMedium, armAngleHigh;
 	Button cargoIntake, cargoRelease;
+	Button hatchExtendButton, hatchPopButton, hatchRetractButton, hatchUnpopButton;
 	
-
     public OI() {
 		driveStick = new Joystick(0);
         controlStick = new Joystick(1); 
@@ -49,8 +53,9 @@ public class OI {
 		armAngleHigh = new JoystickButton(controlStick, 11);
 		armAngleHigh.whenPressed(new Arm_SetRotation(2000.0));
 
+		
 		/*===============================
-				Elevator Buttons
+		Elevator Buttons
 		===============================*/
 
         elevatorLow = new JoystickButton(controlStick, 12);
@@ -74,6 +79,25 @@ public class OI {
 
         
         
+		elevatorLow = new JoystickButton(controlStick, 11);
+		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
+		elevatorMedium = new JoystickButton(controlStick, 9);
+		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
+		elevatorHigh = new JoystickButton(controlStick, 7);
+		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
+		
+		/*===============================
+		Hatch Buttons
+		===============================*/
+		hatchExtendButton = new JoystickButton(driveStick, RobotMap.HATCH_EXTEND_BUTTON_CHANNEL);
+		hatchExtendButton.whenPressed(new Hatch_ExtendIntake());
+		hatchPopButton = new JoystickButton(driveStick, RobotMap.HATCH_POP_BUTTON_CHANNEL);
+		hatchPopButton.whenPressed(new Hatch_PopHatch());
+		hatchRetractButton = new JoystickButton(driveStick, RobotMap.HATCH_RETRACT_BUTTON_CHANNEL);
+		hatchRetractButton.whenPressed(new Hatch_RetractIntake());
+		hatchUnpopButton = new JoystickButton(driveStick, RobotMap.HATCH_UNPOP_BUTTON_CHANNEL);
+		hatchUnpopButton.whenPressed(new Hatch_UnpopHatch());
+		
     }
 
     public double getX() {
