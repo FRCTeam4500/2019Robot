@@ -20,11 +20,29 @@ public class RobotMap {
     /*
     * =================== Elevator ===================
     */
+
     public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 10;
     public final static int ELEVATORMEDIUM = 13060;
     public final static int ELEVATORHIGH = 25000;
-    public final static int ELEVATORMAX = 26127;
+    public final static int ELEVATORMAX = 26127;   
+   
+    /*
+     * =================== Arm ===================
+     */
+
+    public final static int ROTATIONALMOTOR = 12; 
+    public final static double ARMANGLE = 0;
+    public final static int ARM_MAX = 2200;
+    public final static int ARM_MIN = 0;
+    
+    /*
+    * =================== Cargo ===================
+    */
+    
+    public final static int LEFTGRAB = 11;
+    public final static int RIGHTGRAB = 10;
+    public final static int TOPGRAB = 13;
     
     /*
     * =================== Drivetrain ===================
@@ -42,20 +60,9 @@ public class RobotMap {
     public final static double angleP = 1.03858, angleI = 0.004, angleD = 8, angleF = 0.51;
     public final static int angleV = 4012, angleA = 4012;
     
-    
-    /*
-    * =================== Cargo ===================
-    */
-    
-    public final static int LEFTGRAB = 11;
-    public final static int RIGHTGRAB = 10;
-    public final static int TOPGRAB = 13;
-    
-    
     /*
     * =================== Joystick Configuration ===================
     */
-    
     
     public final static double DEADZONE_XY = 0.2;
     public final static double DEADZONE_Z = 0.4;
@@ -123,6 +130,8 @@ public class RobotMap {
         SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
         SmartDashboard.putNumber("Elevator Position", Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
         SmartDashboard.putNumber("Elevator Error", Robot.elevator.getElevatorMotor().getClosedLoopError());
+        SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        SmartDashboard.putNumber("ArmVelocity", Robot.arm.getArmVelocity());
+        SmartDashboard.putNumber("ArmError", Robot.arm.getArmError());
     }
-    
 }

@@ -1,4 +1,4 @@
-package frc.robot.utility;
+package frc.robot.utility.automation;
 
 import edu.wpi.first.wpilibj.Preferences;
 import frc.robot.Robot;
@@ -24,7 +24,9 @@ public class PIDController {
 
     public double getPIDOutput(double target) {
         double error = target - getPIDInput();
-        
+        System.out.println("Error is " + error);
+        System.out.println("dX is " + (error - lastError));
+        System.out.println("I is " + sumOfErrors + " kI is " + kI);
         if (Robot.pidChooser.getSelected()) {
             this.kP = Robot.pref.getDouble(id + "_kP", this.kP);
             this.kI = Robot.pref.getDouble(id + "_kI", this.kI);
