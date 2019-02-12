@@ -25,11 +25,11 @@ public class Elevator extends Subsystem {
 		
 		elevatorMotor.config_kP(0, 1.25908, RobotMap.TIMEOUT);
 		elevatorMotor.config_kI(0, 0.016, RobotMap.TIMEOUT);
-		elevatorMotor.config_kD(0, 12.5908, RobotMap.TIMEOUT);
-		elevatorMotor.config_kF(0, 0.429832, RobotMap.TIMEOUT);
+		elevatorMotor.config_kD(0, 0, RobotMap.TIMEOUT);//12.5908
+		//elevatorMotor.config_kF(0, 0.429832, RobotMap.TIMEOUT);
 		elevatorMotor.config_IntegralZone(0, 50, RobotMap.TIMEOUT);
-		elevatorMotor.configMotionCruiseVelocity(4760); // 1190
-		elevatorMotor.configMotionAcceleration(4760);
+		elevatorMotor.configMotionCruiseVelocity(4500); // 1190
+		elevatorMotor.configMotionAcceleration(4500);
 	}
 	
 	@Override
@@ -38,7 +38,7 @@ public class Elevator extends Subsystem {
 	}
 
     public void setLevel(int level) {
-        elevatorMotor.set(ControlMode.MotionMagic, level);
+        elevatorMotor.set(ControlMode.Position, level);
 	}
 	
 	public TalonSRX getElevatorMotor() {

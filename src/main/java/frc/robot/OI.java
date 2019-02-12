@@ -51,18 +51,18 @@ public class OI {
 		armAngleMedium = new JoystickButton(controlStick, 9);
 		armAngleMedium.whenPressed(new Arm_SetRotation(600));
 		armAngleHigh = new JoystickButton(controlStick, 11);
-		armAngleHigh.whenPressed(new Arm_SetRotation(2000.0));
+		armAngleHigh.whenPressed(new Arm_SetRotation(2100.0));
 
 		
 		/*===============================
 		Elevator Buttons
 		===============================*/
 
-        elevatorLow = new JoystickButton(controlStick, 12);
+        elevatorLow = new JoystickButton(driveStick, 12);
         elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-        elevatorMedium = new JoystickButton(controlStick, 10);
+        elevatorMedium = new JoystickButton(driveStick, 10);
         elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-        elevatorHigh = new JoystickButton(controlStick, 8);
+        elevatorHigh = new JoystickButton(driveStick, 8);
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
 
 		/*===============================
@@ -77,14 +77,16 @@ public class OI {
 		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
         cargoRelease.whenReleased(new Cargo_Release(0, 0));
 
+        /*===============================
+				Elevator Buttons
+		===============================*/
         
-        
-		elevatorLow = new JoystickButton(controlStick, 11);
+		/*elevatorLow = new JoystickButton(controlStick, 11);
 		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
 		elevatorMedium = new JoystickButton(controlStick, 9);
 		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
 		elevatorHigh = new JoystickButton(controlStick, 7);
-		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
+		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));/*
 		
 		/*===============================
 		Hatch Buttons

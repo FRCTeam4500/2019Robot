@@ -45,7 +45,7 @@ public class Swerve extends Subsystem {
     
     @Override
     public void initDefaultCommand() {
-        // setDefaultCommand(new Swerve_Drive());
+        setDefaultCommand(new Swerve_Drive());
     }
     
     public void enableDefaultCommand() {

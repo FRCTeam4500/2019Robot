@@ -21,6 +21,11 @@ public class RobotMap {
     * =================== Elevator ===================
     */
 
+    /**
+     *
+     */
+
+    private static final int _0 = 0;
     public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 10;
     public final static int ELEVATORMEDIUM = 15000;
@@ -70,7 +75,7 @@ public class RobotMap {
     // 0 = no effect
     // 1 = square the output
     // 2 = cube the output
-    public final static int SENSITIVITY_Z = 2;
+    public final static int SENSITIVITY_Z = 3;
     // Reduces the maximum output for the Z axis. 
     // 1 = full speed
     // 2 = half speed
@@ -134,23 +139,23 @@ public class RobotMap {
         SmartDashboard.putNumber("ArmVelocity", Robot.arm.getArmVelocity());
         SmartDashboard.putNumber("ArmError", Robot.arm.getArmError());
     }
-    
+
     /*
     *====================== Hatch =========================
     */
-	public static final int RIGHT_HATCH_SOLENOID = 0;
+
 	public static final int LEFT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
 	public static final int LEFT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
 	public static final int RIGHT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
 	public static final int RIGHT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
 	public static final int MIDDLE_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
-    public static final int MIDDLE_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
+    public static final int MIDDLE_HATCH_SOLENOID_REVERSE_CHANNEL = 1;
     
     /*
-    *======================= Hatch Joystick Buttons ======================
+    *======================= Hatch Joystick Buttons on Controlstick ======================
     */
-	public static final int HATCH_EXTEND_BUTTON_CHANNEL = 0;
-	public static final int HATCH_POP_BUTTON_CHANNEL = 0;
-	public static final int HATCH_RETRACT_BUTTON_CHANNEL = 0;
-	public static final int HATCH_UNPOP_BUTTON_CHANNEL = 0;
+	public static final int HATCH_EXTEND_BUTTON_CHANNEL = 5;
+	public static final int HATCH_POP_BUTTON_CHANNEL = 3;
+	public static final int HATCH_RETRACT_BUTTON_CHANNEL = 4;
+	public static final int HATCH_UNPOP_BUTTON_CHANNEL = 6;
 }

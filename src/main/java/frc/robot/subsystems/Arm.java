@@ -26,21 +26,21 @@ public class Arm extends Subsystem {
     public Arm(){
         rotationalMotor = new TalonSRX(RobotMap.ROTATIONALMOTOR);
         rotationalMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
-        rotationalMotor.setNeutralMode(NeutralMode.Brake);
+        //rotationalMotor.setNeutralMode(NeutralMode.Brake);
         
         rotationalMotor.configForwardSoftLimitEnable(true);
         rotationalMotor.configForwardSoftLimitThreshold(RobotMap.ARM_MAX, RobotMap.TIMEOUT);
         rotationalMotor.configReverseSoftLimitEnable(true);
         rotationalMotor.configReverseSoftLimitThreshold(RobotMap.ARM_MIN, RobotMap.TIMEOUT);
         
-        rotationalMotor.config_kP(0, 0.70, RobotMap.TIMEOUT); // 0.7
+        rotationalMotor.config_kP(0, 4, RobotMap.TIMEOUT); // 0.7
         rotationalMotor.config_kI(0, 0, RobotMap.TIMEOUT);
-        rotationalMotor.config_kD(0, 0, RobotMap.TIMEOUT); // 7
+        rotationalMotor.config_kD(0, 10, RobotMap.TIMEOUT); // 7
         //rotationalMotor.config_kF(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
-        rotationalMotor.configMotionCruiseVelocity(0);
-        rotationalMotor.configMotionAcceleration(0);
+        //rotationalMotor.configMotionCruiseVelocity(0);
+        //rotationalMotor.configMotionAcceleration(0);
     }
     
     @Override
