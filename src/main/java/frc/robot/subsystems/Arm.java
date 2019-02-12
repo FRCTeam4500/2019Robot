@@ -26,7 +26,7 @@ public class Arm extends Subsystem {
     public Arm(){
         rotationalMotor = new TalonSRX(RobotMap.ROTATIONALMOTOR);
         rotationalMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
-        //rotationalMotor.setNeutralMode(NeutralMode.Brake);
+        rotationalMotor.setNeutralMode(NeutralMode.Brake);
         
         rotationalMotor.configForwardSoftLimitEnable(true);
         rotationalMotor.configForwardSoftLimitThreshold(RobotMap.ARM_MAX, RobotMap.TIMEOUT);
@@ -37,7 +37,7 @@ public class Arm extends Subsystem {
         rotationalMotor.config_kI(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.config_kD(0, 10, RobotMap.TIMEOUT); // 7
         //rotationalMotor.config_kF(0, 0, RobotMap.TIMEOUT);
-        rotationalMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
+        rotationalMotor.configAllowableClosedloopError(0, 50, RobotMap.TIMEOUT);
         rotationalMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
         //rotationalMotor.configMotionCruiseVelocity(0);
         //rotationalMotor.configMotionAcceleration(0);
@@ -50,6 +50,13 @@ public class Arm extends Subsystem {
     }
     
     public void setRotation(double angle){
+
+        if (getArmPosition()<1000){
+            rotationalMotor.configClosedLoopPeakOutput(0,.2);
+        }
+        else{
+            rotationalMotor.configClosedLoopPeakOutput(0, 1);
+        }
         rotationalMotor.set(ControlMode.Position, angle);
     }
 

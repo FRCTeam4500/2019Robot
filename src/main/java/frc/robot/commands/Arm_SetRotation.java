@@ -16,6 +16,7 @@ public class Arm_SetRotation extends Command {
   
     public Arm_SetRotation(double angle) {
         requires(Robot.arm);
+    
         this.angle = angle;
     }
     

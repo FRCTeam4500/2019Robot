@@ -33,7 +33,7 @@ public class OI {
     Button driveResetGyro;
 	Button elevatorLow, elevatorMedium, elevatorHigh;
 	Button armAngleLow, armAngleMedium, armAngleHigh;
-	Button cargoIntake, cargoRelease;
+	Button cargoIntake, cargoRelease, armPickUp;
 	Button hatchExtendButton, hatchPopButton, hatchRetractButton, hatchUnpopButton;
 	
     public OI() {
@@ -51,29 +51,32 @@ public class OI {
 		armAngleMedium = new JoystickButton(controlStick, 9);
 		armAngleMedium.whenPressed(new Arm_SetRotation(600));
 		armAngleHigh = new JoystickButton(controlStick, 11);
-		armAngleHigh.whenPressed(new Arm_SetRotation(2100.0));
+        armAngleHigh.whenPressed(new Arm_SetRotation(2100.0));
+        armPickUp = new JoystickButton(controlStick,1 );
+        armPickUp.whenReleased(new Arm_SetRotation(600));
+        armPickUp.whenPressed(new Arm_SetRotation(2100));
 
 		
 		/*===============================
 		Elevator Buttons
 		===============================*/
 
-        elevatorLow = new JoystickButton(driveStick, 12);
+        elevatorLow = new JoystickButton(controlStick, 12);
         elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-        elevatorMedium = new JoystickButton(driveStick, 10);
+        elevatorMedium = new JoystickButton(controlStick, 10);
         elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-        elevatorHigh = new JoystickButton(driveStick, 8);
+        elevatorHigh = new JoystickButton(controlStick, 8);
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
 
 		/*===============================
 				Cargo Buttons
 		===============================*/
 
-		cargoIntake = new JoystickButton(driveStick, 1);
+		cargoIntake = new JoystickButton(controlStick, 1);
 		cargoIntake.whenPressed(new Cargo_Intake(.8, .8));
 		cargoIntake.whenReleased(new Cargo_Intake(0, 0));
 
-		cargoRelease = new JoystickButton(driveStick, 2);
+		cargoRelease = new JoystickButton(controlStick, 2);
 		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
         cargoRelease.whenReleased(new Cargo_Release(0, 0));
 
