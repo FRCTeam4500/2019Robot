@@ -99,6 +99,7 @@ public class RobotMap {
     
     public final static int TIMEOUT = 0;
     public final static int COMPRESSOR = 0;
+    public static double period;
     
     /*
     * =================== Auto ===================

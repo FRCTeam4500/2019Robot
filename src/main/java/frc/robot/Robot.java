@@ -66,6 +66,7 @@ public class Robot extends TimedRobot {
      
         vision = new Vision();
 
+        RobotMap.period = this.getPeriod();
         pidChooser = new SendableChooser<Boolean>();
         pidChooser.setDefaultOption("Disable", false);
         pidChooser.addOption("Enable", true);
@@ -103,7 +104,8 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        RobotMap.dashboardDisplay();
+        Robot.swerve.calculateVectors(0, 0, -1);
+        //RobotMap.dashboardDisplay();
     }
 
     /**

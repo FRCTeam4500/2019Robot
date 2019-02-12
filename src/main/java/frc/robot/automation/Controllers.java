@@ -8,7 +8,7 @@ public class Controllers {
     public static PIDController xAlignmentController = null;
 
     public static void createControllers() {
-        rotationalAlignmentController = new PIDController("rotational", 0.0003, 0, 0, 30, () -> {
+        rotationalAlignmentController = new PIDController("rotational", 0.000625, 0, 0, 30, () -> { // 0.01
             return (double) Robot.swerve.getFR().getDrivePosition();
             //return Robot.swerve.getLeftSonic() - Robot.swerve.getRightSonic();
         });

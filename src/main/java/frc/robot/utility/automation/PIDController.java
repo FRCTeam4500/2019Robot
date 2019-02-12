@@ -24,9 +24,10 @@ public class PIDController {
 
     public double getPIDOutput(double target) {
         double error = target - getPIDInput();
+        double D = ((error - lastError) / 0.02);
         System.out.println("Error is " + error);
-        System.out.println("dX is " + (error - lastError));
-        System.out.println("I is " + sumOfErrors + " kI is " + kI);
+        System.out.println("D is " + D);
+        System.out.println("I is " + sumOfErrors);
         if (Robot.pidChooser.getSelected()) {
             this.kP = Robot.pref.getDouble(id + "_kP", this.kP);
             this.kI = Robot.pref.getDouble(id + "_kI", this.kI);
@@ -34,10 +35,10 @@ public class PIDController {
         }
 
         double output =  kP * error + 
-                  kI * sumOfErrors +
-                  kD * (error - lastError);
+                         kI * sumOfErrors +
+                         kD * D;
 
-        sumOfErrors += error;
+        sumOfErrors += error * 0.02;
         lastError = error;
         return output;
     }
