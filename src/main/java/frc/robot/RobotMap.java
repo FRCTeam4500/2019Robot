@@ -28,7 +28,7 @@ public class RobotMap {
     private static final int _0 = 0;
     public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 10;
-    public final static int ELEVATORMEDIUM = 15000;
+    public final static int ELEVATORMEDIUM = 11000;// 15000
     public final static int ELEVATORHIGH = 26000;
     public final static int ELEVATORMAX = 26127;   
    
@@ -75,7 +75,7 @@ public class RobotMap {
     // 0 = no effect
     // 1 = square the output
     // 2 = cube the output
-    public final static int SENSITIVITY_Z = 3;
+    public final static int SENSITIVITY_Z = 2;
     // Reduces the maximum output for the Z axis. 
     // 1 = full speed
     // 2 = half speed

@@ -33,9 +33,9 @@ public class Arm extends Subsystem {
         rotationalMotor.configReverseSoftLimitEnable(true);
         rotationalMotor.configReverseSoftLimitThreshold(RobotMap.ARM_MIN, RobotMap.TIMEOUT);
         
-        rotationalMotor.config_kP(0, 4, RobotMap.TIMEOUT); // 0.7
+        rotationalMotor.config_kP(0, 0.7, RobotMap.TIMEOUT); // 4
         rotationalMotor.config_kI(0, 0, RobotMap.TIMEOUT);
-        rotationalMotor.config_kD(0, 10, RobotMap.TIMEOUT); // 7
+        rotationalMotor.config_kD(0, 7, RobotMap.TIMEOUT); // 10
         //rotationalMotor.config_kF(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.configAllowableClosedloopError(0, 50, RobotMap.TIMEOUT);
         rotationalMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
