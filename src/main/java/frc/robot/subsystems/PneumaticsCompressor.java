@@ -15,22 +15,22 @@ import frc.robot.RobotMap;
 * Add your docs here.
 */
 public class PneumaticsCompressor extends Subsystem {
-  Compressor compress = new Compressor(RobotMap.COMPRESSOR);
+    Compressor compress = new Compressor(RobotMap.COMPRESSOR);
 	
 	public PneumaticsCompressor() {
-	//startCompressor();
+        //startCompressor();
 	}
-  
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    //setDefaultCommand(new MySpecialCommand());
-  }
-  
-  public void startCompressor() {
-    //compress.start();
-  }
-  
-  public void stopCompressor() {
-    compress.stop();
-  }
+    
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void startCompressor() {
+        //compress.start();
+    }
+    
+    public void stopCompressor() {
+        compress.stop();
+    }
 }

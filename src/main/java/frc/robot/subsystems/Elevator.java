@@ -38,13 +38,10 @@ public class Elevator extends Subsystem {
 	}
 
     public void setLevel(int level) {
-        
-        if (getElevatorPosition()>1000){
-            
-            elevatorMotor.configClosedLoopPeakOutput(0,.15);
-        }
-        else{
-            elevatorMotor.configClosedLoopPeakOutput(0, .8);
+        if (getElevatorPosition() > level) {
+            elevatorMotor.configClosedLoopPeakOutput(0, .25);
+        } else {
+            elevatorMotor.configClosedLoopPeakOutput(0, 1);
         }
         elevatorMotor.set(ControlMode.Position, level);
 	}
@@ -52,9 +49,9 @@ public class Elevator extends Subsystem {
 	public TalonSRX getElevatorMotor() {
 		return elevatorMotor;
     }
+
     public int getElevatorPosition(){
         return elevatorMotor.getSelectedSensorPosition();
- 
     }
 
 
