@@ -49,11 +49,11 @@ public class OI {
 		armAngleLow = new JoystickButton(controlStick, 7);
 		armAngleLow.whenPressed(new Arm_SetRotation(0));
 		armAngleMedium = new JoystickButton(controlStick, 9);
-		armAngleMedium.whenPressed(new Arm_SetRotation(600));
+		armAngleMedium.whenPressed(new Arm_SetRotation(500));
 		armAngleHigh = new JoystickButton(controlStick, 11);
         armAngleHigh.whenPressed(new Arm_SetRotation(2100.0));
         armPickUp = new JoystickButton(controlStick,1 );
-        armPickUp.whenReleased(new Arm_SetRotation(600));
+        armPickUp.whenReleased(new Arm_SetRotation(500));
         armPickUp.whenPressed(new Arm_SetRotation(2100));
 
 		
@@ -65,7 +65,7 @@ public class OI {
         elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
         elevatorMedium = new JoystickButton(controlStick, 10);
         elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-        elevatorHigh = new JoystickButton(controlStick, 8);
+        elevatorHigh = new JoystickButton(controlStick, 5);
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
 
 		/*===============================

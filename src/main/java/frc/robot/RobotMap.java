@@ -28,9 +28,9 @@ public class RobotMap {
     private static final int _0 = 0;
     public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 10;
-    public final static int ELEVATORMEDIUM = 11000;// 15000
-    public final static int ELEVATORHIGH = 26000;
-    public final static int ELEVATORMAX = 26127;   
+    public final static int ELEVATORMEDIUM = 13500;// 15000
+    public final static int ELEVATORHIGH = 23000;//26000
+    public final static int ELEVATORMAX = 26127;//25000   
    
     /*
      * =================== Arm ===================
@@ -80,7 +80,7 @@ public class RobotMap {
     // 1 = full speed
     // 2 = half speed
     // etc
-    public final static int REDUCER_Z = 1;
+    public final static int REDUCER_Z = 2;
     
     
     

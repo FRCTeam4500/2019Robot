@@ -71,8 +71,8 @@ public class Robot extends TimedRobot {
         hatch = new Hatch();
         
         vision = new Vision();
-        camOne = new CameraInstance(CameraInstance.StreamType.SIMPLE,0);
-        camOne.start();
+        //camOne = new CameraInstance(CameraInstance.StreamType.SIMPLE,0);
+        //camOne.start();
         pidChooser = new SendableChooser<Boolean>();
         pidChooser.setDefaultOption("Disable", false);
         pidChooser.addOption("Enable", true);

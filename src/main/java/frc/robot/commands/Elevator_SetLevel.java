@@ -9,12 +9,16 @@ public class Elevator_SetLevel extends Command {
     
     public Elevator_SetLevel(int level) {
         requires(Robot.elevator);
+        requires(Robot.arm);
         this.level = level;
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        if (Robot.arm.getArmPosition()>1500);{
+            Robot.arm.setRotation(650);
+            }
         Robot.elevator.setLevel(level);
     }
 

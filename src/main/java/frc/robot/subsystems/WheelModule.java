@@ -127,7 +127,7 @@ public class WheelModule extends Subsystem {
 
         angle *= RobotMap.COUNTPERDEG;
         
-        System.out.println(id + " running at " + speed);
+       // System.out.println(id + " running at " + speed);
         speedMotor.set(ControlMode.PercentOutput, speed);
         // angleMotor.set(ControlMode.PercentOutput, 1);
         angleMotor.set(ControlMode.MotionMagic, angle);
