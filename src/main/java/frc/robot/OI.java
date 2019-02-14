@@ -50,8 +50,8 @@ public class OI {
 		armAngleLow.whenPressed(new Arm_SetRotation(0));
 		armAngleMedium = new JoystickButton(controlStick, 9);
 		armAngleMedium.whenPressed(new Arm_SetRotation(500));
-		armAngleHigh = new JoystickButton(controlStick, 11);
-        armAngleHigh.whenPressed(new Arm_SetRotation(2100.0));
+		//armAngleHigh = new JoystickButton(controlStick, 11);
+        //armAngleHigh.whenPressed(new Arm_SetRotation(2100.0));
         armPickUp = new JoystickButton(controlStick,1 );
         armPickUp.whenReleased(new Arm_SetRotation(500));
         armPickUp.whenPressed(new Arm_SetRotation(2100));
