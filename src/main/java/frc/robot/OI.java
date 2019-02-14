@@ -18,6 +18,7 @@ import frc.robot.commands.Hatch_RetractIntake;
 import frc.robot.commands.Hatch_UnpopHatch;
 import frc.robot.commands.Elevator_SetLevel;
 import frc.robot.commands.Swerve_GyroReset;
+import frc.robot.commands.Swerve_ToggleFieldCentric;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
 
@@ -30,7 +31,7 @@ public class OI {
 	Joystick driveStick;
 	Joystick controlStick;
     
-    Button driveResetGyro;
+    Button driveResetGyro, toggleFieldCentric;
 	Button elevatorLow, elevatorMedium, elevatorHigh;
 	Button armAngleLow, armAngleMedium, armAngleHigh;
 	Button cargoIntake, cargoRelease, armPickUp;
@@ -41,7 +42,10 @@ public class OI {
         controlStick = new Joystick(1); 
         
 		driveResetGyro = new JoystickButton(driveStick, 7);
-		driveResetGyro.whenPressed(new Swerve_GyroReset());
+        driveResetGyro.whenPressed(new Swerve_GyroReset());
+        
+        toggleFieldCentric = new JoystickButton(driveStick, 5);
+        toggleFieldCentric.whenPressed(new Swerve_ToggleFieldCentric());
         
         /*===============================
         Arm Buttons
