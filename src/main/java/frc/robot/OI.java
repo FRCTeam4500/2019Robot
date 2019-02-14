@@ -115,7 +115,7 @@ public class OI {
 	
 	public double getZ() {
         double z = driveStick.getZ();
-        double adjustedZ = RobotMap.SENSITIVITY_Z % 2 == 0  ? Math.signum(z) * Math.pow(z, RobotMap.SENSITIVITY_Z)
+        // double adjustedZ = RobotMap.SENSITIVITY_Z % 2 == 0  ? Math.signum(z) * Math.pow(z, RobotMap.SENSITIVITY_Z);
 		return Math.abs(z) > RobotMap.DEADZONE_Z ? (z*Math.pow(z, RobotMap.SENSITIVITY_Z)) / RobotMap.REDUCER_Z : 0;
 	}
 	
