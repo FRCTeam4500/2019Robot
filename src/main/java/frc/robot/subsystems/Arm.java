@@ -33,14 +33,11 @@ public class Arm extends Subsystem {
         rotationalMotor.configReverseSoftLimitEnable(true);
         rotationalMotor.configReverseSoftLimitThreshold(RobotMap.ARM_MIN, RobotMap.TIMEOUT);
         
-        rotationalMotor.config_kP(0,9 , RobotMap.TIMEOUT); // 4
+        rotationalMotor.config_kP(0,4 , RobotMap.TIMEOUT); // 4
         rotationalMotor.config_kI(0, 0, RobotMap.TIMEOUT);
-        rotationalMotor.config_kD(0, 0 , RobotMap.TIMEOUT); // 10
-        //rotationalMotor.config_kF(0, 0, RobotMap.TIMEOUT);
+        rotationalMotor.config_kD(0, 4 , RobotMap.TIMEOUT); // 10
         rotationalMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
         rotationalMotor.config_IntegralZone(0, 0, RobotMap.TIMEOUT);
-        //rotationalMotor.configMotionCruiseVelocity(0);
-        //rotationalMotor.configMotionAcceleration(0);
     }
     
     @Override
@@ -50,7 +47,7 @@ public class Arm extends Subsystem {
     }
     
     public void setRotation(double angle){
-        if (getArmPosition()<angle){
+        if (getArmPosition() < angle){
             rotationalMotor.configClosedLoopPeakOutput(0,.15);
         } else {
             rotationalMotor.configClosedLoopPeakOutput(0, 1);

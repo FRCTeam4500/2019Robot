@@ -1,25 +1,24 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Elevator_SetLevel extends Command {
-    
-    private int level;
-    
-    public Elevator_SetLevel(int level) {
-        requires(Robot.elevator);
-        requires(Robot.arm);
-        this.level = level;
+public class Swerve_ToggleFieldCentric extends Command {
+    public Swerve_ToggleFieldCentric() {
+        requires(Robot.swerve);
     }
     
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        if (Robot.arm.getArmPosition()>1500) {
-            Robot.arm.setRotation(650);
-        }
-        Robot.elevator.setLevel(level);
+        Robot.swerve.toggleFieldCentric();
     }
     
     // Called repeatedly when this Command is scheduled to run

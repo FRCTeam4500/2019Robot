@@ -26,6 +26,8 @@ public class Swerve extends Subsystem {
     
     private AHRS gyro;
 
+    private boolean fieldCentric = true;
+
     /**
      * Constructor that takes each of the four modules that make up swerve drive
      * @param fl front left module
@@ -83,10 +85,12 @@ public class Swerve extends Subsystem {
         double r = Math.sqrt((L * L) + (W * W));
         y *= -1;
 
-        double gyro = getGyro() * Math.PI / 180;
-        double temp = y * Math.cos(gyro) + x * Math.sin(gyro);
-        x = -y * Math.sin(gyro) + x * Math.cos(gyro);
-        y = temp;
+        if (fieldCentric) {
+            double gyro = getGyro() * Math.PI / 180;
+            double temp = y * Math.cos(gyro) + x * Math.sin(gyro);
+            x = -y * Math.sin(gyro) + x * Math.cos(gyro);
+            y = temp;
+        }
 
         double a = x - z * (L / r) + 0;
         double b = x + z * (L / r);
@@ -163,6 +167,10 @@ public class Swerve extends Subsystem {
         bl.setAngle(blAngle);
         fr.setAngle(frAngle);
         fl.setAngle(flAngle);
+    }
+
+    public void toggleFieldCentric() {
+        fieldCentric = !fieldCentric;
     }
 
     /**

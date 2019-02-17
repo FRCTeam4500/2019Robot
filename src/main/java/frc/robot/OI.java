@@ -12,14 +12,18 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Arm_SetRotation;
-import frc.robot.commands.Hatch_ExtendIntake;
-import frc.robot.commands.Hatch_PopHatch;
-import frc.robot.commands.Hatch_RetractIntake;
-import frc.robot.commands.Hatch_UnpopHatch;
-import frc.robot.commands.Elevator_SetLevel;
-import frc.robot.commands.Swerve_GyroReset;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
+import frc.robot.commands.Elevator_SetLevel;
+import frc.robot.commands.Hatch_PopHatch;
+import frc.robot.commands.Hatch_ToggleIntake;
+import frc.robot.commands.Hatch_UnpopHatch;
+import frc.robot.commands.Lift_ExtendBack;
+import frc.robot.commands.Lift_ExtendFront;
+import frc.robot.commands.Lift_RetractBack;
+import frc.robot.commands.Lift_RetractFront;
+import frc.robot.commands.Swerve_GyroReset;
+import frc.robot.commands.Swerve_ToggleFieldCentric;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,24 +31,28 @@ import frc.robot.commands.Cargo_Release;
  */
 public class OI {
 
-	Joystick driveStick;
-	Joystick controlStick;
-    
-    Button driveResetGyro;
+    Joystick driveStick;
+    Joystick controlStick;
+
+    Button driveResetGyro, toggleFieldCentric;
 	Button elevatorLow, elevatorMedium, elevatorHigh;
 	Button armAngleLow, armAngleMedium, armAngleHigh;
 	Button cargoIntake, cargoRelease, armPickUp;
 	Button hatchExtendButton, hatchPopButton, hatchRetractButton, hatchUnpopButton;
-	
+	Button frontControl, frontRetract, backControl, backRetract;
+    Button elevatorHatch;
     public OI() {
 		driveStick = new Joystick(0);
         controlStick = new Joystick(1); 
-          
+        
 		driveResetGyro = new JoystickButton(driveStick, 7);
-		driveResetGyro.whenPressed(new Swerve_GyroReset());
+        driveResetGyro.whenPressed(new Swerve_GyroReset());
+        
+        toggleFieldCentric = new JoystickButton(driveStick, 12);
+        toggleFieldCentric.whenPressed(new Swerve_ToggleFieldCentric());
         
         /*===============================
-                Arm Buttons
+        Arm Buttons
         ===============================*/
 		armAngleLow = new JoystickButton(controlStick, 7);
 		armAngleLow.whenPressed(new Arm_SetRotation(0));
@@ -55,33 +63,34 @@ public class OI {
         armPickUp = new JoystickButton(controlStick,1 );
         armPickUp.whenReleased(new Arm_SetRotation(500));
         armPickUp.whenPressed(new Arm_SetRotation(2100));
-
+        
 		
 		/*===============================
 		Elevator Buttons
 		===============================*/
-
+        
         elevatorLow = new JoystickButton(controlStick, 12);
         elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
         elevatorMedium = new JoystickButton(controlStick, 10);
         elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-        elevatorHigh = new JoystickButton(controlStick, 5);
+        elevatorHigh = new JoystickButton(controlStick, 8);
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
-
+        elevatorHatch = new JoystickButton(controlStick, 5);
+        elevatorHatch.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHATCH));
 		/*===============================
-				Cargo Buttons
+        Cargo Buttons
 		===============================*/
-
+        
 		cargoIntake = new JoystickButton(controlStick, 1);
 		cargoIntake.whenPressed(new Cargo_Intake(.8, .8));
 		cargoIntake.whenReleased(new Cargo_Intake(0, 0));
-
+        
 		cargoRelease = new JoystickButton(controlStick, 2);
 		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
         cargoRelease.whenReleased(new Cargo_Release(0, 0));
-
+        
         /*===============================
-				Elevator Buttons
+        Elevator Buttons
 		===============================*/
         
 		/*elevatorLow = new JoystickButton(controlStick, 11);
@@ -94,17 +103,23 @@ public class OI {
 		/*===============================
 		Hatch Buttons
 		===============================*/
-		hatchExtendButton = new JoystickButton(driveStick, RobotMap.HATCH_EXTEND_BUTTON_CHANNEL);
-		hatchExtendButton.whenPressed(new Hatch_ExtendIntake());
-		hatchPopButton = new JoystickButton(driveStick, RobotMap.HATCH_POP_BUTTON_CHANNEL);
-		hatchPopButton.whenPressed(new Hatch_PopHatch());
-		hatchRetractButton = new JoystickButton(driveStick, RobotMap.HATCH_RETRACT_BUTTON_CHANNEL);
-		hatchRetractButton.whenPressed(new Hatch_RetractIntake());
-		hatchUnpopButton = new JoystickButton(driveStick, RobotMap.HATCH_UNPOP_BUTTON_CHANNEL);
-		hatchUnpopButton.whenPressed(new Hatch_UnpopHatch());
-		
+		hatchExtendButton = new JoystickButton(controlStick, 3);
+		hatchExtendButton.whenPressed(new Hatch_ToggleIntake());
+		hatchPopButton = new JoystickButton(controlStick, 4);
+        hatchPopButton.whenPressed(new Hatch_PopHatch());
+        hatchPopButton.whenReleased(new Hatch_UnpopHatch());
+        
+        /*=============================
+        Lift buttons
+        ========================*/
+        frontControl = new JoystickButton(driveStick, 3);
+        frontControl.whenPressed(new Lift_ExtendFront());
+        frontControl.whenReleased(new Lift_RetractFront());
+        backControl = new JoystickButton(driveStick, 4);
+        backControl.whenPressed(new Lift_ExtendBack());
+        backControl.whenReleased(new Lift_RetractBack());
     }
-
+    
     public double getX() {
 		return Math.abs(driveStick.getX()) > RobotMap.DEADZONE_XY ? driveStick.getX() : 0;
 	}
@@ -114,7 +129,8 @@ public class OI {
 	}
 	
 	public double getZ() {
-		double z = driveStick.getZ();
+        double z = driveStick.getZ();
+        // double adjustedZ = RobotMap.SENSITIVITY_Z % 2 == 0  ? Math.signum(z) * Math.pow(z, RobotMap.SENSITIVITY_Z);
 		return Math.abs(z) > RobotMap.DEADZONE_Z ? (z*Math.pow(z, RobotMap.SENSITIVITY_Z)) / RobotMap.REDUCER_Z : 0;
 	}
 	

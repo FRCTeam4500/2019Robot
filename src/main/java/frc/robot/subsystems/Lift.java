@@ -15,55 +15,55 @@ import frc.robot.RobotMap;
 /**
 * Add your docs here.
 */
-public class Hatch extends Subsystem {
+public class Lift extends Subsystem {
     
-    private DoubleSolenoid center, outside;
+    private DoubleSolenoid front, back;
 
-    public Hatch(){
+    public Lift() {
         //left = new DoubleSolenoid(RobotMap.LEFT_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.LEFT_HATCH_SOLENOID_REVERSE_CHANNEL);
-        outside = new DoubleSolenoid(RobotMap.OUTSIDE_HATCH_SOLENOID_FORWARD_CHANNEL,RobotMap.OUTSIDE_HATCH_SOLENOID_REVERSE_CHANNEL);
-        center = new DoubleSolenoid(RobotMap.CENTER_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.CENTER_HATCH_SOLENOID_REVERSE_CHANNEL);
+        back = new DoubleSolenoid(RobotMap.FRONT_LIFT_SOLENOID_FORWARD_CHANNEL,RobotMap.FRONT_LIFT_SOLENOID_REVERSE_CHANNEL);
+        front = new DoubleSolenoid(RobotMap.BACK_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.BACK_LIFT_SOLENOID_REVERSE_CHANNEL);
     }
     @Override
     public void initDefaultCommand() {
         // setDefaultCommand(new MySpecialCommand());
     }
 
-    public void extendCenter(){
-        center.set(Value.kForward);
+    public void extendFront(){
+        front.set(Value.kForward);
     }
 
-    public void retractCenter(){
-        center.set(Value.kReverse);
+    public void retractFront(){
+        front.set(Value.kReverse);
     }
 
-    public void toggleCenter(){
-        if(center.get() == Value.kForward){
-            center.set(Value.kReverse);
+    public void toggleFront(){
+        if(front.get() == Value.kForward){
+            front.set(Value.kReverse);
         } else {
-            center.set(Value.kForward);
+            front.set(Value.kForward);
         }
     }
     
-    public void extendSides(){
-        outside.set(Value.kForward);
+    public void extendBack(){
+        back.set(Value.kForward);
     }
 
-    public void retractSides(){
+    public void retractBack(){
         //left.set(Value.kReverse);
         //right.set(Value.kReverse);
-        outside.set(Value.kReverse);
+        back.set(Value.kReverse);
     }
 
-    public void toggleOutside(){
-        if(outside.get() == Value.kForward){//right.get() == Value.kForward){
+    public void toggleBack(){
+        if(back.get() == Value.kForward){//right.get() == Value.kForward){
             //left.set(Value.kReverse);
             //right.set(Value.kReverse);
-            outside.set(Value.kReverse);
+            back.set(Value.kReverse);
         } else {
             //left.set(Value.kForward);
             //right.set(Value.kForward);
-            outside.set(Value.kForward);
+            back.set(Value.kForward);
         }
     }
     

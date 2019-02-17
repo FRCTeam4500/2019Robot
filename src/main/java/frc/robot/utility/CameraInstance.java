@@ -6,19 +6,22 @@ import org.opencv.imgproc.Imgproc;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.cameraserver.CameraServer;
 
 public class CameraInstance {
+    
     private StreamType type;
     private int id;
     
     public enum StreamType {
         SIMPLE, COMPLEX;
     }
+
     public CameraInstance(StreamType type, int id) {
         this.type = type;
         this.id = id;
     }
+
     public void start(){
         if (type == StreamType.SIMPLE) {
             createSimpleStream();
@@ -26,10 +29,11 @@ public class CameraInstance {
             createComplexStream();
         }        
     }
-    private void createSimpleStream(){
-        CameraServer.getInstance().startAutomaticCapture(id);
 
+    private void createSimpleStream(){
+        CameraServer.getInstance().startAutomaticCapture(id);    
     }
+
     private void createComplexStream(){
         new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(id);
@@ -46,8 +50,6 @@ public class CameraInstance {
                 Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
                 outputStream.putFrame(output);
             }
-        }).start();
-
-        
+        }).start();     
     }
 }
