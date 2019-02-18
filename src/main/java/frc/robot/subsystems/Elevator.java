@@ -16,6 +16,7 @@ public class Elevator extends Subsystem {
     
     private DigitalInput limitSwitch;
     private Counter counter;
+    private int countAmount;
     private int currentZero;
     public Elevator() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATORMOTOR);
@@ -45,10 +46,14 @@ public class Elevator extends Subsystem {
     }
     //Unfortunately neither the counter nor the limit switch has an onPressed event, so we have to rely on the robot to reset.
     public boolean requiresReset(){
-        return counter.get() >= 0;
+        if(counter.getDirection()==false){
+            countAmount++;
+        }
+        return countAmount > 0;
     }
     public void resetElevatorPosition(){
         counter.reset();
+        countAmount = 0;
         //elevatorMotor.set(ControlMode.Position, 0);
         currentZero = elevatorMotor.getSelectedSensorPosition();
     }
