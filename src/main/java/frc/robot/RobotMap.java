@@ -27,6 +27,7 @@ public class RobotMap {
     public final static int ELEVATORHIGH = 23000; // 26000
     public final static int ELEVATORMAX = 26127; // 25000   
     public final static int ELEVATORHATCH = 1600;
+	public static final int LIMIT_SWITCH_CHANNEL = 0;
     
     /*
     * =================== Arm ===================

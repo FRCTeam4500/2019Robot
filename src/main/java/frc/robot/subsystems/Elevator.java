@@ -5,13 +5,18 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 public class Elevator extends Subsystem {
 	
-	private TalonSRX elevatorMotor;
+    private TalonSRX elevatorMotor;
     
+    private DigitalInput limitSwitch;
+    private Counter counter;
+    private int currentZero;
     public Elevator() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATORMOTOR);
 		elevatorMotor.setSelectedSensorPosition(0, 0, RobotMap.TIMEOUT);
@@ -29,21 +34,31 @@ public class Elevator extends Subsystem {
 		//elevatorMotor.config_kF(0, 0.429832, RobotMap.TIMEOUT);
 		//elevatorMotor.config_IntegralZone(0, 50, RobotMap.TIMEOUT); // DO NOT TURN IT ON!!!
 		//elevatorMotor.configMotionCruiseVelocity(4500); // 1190
-		//elevatorMotor.configMotionAcceleration(4500);
+        //elevatorMotor.configMotionAcceleration(4500);
+        limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_CHANNEL);
+        counter = new Counter(limitSwitch);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
 
-	}
-
+    }
+    //Unfortunately neither the counter nor the limit switch has an onPressed event, so we have to rely on the robot to reset.
+    public boolean requiresReset(){
+        return counter.get() >= 0;
+    }
+    public void resetElevatorPosition(){
+        counter.reset();
+        //elevatorMotor.set(ControlMode.Position, 0);
+        currentZero = elevatorMotor.getSelectedSensorPosition();
+    }
     public void setLevel(int level) {
         if (getElevatorPosition() > level) {
             elevatorMotor.configClosedLoopPeakOutput(0, .25);
         } else {
             elevatorMotor.configClosedLoopPeakOutput(0, .8);
         }
-        elevatorMotor.set(ControlMode.Position, level);
+        elevatorMotor.set(ControlMode.Position, level + currentZero);
 	}
 	
 	public TalonSRX getElevatorMotor() {
@@ -51,7 +66,7 @@ public class Elevator extends Subsystem {
     }
 
     public int getElevatorPosition(){
-        return elevatorMotor.getSelectedSensorPosition();
+        return elevatorMotor.getSelectedSensorPosition()+currentZero;
     }
 
 
