@@ -45,6 +45,7 @@ public class RobotMap {
     public final static int RIGHTGRAB = 10;
     public final static int TOPGRAB = 13;
     
+    
     /*
     *====================== Hatch =========================
     */

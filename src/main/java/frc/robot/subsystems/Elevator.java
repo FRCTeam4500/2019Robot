@@ -39,7 +39,7 @@ public class Elevator extends Subsystem {
 
     public void setLevel(int level) {
         if (getElevatorPosition() > level) {
-            elevatorMotor.configClosedLoopPeakOutput(0, .15);
+            elevatorMotor.configClosedLoopPeakOutput(0, .25);
         } else {
             elevatorMotor.configClosedLoopPeakOutput(0, .8);
         }
