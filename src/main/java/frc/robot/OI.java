@@ -23,8 +23,10 @@ import frc.robot.commands.Hatch_ToggleIntake;
 import frc.robot.commands.Hatch_UnpopHatch;
 import frc.robot.commands.Lift_ExtendBack;
 import frc.robot.commands.Lift_ExtendFront;
+import frc.robot.commands.Lift_ExtendMiddle;
 import frc.robot.commands.Lift_RetractBack;
 import frc.robot.commands.Lift_RetractFront;
+import frc.robot.commands.Lift_ToggleMiddle;
 import frc.robot.commands.Swerve_GyroReset;
 import frc.robot.commands.Swerve_ToggleFieldCentric;
 
@@ -42,7 +44,7 @@ public class OI {
 	Button armAngleLow, armAngleMedium, armAngleHigh;
 	Button cargoIntake, cargoRelease, armPickUp;
 	Button hatchExtendButton, hatchPopButton, hatchRetractButton, hatchUnpopButton;
-	Button frontControl, frontRetract, backControl, backRetract;
+	Button frontControl, frontRetract, backControl, backRetract, middleControl;
     Button elevatorHatch;
     Button getOffHabButton;
     public OI() {
@@ -125,7 +127,9 @@ public class OI {
         backControl = new JoystickButton(driveStick, 4);
         backControl.whenPressed(new Lift_ExtendBack());
         backControl.whenReleased(new Lift_RetractBack());
-
+        middleControl = new JoystickButton(driveStick, 10);
+        middleControl.whenPressed(new Lift_ExtendMiddle());
+        middleControl.whenPressed(new Lift_RetractBack());
         /*==================================
         * Sandstorm Button 🐸
         ======================================*/
