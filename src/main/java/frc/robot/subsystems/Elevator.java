@@ -56,10 +56,6 @@ public class Elevator extends Subsystem {
         counter.reset();
         countAmount = 0;
         elevatorMotor.setSelectedSensorPosition(0);
-<<<<<<< HEAD
-        currentZero = elevatorMotor.getSelectedSensorPosition();
-=======
->>>>>>> a4406f048dec9a595810943a001d387e9f1532a0
     }
     public void setLevel(int level) {
         if (getElevatorPosition() > level) {
