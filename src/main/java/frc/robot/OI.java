@@ -7,11 +7,11 @@
 
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Arm_SetRotation;
+import frc.robot.commands.Auto_GetOffHAB;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
 import frc.robot.commands.ElevatorArm_SetHatchLevelAndZeroArm;
@@ -44,6 +44,7 @@ public class OI {
 	Button hatchExtendButton, hatchPopButton, hatchRetractButton, hatchUnpopButton;
 	Button frontControl, frontRetract, backControl, backRetract;
     Button elevatorHatch;
+    Button getOffHabButton;
     public OI() {
 		driveStick = new Joystick(0);
         controlStick = new Joystick(1); 
@@ -124,6 +125,12 @@ public class OI {
         backControl = new JoystickButton(driveStick, 4);
         backControl.whenPressed(new Lift_ExtendBack());
         backControl.whenReleased(new Lift_RetractBack());
+
+        /*==================================
+        * Sandstorm Button 🐸
+        ======================================*/
+        getOffHabButton = new JoystickButton(driveStick, 8);
+        getOffHabButton.whenPressed(new Auto_GetOffHAB());
     }
     
     public double getX() {
