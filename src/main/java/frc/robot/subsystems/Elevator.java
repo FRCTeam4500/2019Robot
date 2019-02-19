@@ -29,7 +29,7 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configReverseSoftLimitEnable(true);
 		elevatorMotor.configReverseSoftLimitThreshold(0, RobotMap.TIMEOUT);
 		elevatorMotor.configAllowableClosedloopError(0, 50, 1);
-		elevatorMotor.config_kP(0, 7, RobotMap.TIMEOUT);// 11 , 1.25908 4
+		elevatorMotor.config_kP(0, 4, RobotMap.TIMEOUT);// 11 , 1.25908 4
         elevatorMotor.config_kI(0, 0, RobotMap.TIMEOUT);// 0.016
 		elevatorMotor.config_kD(0, 0, RobotMap.TIMEOUT);//12.5908 4
 		//elevatorMotor.config_kF(0, 0.429832, RobotMap.TIMEOUT);
@@ -38,6 +38,7 @@ public class Elevator extends Subsystem {
         //elevatorMotor.configMotionAcceleration(4500);
         limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_CHANNEL);
         counter = new Counter(limitSwitch);
+        currentZero = 0; //THIS WILL ALWAYS EQUAL ZERO
 	}
 	
 	@Override
@@ -55,7 +56,10 @@ public class Elevator extends Subsystem {
         counter.reset();
         countAmount = 0;
         elevatorMotor.setSelectedSensorPosition(0);
+<<<<<<< HEAD
         currentZero = elevatorMotor.getSelectedSensorPosition();
+=======
+>>>>>>> a4406f048dec9a595810943a001d387e9f1532a0
     }
     public void setLevel(int level) {
         if (getElevatorPosition() > level) {
