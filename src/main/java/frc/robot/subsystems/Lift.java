@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -17,12 +16,13 @@ import frc.robot.RobotMap;
 */
 public class Lift extends Subsystem {
     
-    private DoubleSolenoid front, back;
+    private DoubleSolenoid front, back, middle;
 
     public Lift() {
         //left = new DoubleSolenoid(RobotMap.LEFT_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.LEFT_HATCH_SOLENOID_REVERSE_CHANNEL);
         back = new DoubleSolenoid(RobotMap.FRONT_LIFT_SOLENOID_FORWARD_CHANNEL,RobotMap.FRONT_LIFT_SOLENOID_REVERSE_CHANNEL);
         front = new DoubleSolenoid(RobotMap.BACK_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.BACK_LIFT_SOLENOID_REVERSE_CHANNEL);
+        middle = new DoubleSolenoid(1,RobotMap.MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL);
     }
     @Override
     public void initDefaultCommand() {
@@ -66,5 +66,17 @@ public class Lift extends Subsystem {
             back.set(Value.kForward);
         }
     }
-    
+    public void extendMiddle(){
+        middle.set(Value.kForward);
+    }
+    public void retractMiddle(){
+        middle.set(Value.kReverse);
+    }
+    public void toggleMiddle(){
+        if(middle.get()==Value.kForward){
+            middle.set(Value.kReverse);
+        }else{
+            middle.set(Value.kForward);
+        }
+    }
 }
