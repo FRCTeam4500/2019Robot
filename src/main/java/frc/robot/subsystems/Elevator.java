@@ -54,7 +54,7 @@ public class Elevator extends Subsystem {
     public void resetElevatorPosition(){
         counter.reset();
         countAmount = 0;
-        //elevatorMotor.set(ControlMode.Position, 0);
+        elevatorMotor.setSelectedSensorPosition(0);
         currentZero = elevatorMotor.getSelectedSensorPosition();
     }
     public void setLevel(int level) {
