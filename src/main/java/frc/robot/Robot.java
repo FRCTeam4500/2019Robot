@@ -98,6 +98,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
+        if(elevator.requiresReset()){
+            elevator.resetElevatorPosition();
+        }
     }
 
     /**

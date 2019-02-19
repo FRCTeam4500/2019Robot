@@ -14,8 +14,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Arm_SetRotation;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
+import frc.robot.commands.ElevatorArm_SetHatchLevelAndZeroArm;
 import frc.robot.commands.Elevator_SetLevel;
 import frc.robot.commands.Hatch_PopHatch;
+import frc.robot.commands.Hatch_RetractAndUnpop;
 import frc.robot.commands.Hatch_RetractIntake;
 import frc.robot.commands.Hatch_ToggleIntake;
 import frc.robot.commands.Hatch_UnpopHatch;
@@ -78,7 +80,8 @@ public class OI {
         elevatorHigh = new JoystickButton(controlStick, 8);
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
         elevatorHatch = new JoystickButton(controlStick, 5);
-        elevatorHatch.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHATCH));
+        //elevatorHatch.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHATCH));
+        elevatorHatch.whenPressed(new ElevatorArm_SetHatchLevelAndZeroArm());
 		/*===============================
         Cargo Buttons
 		===============================*/
@@ -109,8 +112,9 @@ public class OI {
 		hatchExtendButton.whenPressed(new Hatch_ToggleIntake());
 		hatchPopButton = new JoystickButton(controlStick, 4);
         hatchPopButton.whenPressed(new Hatch_PopHatch());
-        hatchPopButton.whenReleased(new Hatch_UnpopHatch());
-        hatchPopButton.whenReleased(new Hatch_RetractIntake());        
+        hatchPopButton.whenReleased(new Hatch_RetractAndUnpop());
+        //hatchPopButton.whenReleased(new Hatch_UnpopHatch());
+                
         /*=============================
         Lift buttons
         ========================*/
