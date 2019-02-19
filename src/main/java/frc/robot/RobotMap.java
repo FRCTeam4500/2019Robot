@@ -143,7 +143,8 @@ public class RobotMap {
 	public static final int BACK_LIFT_SOLENOID_REVERSE_CHANNEL = 7;
 	public static final int FRONT_LIFT_SOLENOID_REVERSE_CHANNEL = 4;
 	public static final int FRONT_LIFT_SOLENOID_FORWARD_CHANNEL = 5;
-	public static final int BACK_LIFT_SOLENOID_FORWARD_CHANNEL = 6;
+    public static final int BACK_LIFT_SOLENOID_FORWARD_CHANNEL = 6;
+    //TODO: Change channels for solenoid 
 	public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
 	public static final int MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL = 0;
     
