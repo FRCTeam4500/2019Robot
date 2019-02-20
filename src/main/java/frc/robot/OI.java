@@ -26,6 +26,7 @@ import frc.robot.commands.Lift_ExtendFront;
 import frc.robot.commands.Lift_ExtendMiddle;
 import frc.robot.commands.Lift_RetractBack;
 import frc.robot.commands.Lift_RetractFront;
+import frc.robot.commands.Lift_RetractMiddle;
 import frc.robot.commands.Lift_ToggleMiddle;
 import frc.robot.commands.Swerve_GyroReset;
 import frc.robot.commands.Swerve_ToggleFieldCentric;
@@ -68,7 +69,7 @@ public class OI {
 		//armAngleHigh = new JoystickButton(controlStick, 11);
         //armAngleHigh.whenPressed(new Arm_SetRotation(2100.0));
         armPickUp = new JoystickButton(controlStick,1 );
-        armPickUp.whenReleased(new Arm_SetRotation(500));
+        armPickUp.whenReleased(new Arm_SetRotation(650));
         armPickUp.whenPressed(new Arm_SetRotation(2100));
         
 		
@@ -91,7 +92,8 @@ public class OI {
         
 		cargoIntake = new JoystickButton(controlStick, 1);
 		cargoIntake.whenPressed(new Cargo_Intake(.8, .8));
-		cargoIntake.whenReleased(new Cargo_Intake(0, 0));
+        cargoIntake.whenReleased(new Cargo_Intake(0, 0));
+        
         
 		cargoRelease = new JoystickButton(controlStick, 2);
 		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
@@ -128,8 +130,8 @@ public class OI {
         backControl.whenPressed(new Lift_ExtendBack());
         backControl.whenReleased(new Lift_RetractBack());
         middleControl = new JoystickButton(driveStick, 10);
-        middleControl.whenPressed(new Lift_ExtendMiddle());
-        middleControl.whenPressed(new Lift_RetractBack());
+        middleControl.whenPressed(new Lift_ToggleMiddle());
+        
         /*==================================
         * Sandstorm Button 🐸
         ======================================*/

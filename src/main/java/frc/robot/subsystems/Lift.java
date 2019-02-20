@@ -22,7 +22,7 @@ public class Lift extends Subsystem {
         //left = new DoubleSolenoid(RobotMap.LEFT_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.LEFT_HATCH_SOLENOID_REVERSE_CHANNEL);
         back = new DoubleSolenoid(RobotMap.FRONT_LIFT_SOLENOID_FORWARD_CHANNEL,RobotMap.FRONT_LIFT_SOLENOID_REVERSE_CHANNEL);
         front = new DoubleSolenoid(RobotMap.BACK_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.BACK_LIFT_SOLENOID_REVERSE_CHANNEL);
-        middle = new DoubleSolenoid(1,RobotMap.MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL);
+        middle = new DoubleSolenoid(2,RobotMap.MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL);
     }
     @Override
     public void initDefaultCommand() {

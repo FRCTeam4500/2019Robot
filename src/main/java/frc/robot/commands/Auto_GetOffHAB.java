@@ -23,14 +23,14 @@ public class Auto_GetOffHAB extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
     addSequential(new Swerve_GyroSet(-180));
-    addSequential(new Automation_DriveSwerve(0,-0.25,0));
-    addSequential(new WaitCommand(0.5));
     addSequential(new Lift_ExtendBack());
-    addSequential(new WaitCommand(0.5));
+    addSequential(new Automation_DriveSwerve(0,-0.45,0));
+    
+    addSequential(new WaitCommand(0.6));
     addSequential(new Lift_ExtendFront());//this should happen while robot is in midair
-    addSequential(new WaitCommand(0.5));
+    addSequential(new WaitCommand(1));
     addParallel(new Automation_DriveSwerve(0,-0,0));
-    addParallel(new Lift_RetractBack());
+    addSequential(new Lift_RetractBack());
     addParallel(new Lift_RetractFront());
     // To run multiple commands at the same time,
     // use addParallel()
