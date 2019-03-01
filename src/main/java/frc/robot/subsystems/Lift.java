@@ -17,28 +17,28 @@ import frc.robot.RobotMap;
 public class Lift extends Subsystem {
     
     private DoubleSolenoid front, back, middle;
-
+    
     public Lift() {
-        //left = new DoubleSolenoid(RobotMap.LEFT_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.LEFT_HATCH_SOLENOID_REVERSE_CHANNEL);
         back = new DoubleSolenoid(RobotMap.FRONT_LIFT_SOLENOID_FORWARD_CHANNEL,RobotMap.FRONT_LIFT_SOLENOID_REVERSE_CHANNEL);
         front = new DoubleSolenoid(RobotMap.BACK_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.BACK_LIFT_SOLENOID_REVERSE_CHANNEL);
         middle = new DoubleSolenoid(2,RobotMap.MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL, RobotMap.MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL);
     }
+    
     @Override
     public void initDefaultCommand() {
         // setDefaultCommand(new MySpecialCommand());
     }
-
+    
     public void extendFront(){
         front.set(Value.kForward);
     }
-
+    
     public void retractFront(){
         front.set(Value.kReverse);
     }
-
+    
     public void toggleFront(){
-        if(front.get() == Value.kForward){
+        if (front.get() == Value.kForward) {
             front.set(Value.kReverse);
         } else {
             front.set(Value.kForward);
@@ -48,34 +48,31 @@ public class Lift extends Subsystem {
     public void extendBack(){
         back.set(Value.kForward);
     }
-
+    
     public void retractBack(){
-        //left.set(Value.kReverse);
-        //right.set(Value.kReverse);
         back.set(Value.kReverse);
     }
-
+    
     public void toggleBack(){
-        if(back.get() == Value.kForward){//right.get() == Value.kForward){
-            //left.set(Value.kReverse);
-            //right.set(Value.kReverse);
+        if (back.get() == Value.kForward) {
             back.set(Value.kReverse);
         } else {
-            //left.set(Value.kForward);
-            //right.set(Value.kForward);
             back.set(Value.kForward);
         }
     }
+    
     public void extendMiddle(){
         middle.set(Value.kForward);
     }
+    
     public void retractMiddle(){
         middle.set(Value.kReverse);
     }
+    
     public void toggleMiddle(){
-        if(middle.get()==Value.kForward){
+        if (middle.get()==Value.kForward) {
             middle.set(Value.kReverse);
-        }else{
+        } else {
             middle.set(Value.kForward);
         }
     }

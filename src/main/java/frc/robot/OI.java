@@ -10,23 +10,19 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Arm_Group_SetHatchLevelAndZeroArm;
 import frc.robot.commands.Arm_SetRotation;
-import frc.robot.commands.Auto_GetOffHAB;
+import frc.robot.commands.Auto_Group_GetOffHAB;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
-import frc.robot.commands.ElevatorArm_SetHatchLevelAndZeroArm;
 import frc.robot.commands.Elevator_SetLevel;
+import frc.robot.commands.Hatch_Group_RetractAndUnpop;
 import frc.robot.commands.Hatch_PopHatch;
-import frc.robot.commands.Hatch_RetractAndUnpop;
-import frc.robot.commands.Hatch_RetractIntake;
 import frc.robot.commands.Hatch_ToggleIntake;
-import frc.robot.commands.Hatch_UnpopHatch;
 import frc.robot.commands.Lift_ExtendBack;
 import frc.robot.commands.Lift_ExtendFront;
-import frc.robot.commands.Lift_ExtendMiddle;
 import frc.robot.commands.Lift_RetractBack;
 import frc.robot.commands.Lift_RetractFront;
-import frc.robot.commands.Lift_RetractMiddle;
 import frc.robot.commands.Lift_ToggleMiddle;
 import frc.robot.commands.Swerve_GyroReset;
 import frc.robot.commands.Swerve_ToggleFieldCentric;
@@ -51,7 +47,10 @@ public class OI {
     public OI() {
 		driveStick = new Joystick(0);
         controlStick = new Joystick(1); 
-        
+
+        /*===============================
+        Driving Buttons
+        ===============================*/
 		driveResetGyro = new JoystickButton(driveStick, 7);
         driveResetGyro.whenPressed(new Swerve_GyroReset());
         
@@ -85,8 +84,9 @@ public class OI {
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
         elevatorHatch = new JoystickButton(controlStick, 5);
         //elevatorHatch.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHATCH));
-        elevatorHatch.whenPressed(new ElevatorArm_SetHatchLevelAndZeroArm());
-		/*===============================
+        elevatorHatch.whenPressed(new Arm_Group_SetHatchLevelAndZeroArm());
+        
+        /*===============================
         Cargo Buttons
 		===============================*/
         
@@ -117,7 +117,7 @@ public class OI {
 		hatchExtendButton.whenPressed(new Hatch_ToggleIntake());
 		hatchPopButton = new JoystickButton(controlStick, 4);
         hatchPopButton.whenPressed(new Hatch_PopHatch());
-        hatchPopButton.whenReleased(new Hatch_RetractAndUnpop());
+        hatchPopButton.whenReleased(new Hatch_Group_RetractAndUnpop());
         //hatchPopButton.whenReleased(new Hatch_UnpopHatch());
                 
         /*=============================
@@ -136,7 +136,7 @@ public class OI {
         * Sandstorm Button 🐸
         ======================================*/
         getOffHabButton = new JoystickButton(driveStick, 8);
-        getOffHabButton.whenPressed(new Auto_GetOffHAB());
+        getOffHabButton.whenPressed(new Auto_Group_GetOffHAB());
     }
     
     public double getX() {

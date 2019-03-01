@@ -50,9 +50,6 @@ public class Robot extends TimedRobot {
     public static CameraInstance camOne;
     public static OI oi;
 
-    public static Preferences pref;
-    public static SendableChooser<Boolean> pidChooser;
-
     /**
      * This function is run when the robot is first started up and should be used
      * for any initialization code.
@@ -68,22 +65,16 @@ public class Robot extends TimedRobot {
         elevator = new Elevator();
         arm = new Arm();
         cargo = new Cargo();
-        // compress = new PneumaticsCompressor();
-     
         hatch = new Hatch();
         lift = new Lift();
+        // compress = new PneumaticsCompressor();
+     
+
         vision = new Vision();
         camOne = new CameraInstance(CameraInstance.StreamType.SIMPLE,0);
         camOne.start();
-        pidChooser = new SendableChooser<Boolean>();
-        pidChooser.setDefaultOption("Disable", false);
-        pidChooser.addOption("Enable", true);
-        Controllers.createControllers();
+        // Controllers.createControllers();
 
-/*         Shuffleboard.getTab("SmartDashboard").add("Low", new Arm_SetRotation(0)).withWidget(BuiltInWidgets.kCommand);
-        Shuffleboard.getTab("SmartDashboard").add("Medium", new Arm_SetRotation(900)).withWidget(BuiltInWidgets.kCommand);
-        Shuffleboard.getTab("SmartDashboard").add("High", new Arm_SetRotation(1800)).withWidget(BuiltInWidgets.kCommand);
- */		
         oi = new OI();
     }
 

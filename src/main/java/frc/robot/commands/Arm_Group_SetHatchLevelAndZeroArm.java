@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotMap;
 
-public class ElevatorArm_SetHatchLevelAndZeroArm extends CommandGroup {
+public class Arm_Group_SetHatchLevelAndZeroArm extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ElevatorArm_SetHatchLevelAndZeroArm() {
+  public Arm_Group_SetHatchLevelAndZeroArm() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Hatch_ToggleIntake extends Command {
+
     public Hatch_ToggleIntake() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
         requires(Robot.hatch);
     }
     
