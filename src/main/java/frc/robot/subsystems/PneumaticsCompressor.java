@@ -15,6 +15,7 @@ import frc.robot.RobotMap;
 * Add your docs here.
 */
 public class PneumaticsCompressor extends Subsystem {
+    
     Compressor compress = new Compressor(RobotMap.COMPRESSOR);
 	
 	public PneumaticsCompressor() {
@@ -27,7 +28,7 @@ public class PneumaticsCompressor extends Subsystem {
     }
     
     public void startCompressor() {
-        //compress.start();
+        compress.start();
     }
     
     public void stopCompressor() {
