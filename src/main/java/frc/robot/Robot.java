@@ -7,17 +7,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.robot.automation.Controllers;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Cargo;
 import frc.robot.automation.Automation_Group_Test;
-import frc.robot.automation.Controllers;
-import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Lift;
