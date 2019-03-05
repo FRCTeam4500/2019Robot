@@ -54,11 +54,13 @@ public class RobotMap {
     
 	public static final int LEFT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
 	public static final int LEFT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
-	public static final int OUTSIDE_HATCH_SOLENOID_REVERSE_CHANNEL = 2;
-	public static final int OUTSIDE_HATCH_SOLENOID_FORWARD_CHANNEL = 3;
-	public static final int CENTER_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
-    public static final int CENTER_HATCH_SOLENOID_REVERSE_CHANNEL = 1;
-    
+	public static final int HATCH_PANEL_SOLENOID_REVERSE_CHANNEL = 2;
+	public static final int HATCH_PANEL_SOLENOID_FORWARD_CHANNEL = 3;
+	public static final int HATCH_NAIL_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int HATCH_NAIL_SOLENOID_REVERSE_CHANNEL = 1;
+    public static final int HATCH_CLAW_SOLENOID_REVERSE_CHANNEL = 4;
+    public static final int HATCH_CLAW_SOLENOID_FORWARD_CHANNEL = 5;
+
     /*
     * =================== Drivetrain ===================
     */

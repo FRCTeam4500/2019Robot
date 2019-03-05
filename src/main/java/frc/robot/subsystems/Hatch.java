@@ -6,8 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -17,12 +17,13 @@ import frc.robot.RobotMap;
 */
 public class Hatch extends Subsystem {
     
-    private DoubleSolenoid center, outside;
+    private DoubleSolenoid center, outside, clawPiston;
 
     public Hatch(){
         //left = new DoubleSolenoid(RobotMap.LEFT_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.LEFT_HATCH_SOLENOID_REVERSE_CHANNEL);
         outside = new DoubleSolenoid(RobotMap.OUTSIDE_HATCH_SOLENOID_FORWARD_CHANNEL,RobotMap.OUTSIDE_HATCH_SOLENOID_REVERSE_CHANNEL);
         center = new DoubleSolenoid(RobotMap.CENTER_HATCH_SOLENOID_FORWARD_CHANNEL, RobotMap.CENTER_HATCH_SOLENOID_REVERSE_CHANNEL);
+        clawPiston = new DoubleSolenoid( RobotMap.HATCH_GRAB_SOLENOID_FORWARD_CHANNEL,RobotMap.HATCH_GRAB_SOLENOID_REVERSE_CHANNEL);
     }
     @Override
     public void initDefaultCommand() {
@@ -36,15 +37,33 @@ public class Hatch extends Subsystem {
     public void retractCenter(){
         center.set(Value.kReverse);
     }
-
     public void toggleCenter(){
         if(center.get() == Value.kForward){
             center.set(Value.kReverse);
         } else {
             center.set(Value.kForward);
         }
+
+    }
+   
+    public void extendclawPiston(){
+        clawPiston.set(Value.kForward);
     }
     
+    public void retractclawPiston(){
+        clawPiston.set(Value.kReverse);
+    }
+
+   
+   
+    public void toggleclawPiston (){
+        if (clawPiston.get() == Value.kForward){
+            clawPiston.set(Value.kReverse);
+        } else {
+            clawPiston.set(Value.kForward);
+        }
+        
+    }
     public void extendSides(){
         outside.set(Value.kForward);
     }
