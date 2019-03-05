@@ -29,7 +29,7 @@ public class PneumaticsCompressor extends Subsystem {
     
     public void startCompressor() {
         compress.start();
-    }
+     }
     
     public void stopCompressor() {
         compress.stop();
