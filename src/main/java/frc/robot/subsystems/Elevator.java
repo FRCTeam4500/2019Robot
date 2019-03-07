@@ -17,7 +17,6 @@ public class Elevator extends Subsystem {
     private DigitalInput limitSwitch;
     private Counter counter;
     private int countAmount;
-    private int currentZero;
     
     public Elevator() {
         elevatorMotor = new TalonSRX(RobotMap.ELEVATORMOTOR);
@@ -38,7 +37,6 @@ public class Elevator extends Subsystem {
 
         limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_CHANNEL);
         counter = new Counter(limitSwitch);
-        currentZero = 0; //THIS WILL ALWAYS EQUAL ZERO
 	}
 	
 	@Override
@@ -64,7 +62,7 @@ public class Elevator extends Subsystem {
         } else {
             elevatorMotor.configClosedLoopPeakOutput(0, .8);
         }
-        elevatorMotor.set(ControlMode.Position, level + currentZero);
+        elevatorMotor.set(ControlMode.Position, level);
 	}
 	
 	public TalonSRX getElevatorMotor() {
@@ -72,7 +70,7 @@ public class Elevator extends Subsystem {
     }
 
     public int getElevatorPosition(){
-        return elevatorMotor.getSelectedSensorPosition()+currentZero;
+        return elevatorMotor.getSelectedSensorPosition();
     }
 
 

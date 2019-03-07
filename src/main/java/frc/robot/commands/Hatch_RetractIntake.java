@@ -19,7 +19,7 @@ public class Hatch_RetractIntake extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.hatch.retractCenter();
+        Robot.hatch.retractnailPiston();
     }
     
     // Called repeatedly when this Command is scheduled to run

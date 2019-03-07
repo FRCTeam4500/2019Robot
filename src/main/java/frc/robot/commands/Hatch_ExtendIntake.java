@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Hatch_ExtendIntake extends Command {
-    
+
     public Hatch_ExtendIntake() {
         requires(Robot.hatch);
     }
@@ -19,7 +19,8 @@ public class Hatch_ExtendIntake extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.hatch.extendCenter();
+        Robot.hatch.extendnailPiston();
+
     }
     
     // Called repeatedly when this Command is scheduled to run
