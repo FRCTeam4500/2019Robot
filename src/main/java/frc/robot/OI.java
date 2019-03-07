@@ -16,9 +16,8 @@ import frc.robot.commands.Auto_Group_GetOffHAB;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
 import frc.robot.commands.Elevator_SetLevel;
-import frc.robot.commands.Hatch_Group_RetractAndUnpop;
-import frc.robot.commands.Hatch_PopHatch;
-import frc.robot.commands.Hatch_ToggleIntake;
+import frc.robot.commands.Hatch_Group_Grab;
+import frc.robot.commands.Hatch_Group_Place;
 import frc.robot.commands.Lift_ExtendBack;
 import frc.robot.commands.Lift_ExtendFront;
 import frc.robot.commands.Lift_RetractBack;
@@ -40,10 +39,11 @@ public class OI {
 	Button elevatorLow, elevatorMedium, elevatorHigh;
 	Button armAngleLow, armAngleMedium, armAngleHigh;
 	Button cargoIntake, cargoRelease, armPickUp;
-	Button hatchExtendButton, hatchPopButton, hatchRetractButton, hatchUnpopButton;
+	Button hatchGrab, hatchPlace;
 	Button frontControl, frontRetract, backControl, backRetract, middleControl;
     Button elevatorHatch;
     Button getOffHabButton;
+
     public OI() {
 		driveStick = new Joystick(0);
         controlStick = new Joystick(1); 
@@ -98,31 +98,20 @@ public class OI {
 		cargoRelease = new JoystickButton(controlStick, 2);
 		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
         cargoRelease.whenReleased(new Cargo_Release(0, 0));
-        
-        /*===============================
-        Elevator Buttons
-		===============================*/
-        
-		/*elevatorLow = new JoystickButton(controlStick, 11);
-		elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
-		elevatorMedium = new JoystickButton(controlStick, 9);
-		elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
-		elevatorHigh = new JoystickButton(controlStick, 7);
-		elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));/*
 		
 		/*===============================
 		Hatch Buttons
 		===============================*/
-		hatchExtendButton = new JoystickButton(controlStick, 3);
-		hatchExtendButton.whenPressed(new Hatch_ToggleIntake());
-		hatchPopButton = new JoystickButton(controlStick, 4);
-        hatchPopButton.whenPressed(new Hatch_PopHatch());
-        hatchPopButton.whenReleased(new Hatch_Group_RetractAndUnpop());
-        //hatchPopButton.whenReleased(new Hatch_UnpopHatch());
-                
+        
+        hatchGrab = new JoystickButton(controlStick , -1);
+        hatchGrab.whenPressed(new Hatch_Group_Grab());
+        hatchPlace = new JoystickButton(controlStick , -1);
+        hatchPlace.whenPressed(new Hatch_Group_Place());
+
         /*=============================
         Lift buttons
-        ========================*/
+        =============================*/
+        
         frontControl = new JoystickButton(driveStick, 3);
         frontControl.whenPressed(new Lift_ExtendFront());
         frontControl.whenReleased(new Lift_RetractFront());
@@ -133,7 +122,7 @@ public class OI {
         middleControl.whenPressed(new Lift_ToggleMiddle());
         
         /*==================================
-        * Sandstorm Button 🐸
+        Sandstorm Button 🐸
         ======================================*/
         getOffHabButton = new JoystickButton(driveStick, 8);
         getOffHabButton.whenPressed(new Auto_Group_GetOffHAB());
