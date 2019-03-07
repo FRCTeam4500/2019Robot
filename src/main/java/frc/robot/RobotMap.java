@@ -51,15 +51,15 @@ public class RobotMap {
     /*
     *====================== Hatch =========================
     */
+        
+	public static final int HATCH_PANEL_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int HATCH_PANEL_SOLENOID_REVERSE_CHANNEL = 1;
     
-	public static final int LEFT_HATCH_SOLENOID_FORWARD_CHANNEL = 0;
-	public static final int LEFT_HATCH_SOLENOID_REVERSE_CHANNEL = 0;
-	public static final int HATCH_PANEL_SOLENOID_REVERSE_CHANNEL = 2;
-	public static final int HATCH_PANEL_SOLENOID_FORWARD_CHANNEL = 3;
-	public static final int HATCH_NAIL_SOLENOID_FORWARD_CHANNEL = 0;
-    public static final int HATCH_NAIL_SOLENOID_REVERSE_CHANNEL = 1;
-    public static final int HATCH_CLAW_SOLENOID_REVERSE_CHANNEL = 4;
-    public static final int HATCH_CLAW_SOLENOID_FORWARD_CHANNEL = 5;
+    public static final int HATCH_NAIL_SOLENOID_FORWARD_CHANNEL = 2;
+    public static final int HATCH_NAIL_SOLENOID_REVERSE_CHANNEL = 3;
+    
+    public static final int HATCH_CLAW_SOLENOID_FORWARD_CHANNEL = 2;
+    public static final int HATCH_CLAW_SOLENOID_REVERSE_CHANNEL = 3;
 
     /*
     * =================== Drivetrain ===================
@@ -142,11 +142,13 @@ public class RobotMap {
     /*
     *=================== Lift ========================
     */
-	public static final int BACK_LIFT_SOLENOID_REVERSE_CHANNEL = 7;
-	public static final int FRONT_LIFT_SOLENOID_REVERSE_CHANNEL = 4;
-	public static final int FRONT_LIFT_SOLENOID_FORWARD_CHANNEL = 5;
-    public static final int BACK_LIFT_SOLENOID_FORWARD_CHANNEL = 6;
-	public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int BACK_LIFT_SOLENOID_FORWARD_CHANNEL = 4;
+	public static final int BACK_LIFT_SOLENOID_REVERSE_CHANNEL = 5;
+    
+	public static final int FRONT_LIFT_SOLENOID_FORWARD_CHANNEL = 6;
+    public static final int FRONT_LIFT_SOLENOID_REVERSE_CHANNEL = 7;
+    
+    public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
 	public static final int MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL = 1;
     
     /*

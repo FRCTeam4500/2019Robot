@@ -20,9 +20,9 @@ public class Hatch extends Subsystem {
     private DoubleSolenoid nailPiston, panelPiston, clawPiston;
 
     public Hatch(){
-        panelPiston = new DoubleSolenoid(RobotMap.HATCH_PANEL_SOLENOID_FORWARD_CHANNEL,RobotMap.HATCH_PANEL_SOLENOID_REVERSE_CHANNEL);
-        nailPiston = new DoubleSolenoid(RobotMap.HATCH_NAIL_SOLENOID_FORWARD_CHANNEL, RobotMap.HATCH_NAIL_SOLENOID_REVERSE_CHANNEL);
-        clawPiston = new DoubleSolenoid( RobotMap.HATCH_CLAW_SOLENOID_FORWARD_CHANNEL,RobotMap.HATCH_CLAW_SOLENOID_REVERSE_CHANNEL);
+        panelPiston = new DoubleSolenoid(RobotMap.HATCH_PANEL_SOLENOID_FORWARD_CHANNEL,RobotMap.HATCH_PANEL_SOLENOID_REVERSE_CHANNEL, 0);
+        nailPiston = new DoubleSolenoid(RobotMap.HATCH_NAIL_SOLENOID_FORWARD_CHANNEL, RobotMap.HATCH_NAIL_SOLENOID_REVERSE_CHANNEL, 0);
+        clawPiston = new DoubleSolenoid( RobotMap.HATCH_CLAW_SOLENOID_FORWARD_CHANNEL,RobotMap.HATCH_CLAW_SOLENOID_REVERSE_CHANNEL, 1);
     }
 
     @Override
