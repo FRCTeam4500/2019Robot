@@ -12,9 +12,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Hatch_Group_Place extends CommandGroup {
     
     public Hatch_Group_Place() {
-        addSequential(new Hatch_ClawExtend());        
-        addSequential(new Hatch_ClawExtend());        
-        addSequential(new Hatch_ClawExtend());        
-        addSequential(new Elevator_SetLevel(1000));        
+        addSequential(new Hatch_PanelExtend());        
+        addSequential(new Hatch_NailExtend());        
+        // addSequential(new Hatch_ClawExtend());              
     }
 }

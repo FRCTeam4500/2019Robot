@@ -103,9 +103,9 @@ public class OI {
 		Hatch Buttons
 		===============================*/
         
-        hatchGrab = new JoystickButton(controlStick , -1);
+        hatchGrab = new JoystickButton(controlStick , 3);
         hatchGrab.whenPressed(new Hatch_Group_Grab());
-        hatchPlace = new JoystickButton(controlStick , -1);
+        hatchPlace = new JoystickButton(controlStick , 4);
         hatchPlace.whenPressed(new Hatch_Group_Place());
 
         /*=============================
