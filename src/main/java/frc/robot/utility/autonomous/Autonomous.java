@@ -33,7 +33,7 @@ public class Autonomous {
 
     public void loadTrajectory(File f) {
         // Preferences prefs = Preferences.getInstance();
-        trajectory = Pathfinder.readFromCSV(f);
+        // trajectory = Pathfinder.readFromCSV(f);
 
         SwerveModifier modifier = new SwerveModifier(trajectory);
         // modifier.modify(RobotMap.wheelBaseWidth, RobotMap.wheelBaseDepth, mode);

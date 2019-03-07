@@ -5,22 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- * Add your docs here.
- */
-public class open_hatch extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  private DoubleSolenoid center, outside;
-
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
+public class Hatch_Group_Grab extends CommandGroup {
+    
+    public Hatch_Group_Grab() {
+        addSequential(new Hatch_ClawExtend());        
+        addSequential(new Hatch_ClawExtend());        
+        addSequential(new Hatch_ClawExtend());        
+        addSequential(new Elevator_SetLevel(1000));        
+    }
 }

@@ -8,15 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class Hatch_Group_RetractAndUnpop extends CommandGroup {
-    /**
-    * Add your docs here.
-    */
-    public Hatch_Group_RetractAndUnpop() {
-        addSequential(new Hatch_RetractIntake());
-        addSequential(new WaitCommand(0.25));
-        addSequential(new Hatch_UnpopHatch());
+public class Hatch_Group_Place extends CommandGroup {
+    
+    public Hatch_Group_Place() {
+        addSequential(new Hatch_ClawExtend());        
+        addSequential(new Hatch_ClawExtend());        
+        addSequential(new Hatch_ClawExtend());        
+        addSequential(new Elevator_SetLevel(1000));        
     }
 }
