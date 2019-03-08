@@ -16,6 +16,7 @@ import frc.robot.commands.Auto_Group_GetOffHAB;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
 import frc.robot.commands.Elevator_SetLevel;
+import frc.robot.commands.Hatch_ClawToggle;
 import frc.robot.commands.Hatch_Group_Grab;
 import frc.robot.commands.Hatch_Group_Place;
 import frc.robot.commands.Lift_ExtendBack;
@@ -39,7 +40,7 @@ public class OI {
 	Button elevatorLow, elevatorMedium, elevatorHigh;
 	Button armAngleLow, armAngleMedium, armAngleHigh;
 	Button cargoIntake, cargoRelease, armPickUp;
-	Button hatchGrab, hatchPlace;
+	Button hatchGrab, hatchPlace, hatchToggleClaw;
 	Button frontControl, frontRetract, backControl, backRetract, middleControl;
     Button elevatorHatch;
     Button getOffHabButton;
@@ -107,15 +108,18 @@ public class OI {
         hatchGrab.whenPressed(new Hatch_Group_Grab());
         hatchPlace = new JoystickButton(controlStick , 4);
         hatchPlace.whenPressed(new Hatch_Group_Place());
+        hatchToggleClaw = new JoystickButton(controlStick, 6);
+        hatchToggleClaw.whenPressed(new Hatch_ClawToggle());
+        
 
         /*=============================
         Lift buttons
         =============================*/
         
-        frontControl = new JoystickButton(driveStick, 3);
+        frontControl = new JoystickButton(driveStick, 4);
         frontControl.whenPressed(new Lift_ExtendFront());
         frontControl.whenReleased(new Lift_RetractFront());
-        backControl = new JoystickButton(driveStick, 4);
+        backControl = new JoystickButton(driveStick, 3);
         backControl.whenPressed(new Lift_ExtendBack());
         backControl.whenReleased(new Lift_RetractBack());
         middleControl = new JoystickButton(driveStick, 10);

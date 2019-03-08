@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
      
 
         vision = new Vision();
-        camOne = new CameraInstance(CameraInstance.StreamType.SIMPLE,0);
+        camOne = new CameraInstance(CameraInstance.StreamType.COMPLEX,0);
         camOne.start();
         // Controllers.createControllers();
 
@@ -121,8 +121,10 @@ public class Robot extends TimedRobot {
         // if (m_autonomousCommand != null) {
         // m_autonomousCommand.start();
         // }
-        Command cmd = new Automation_Group_Test();
-        cmd.start();
+        // Command cmd = new Automation_Group_Test();
+        // cmd.start();
+        Command preconfigure = new Robot_Group_PreConfigure();
+        preconfigure.start();
     }
 
     /**
@@ -138,9 +140,7 @@ public class Robot extends TimedRobot {
         // if (m_autonomousCommand != null) {
         // m_autonomousCommand.cancel();
         // }
-        Command preconfigure = new Robot_Group_PreConfigure();
-        preconfigure.start();
-        preconfigure.close();
+        // preconfigure.close();
         swerve.enableDefaultCommand();
     }
 

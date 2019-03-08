@@ -19,7 +19,7 @@ public class PneumaticsCompressor extends Subsystem {
     Compressor compress = new Compressor(RobotMap.COMPRESSOR);
 	
 	public PneumaticsCompressor() {
-        //startCompressor();
+        startCompressor();
 	}
     
     public void initDefaultCommand() {

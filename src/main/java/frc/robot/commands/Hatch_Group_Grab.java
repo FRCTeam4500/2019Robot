@@ -8,13 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class Hatch_Group_Grab extends CommandGroup {
     
     public Hatch_Group_Grab() {
+        addSequential(new Arm_SetRotation(0));
         addSequential(new Hatch_ClawExtend());        
         addSequential(new Hatch_PanelExtend());        
+        addSequential(new WaitCommand(.25));
         addSequential(new Hatch_ClawRetract());        
-        addSequential(new Elevator_SetLevel(1000));        
+        addSequential(new Elevator_SetLevel(5000));        
     }
 }
