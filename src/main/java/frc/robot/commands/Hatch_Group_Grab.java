@@ -18,6 +18,6 @@ public class Hatch_Group_Grab extends CommandGroup {
         addSequential(new Hatch_PanelExtend());        
         addSequential(new WaitCommand(.25));
         addSequential(new Hatch_ClawRetract());        
-        addSequential(new Elevator_SetLevel(5000));        
+        addSequential(new Elevator_SetLevel(4000));        
     }
 }

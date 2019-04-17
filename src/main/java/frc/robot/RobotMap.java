@@ -26,7 +26,7 @@ public class RobotMap {
     public final static int ELEVATORMEDIUM = 13500; // 15000
     public final static int ELEVATORHIGH = 23000; // 26000
     public final static int ELEVATORMAX = 26127; // 25000   
-    public final static int ELEVATORHATCH = 1650;
+    public final static int ELEVATORHATCH = 4700;
     //public final static int ELEVATORHATCH = 1600;
 	public static final int LIMIT_SWITCH_CHANNEL = 0;
     
@@ -81,8 +81,8 @@ public class RobotMap {
     * =================== Joystick Configuration ===================
     */
     
-    public final static double DEADZONE_XY = 0.2;
-    public final static double DEADZONE_Z = 0.4;
+    public final static double DEADZONE_XY = 0.1;
+    public final static double DEADZONE_Z = 0.3;
     // How sensitive the Z axis is. 
     // 0 = no effect
     // 1 = square the output
