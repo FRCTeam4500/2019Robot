@@ -122,10 +122,10 @@ public class OI {
         Lift buttons
         =============================*/
         
-        frontControl = new JoystickButton(driveStick, 4);
+        frontControl = new JoystickButton(driveStick, 3);
         frontControl.whenPressed(new Lift_ExtendFront());
         frontControl.whenReleased(new Lift_RetractFront());
-        backControl = new JoystickButton(driveStick, 3);
+        backControl = new JoystickButton(driveStick, 4);
         backControl.whenPressed(new Lift_ToggleBack());
         middleControl = new JoystickButton(driveStick, 10);
         middleControl.whenPressed(new Lift_ToggleMiddle());
