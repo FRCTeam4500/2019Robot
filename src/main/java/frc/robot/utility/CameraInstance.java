@@ -39,7 +39,7 @@ public class CameraInstance {
     private void createComplexStream() {
         new Thread(() -> {
             int w = 160;
-            int cX = w / 3;
+            int cX = 60;
             int h = 120;
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
             camera.setResolution(w, h);
@@ -55,6 +55,13 @@ public class CameraInstance {
                 if (!source.empty()) {
                     Imgproc.line(source, new Point(cX, 0), new Point(cX, h), new Scalar(255, 0, 0),
                             1);
+
+                    // Imgproc.line(source, new Point(w/2, 0), new Point(w/2, h), new Scalar(255, 0,
+                    // 0), 1);
+                    // Imgproc.line(source, new Point(w/4, 0), new Point(w/4, h), new Scalar(255, 0,
+                    // 0), 1);
+                    // Imgproc.line(source, new Point((w/4)*3, 0), new Point((w/4), h), new
+                    // Scalar(255, 0, 0), 1);
                     Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
                     outputStream.putFrame(output);
                 }

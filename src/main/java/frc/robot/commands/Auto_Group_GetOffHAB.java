@@ -18,11 +18,11 @@ public class Auto_Group_GetOffHAB extends CommandGroup {
     */
     public Auto_Group_GetOffHAB() {
         addSequential(new Swerve_GyroSet(-180));
-        addSequential(new Lift_ExtendFront());
+        addSequential(new Lift_ExtendBack());
         addSequential(new Automation_DriveSwerve(0,-0.45,0));
         
         addSequential(new WaitCommand(0.6));
-        addSequential(new Lift_ExtendBack()); // this should happen while robot is in midair
+        addSequential(new Lift_ExtendFront()); // this should happen while robot is in midair
         addSequential(new WaitCommand(1));
         addParallel(new Automation_DriveSwerve(0,-0,0));
         addSequential(new Lift_RetractBack());

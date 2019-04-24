@@ -8,19 +8,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.RobotMap;
 
-public class Arm_Group_SetHatchLevelAndZeroArm extends CommandGroup {
+public class Cargo_Group_PlaceBall extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public Arm_Group_SetHatchLevelAndZeroArm() {
+  public Cargo_Group_PlaceBall() {
     // Add Commands here:
+    addSequential(new Elevator_SetLevel(14500));
+    addSequential(new Arm_SetRotation(2000));
+
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.
-    //addSequential(new Arm_SetRotation(0));
-    addSequential(new Elevator_SetLevel(RobotMap.ELEVATORHATCH));
+
     // To run multiple commands at the same time,
     // use addParallel()
     // e.g. addParallel(new Command1());

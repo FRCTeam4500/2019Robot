@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Arm_Group_SetHatchLevelAndZeroArm;
 import frc.robot.commands.Arm_SetRotation;
 import frc.robot.commands.Auto_Group_GetOffHAB;
+import frc.robot.commands.Cargo_Group_PlaceBall;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
 import frc.robot.commands.Elevator_SetLevel;
@@ -23,6 +24,7 @@ import frc.robot.commands.Lift_ExtendBack;
 import frc.robot.commands.Lift_ExtendFront;
 import frc.robot.commands.Lift_RetractBack;
 import frc.robot.commands.Lift_RetractFront;
+import frc.robot.commands.Lift_ToggleBack;
 import frc.robot.commands.Lift_ToggleMiddle;
 import frc.robot.commands.Swerve_GyroReset;
 import frc.robot.commands.Swerve_ToggleFieldCentric;
@@ -44,6 +46,7 @@ public class OI {
     Button frontControl, frontRetract, backControl, backRetract, middleControl;
     Button elevatorHatch;
     Button getOffHabButton;
+    Button PlaceBall;
 
     public OI() {
         driveStick = new Joystick(0);
@@ -52,7 +55,7 @@ public class OI {
         /*
          * =============================== Driving Buttons ===============================
          */
-        driveResetGyro = new JoystickButton(driveStick, 7);
+        driveResetGyro = new JoystickButton(driveStick, 5);
         driveResetGyro.whenPressed(new Swerve_GyroReset());
 
         toggleFieldCentric = new JoystickButton(driveStick, 12);
@@ -81,9 +84,9 @@ public class OI {
         elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
         elevatorHigh = new JoystickButton(controlStick, 8);
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
-        elevatorHatch = new JoystickButton(controlStick, 5);
+        // elevatorHatch = new JoystickButton(controlStick, 5); Still needed to check
         // elevatorHatch.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHATCH));
-        elevatorHatch.whenPressed(new Arm_Group_SetHatchLevelAndZeroArm());
+        // elevatorHatch.whenPressed(new Arm_Group_SetHatchLevelAndZeroArm()); Still needed to check
 
         /*
          * =============================== Cargo Buttons ===============================
@@ -98,6 +101,9 @@ public class OI {
         cargoRelease.whenPressed(new Cargo_Release(.8, .8));
         cargoRelease.whenReleased(new Cargo_Release(0, 0));
 
+        PlaceBall = new JoystickButton(controlStick, 5);
+        PlaceBall.whenPressed(new Cargo_Group_PlaceBall());
+
         /*
          * =============================== Hatch Buttons ===============================
          */
@@ -109,22 +115,20 @@ public class OI {
         hatchToggleClaw = new JoystickButton(controlStick, 6);
         hatchToggleClaw.whenPressed(new Hatch_ClawToggle());
 
-
         /*
          * ============================= Lift buttons =============================
          */
 
-        frontControl = new JoystickButton(driveStick, 4);
+        frontControl = new JoystickButton(driveStick, 3);
         frontControl.whenPressed(new Lift_ExtendFront());
         frontControl.whenReleased(new Lift_RetractFront());
-        backControl = new JoystickButton(driveStick, 3);
-        backControl.whenPressed(new Lift_ExtendBack());
-        backControl.whenReleased(new Lift_RetractBack());
+        backControl = new JoystickButton(driveStick, 4);
+        backControl.whenPressed(new Lift_ToggleBack());
         middleControl = new JoystickButton(driveStick, 10);
         middleControl.whenPressed(new Lift_ToggleMiddle());
 
         /*
-         * =================== Sandstorm Button 🐸 ===================  
+         * =================== Sandstorm Button 🐸 ===================
          */
         getOffHabButton = new JoystickButton(driveStick, 8);
         getOffHabButton.whenPressed(new Auto_Group_GetOffHAB());

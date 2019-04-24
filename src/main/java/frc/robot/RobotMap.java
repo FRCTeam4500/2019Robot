@@ -22,10 +22,11 @@ public class RobotMap {
 
     public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 10;
-    public final static int ELEVATORMEDIUM = 13500;
-    public final static int ELEVATORHIGH = 23000;
-    public final static int ELEVATORMAX = 26127;
-    public final static int ELEVATORHATCH = 1650;
+    public final static int ELEVATORMEDIUM = 13500; // 15000
+    public final static int ELEVATORHIGH = 23000; // 26000
+    public final static int ELEVATORMAX = 26127; // 25000
+    public final static int ELEVATORHATCH = 4700;
+    // public final static int ELEVATORHATCH = 1600;
     public static final int LIMIT_SWITCH_CHANNEL = 0;
 
     /*
@@ -79,8 +80,8 @@ public class RobotMap {
      * =================== Joystick Configuration ===================
      */
 
-    public final static double DEADZONE_XY = 0.2;
-    public final static double DEADZONE_Z = 0.4;
+    public final static double DEADZONE_XY = 0.1;
+    public final static double DEADZONE_Z = 0.3;
     // How sensitive the Z axis is.
     // 0 = no effect
     // 1 = square the output
@@ -140,11 +141,11 @@ public class RobotMap {
     /*
      * =================== Lift ========================
      */
-    public static final int BACK_LIFT_SOLENOID_FORWARD_CHANNEL = 5;
-    public static final int BACK_LIFT_SOLENOID_REVERSE_CHANNEL = 4;
+    public static final int BACK_LIFT_SOLENOID_FORWARD_CHANNEL = 6;
+    public static final int BACK_LIFT_SOLENOID_REVERSE_CHANNEL = 7;
 
-    public static final int FRONT_LIFT_SOLENOID_FORWARD_CHANNEL = 6;
-    public static final int FRONT_LIFT_SOLENOID_REVERSE_CHANNEL = 7;
+    public static final int FRONT_LIFT_SOLENOID_FORWARD_CHANNEL = 5;
+    public static final int FRONT_LIFT_SOLENOID_REVERSE_CHANNEL = 4;
 
     public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
     public static final int MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL = 1;
