@@ -13,7 +13,6 @@ import frc.robot.Robot;
 public class Swerve_GyroReset extends Command {
     
     public Swerve_GyroReset() {
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.swerve);
     }
 

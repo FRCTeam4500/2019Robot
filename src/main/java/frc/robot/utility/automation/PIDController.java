@@ -27,11 +27,6 @@ public class PIDController {
         System.out.println("Error is " + error);
         System.out.println("dX is " + (error - lastError));
         System.out.println("I is " + sumOfErrors + " kI is " + kI);
-        if (Robot.pidChooser.getSelected()) {
-            this.kP = Robot.pref.getDouble(id + "_kP", this.kP);
-            this.kI = Robot.pref.getDouble(id + "_kI", this.kI);
-            this.kD = Robot.pref.getDouble(id + "_kD", this.kD);
-        }
 
         double output =  kP * error + 
                   kI * sumOfErrors +

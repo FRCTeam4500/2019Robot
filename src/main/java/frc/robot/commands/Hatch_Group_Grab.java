@@ -8,12 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class Robot_Group_PreConfigure extends CommandGroup {
-    /**
-    * Add your docs here.
-    */
-    public Robot_Group_PreConfigure() {
-        addSequential(new Swerve_GyroSet(180));
+public class Hatch_Group_Grab extends CommandGroup {
+    
+    public Hatch_Group_Grab() {
+        addSequential(new Arm_SetRotation(0));
+        addSequential(new Hatch_ClawExtend());        
+        addSequential(new Hatch_PanelExtend());        
+        addSequential(new WaitCommand(.25));
+        addSequential(new Hatch_ClawRetract());
+        addSequential(new WaitCommand(.25));        
+        addSequential(new Elevator_SetLevel(4000));        
     }
 }
+    

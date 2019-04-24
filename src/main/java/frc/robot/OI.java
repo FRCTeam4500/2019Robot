@@ -1,57 +1,83 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved. */
+/* Open Source Software - may be modified and shared by FRC teams. The code */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
+/* the project. */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Arm_Group_SetHatchLevelAndZeroArm;
 import frc.robot.commands.Arm_SetRotation;
-import frc.robot.commands.Elevator_SetLevel;
-import frc.robot.commands.Swerve_GyroReset;
+import frc.robot.commands.Auto_Group_GetOffHAB;
+import frc.robot.commands.Cargo_Group_PlaceBall;
 import frc.robot.commands.Cargo_Intake;
 import frc.robot.commands.Cargo_Release;
+import frc.robot.commands.Elevator_SetLevel;
+import frc.robot.commands.Hatch_ClawToggle;
+import frc.robot.commands.Hatch_Group_Grab;
+import frc.robot.commands.Hatch_Group_Place;
+import frc.robot.commands.Lift_ExtendBack;
+import frc.robot.commands.Lift_ExtendFront;
+import frc.robot.commands.Lift_RetractBack;
+import frc.robot.commands.Lift_RetractFront;
+import frc.robot.commands.Lift_ToggleBack;
+import frc.robot.commands.Lift_ToggleMiddle;
+import frc.robot.commands.Swerve_GyroReset;
+import frc.robot.commands.Swerve_ToggleFieldCentric;
 
 /**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
+ * This class is the glue that binds the controls on the physical operator interface to the commands
+ * and command groups that allow control of the robot.
  */
 public class OI {
 
-	Joystick driveStick;
-	Joystick controlStick;
-    
-    Button driveResetGyro;
-	Button elevatorLow, elevatorMedium, elevatorHigh;
-	Button armAngleLow, armAngleMedium, armAngleHigh;
-	Button cargoIntake, cargoRelease;
-	
+    Joystick driveStick;
+    Joystick controlStick;
+
+    Button driveResetGyro, toggleFieldCentric;
+    Button elevatorLow, elevatorMedium, elevatorHigh;
+    Button armAngleLow, armAngleMedium, armAngleHigh;
+    Button cargoIntake, cargoRelease, armPickUp;
+    Button hatchGrab, hatchPlace, hatchToggleClaw;
+    Button frontControl, frontRetract, backControl, backRetract, middleControl;
+    Button elevatorHatch;
+    Button getOffHabButton;
+    Button PlaceBall;
 
     public OI() {
-		driveStick = new Joystick(0);
-        controlStick = new Joystick(1); 
-          
-		driveResetGyro = new JoystickButton(driveStick, 7);
-		driveResetGyro.whenPressed(new Swerve_GyroReset());
-        
-        /*===============================
-                Arm Buttons
-        ===============================*/
-		armAngleLow = new JoystickButton(controlStick, 7);
-		armAngleLow.whenPressed(new Arm_SetRotation(0));
-		armAngleMedium = new JoystickButton(controlStick, 9);
-		armAngleMedium.whenPressed(new Arm_SetRotation(900));
-		armAngleHigh = new JoystickButton(controlStick, 11);
-		armAngleHigh.whenPressed(new Arm_SetRotation(2196.0));
+        driveStick = new Joystick(0);
+        controlStick = new Joystick(1);
 
-		/*===============================
-				Elevator Buttons - This is a test
-		===============================*/
+        /*
+         * =============================== Driving Buttons ===============================
+         */
+        driveResetGyro = new JoystickButton(driveStick, 5);
+        driveResetGyro.whenPressed(new Swerve_GyroReset());
+
+        toggleFieldCentric = new JoystickButton(driveStick, 12);
+        toggleFieldCentric.whenPressed(new Swerve_ToggleFieldCentric());
+        toggleFieldCentric.whenReleased(new Swerve_ToggleFieldCentric());
+
+        /*
+         * =============================== Arm Buttons ===============================
+         */
+        armAngleLow = new JoystickButton(controlStick, 7);
+        armAngleLow.whenPressed(new Arm_SetRotation(0));
+        armAngleMedium = new JoystickButton(controlStick, 9);
+        armAngleMedium.whenPressed(new Arm_SetRotation(500));
+        armPickUp = new JoystickButton(controlStick, 1);
+        armPickUp.whenReleased(new Arm_SetRotation(650));
+        armPickUp.whenPressed(new Arm_SetRotation(2100));
+
+
+        /*
+         * =============================== Elevator Buttons ===============================
+         */
+
 
         elevatorLow = new JoystickButton(controlStick, 12);
         elevatorLow.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORLOW));
@@ -59,34 +85,74 @@ public class OI {
         elevatorMedium.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORMEDIUM));
         elevatorHigh = new JoystickButton(controlStick, 8);
         elevatorHigh.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHIGH));
+        // elevatorHatch = new JoystickButton(controlStick, 5); Still needed to check
+        // elevatorHatch.whenPressed(new Elevator_SetLevel(RobotMap.ELEVATORHATCH));
+        // elevatorHatch.whenPressed(new Arm_Group_SetHatchLevelAndZeroArm()); Still needed to check
 
-		/*===============================
-				Cargo Buttons
-		===============================*/
+        /*
+         * =============================== Cargo Buttons ===============================
+         */
 
-		cargoIntake = new JoystickButton(driveStick, 1);
-		cargoIntake.whenPressed(new Cargo_Intake(.8, .8));
-		cargoIntake.whenReleased(new Cargo_Intake(0, 0));
+        cargoIntake = new JoystickButton(controlStick, 1);
+        cargoIntake.whenPressed(new Cargo_Intake(.8, .8));
+        cargoIntake.whenReleased(new Cargo_Intake(0, 0));
 
-		cargoRelease = new JoystickButton(driveStick, 2);
-		cargoRelease.whenPressed(new Cargo_Release(.8, .8));
-		cargoRelease.whenReleased(new Cargo_Release(0, 0));
+
+        cargoRelease = new JoystickButton(controlStick, 2);
+        cargoRelease.whenPressed(new Cargo_Release(.8, .8));
+        cargoRelease.whenReleased(new Cargo_Release(0, 0));
+
+        PlaceBall = new JoystickButton(controlStick, 5);
+        PlaceBall.whenPressed(new Cargo_Group_PlaceBall());
+
+        /*
+         * =============================== Hatch Buttons ===============================
+         */
+
+        hatchGrab = new JoystickButton(controlStick, 3);
+        hatchGrab.whenPressed(new Hatch_Group_Grab());
+        hatchPlace = new JoystickButton(controlStick, 4);
+        hatchPlace.whenPressed(new Hatch_Group_Place());
+        hatchToggleClaw = new JoystickButton(controlStick, 6);
+        hatchToggleClaw.whenPressed(new Hatch_ClawToggle());
+
+        /*
+         * ============================= Lift buttons =============================
+         */
+
+        frontControl = new JoystickButton(driveStick, 3);
+        frontControl.whenPressed(new Lift_ExtendFront());
+        frontControl.whenReleased(new Lift_RetractFront());
+        backControl = new JoystickButton(driveStick, 4);
+        backControl.whenPressed(new Lift_ToggleBack());
+        middleControl = new JoystickButton(driveStick, 10);
+        middleControl.whenPressed(new Lift_ToggleMiddle());
+
+        /*
+         * =================== Sandstorm Button 🐸 ===================
+         */
+        getOffHabButton = new JoystickButton(driveStick, 8);
+        getOffHabButton.whenPressed(new Auto_Group_GetOffHAB());
     }
 
     public double getX() {
-		return Math.abs(driveStick.getX()) > RobotMap.DEADZONE_XY ? driveStick.getX() : 0;
-	}
-	
-	public double getY() {
-		return Math.abs(driveStick.getY()) > RobotMap.DEADZONE_XY ? driveStick.getY() : 0;
-	}
-	
-	public double getZ() {
-		double z = driveStick.getZ();
-		return Math.abs(z) > RobotMap.DEADZONE_Z ? (z*Math.pow(z, RobotMap.SENSITIVITY_Z)) / RobotMap.REDUCER_Z : 0;
-	}
-	
-	public double getSlider() {
-		return driveStick.getThrottle();
-	}
+        return Math.abs(driveStick.getX()) > RobotMap.DEADZONE_XY ? driveStick.getX() : 0;
+    }
+
+    public double getY() {
+        return Math.abs(driveStick.getY()) > RobotMap.DEADZONE_XY ? driveStick.getY() : 0;
+    }
+
+    public double getZ() {
+        double z = driveStick.getZ();
+        // double adjustedZ = RobotMap.SENSITIVITY_Z % 2 == 0 ? Math.signum(z) * Math.pow(z,
+        // RobotMap.SENSITIVITY_Z);
+        return Math.abs(z) > RobotMap.DEADZONE_Z
+                ? (z * Math.pow(z, RobotMap.SENSITIVITY_Z)) / RobotMap.REDUCER_Z
+                : 0;
+    }
+
+    public double getSlider() {
+        return driveStick.getThrottle();
+    }
 }

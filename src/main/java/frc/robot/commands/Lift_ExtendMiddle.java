@@ -10,19 +10,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Arm_SetRotation extends Command {
+public class Lift_ExtendMiddle extends Command {
     
-    private double angle;
-  
-    public Arm_SetRotation(double angle) {
-        requires(Robot.arm);
-        this.angle = angle;
+    public Lift_ExtendMiddle() {
+        requires(Robot.lift);
     }
     
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.arm.setRotation(angle);
+        Robot.lift.extendMiddle();
     }
     
     // Called repeatedly when this Command is scheduled to run
