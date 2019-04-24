@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* Copyright (c) 2018 FIRST. All Rights Reserved. */
+/* Open Source Software - may be modified and shared by FRC teams. The code */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
+/* the project. */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
@@ -10,9 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
@@ -26,16 +24,15 @@ public class WheelModule extends Subsystem {
     private double lastAngle = 0;
 
     /**
-     * Constructor that initializes the two motors and configures them with the
-     * desired information
+     * Constructor that initializes the two motors and configures them with the desired information
      * 
      * @param anglePort port for the angle motor
      * @param speedPort port for the speed motor
-     * @param id        of the module (to identify which one is which through the
-     *                  code)
+     * @param id        of the module (to identify which one is which through the code)
      * @param inverted  should the angle motor be inverted
      */
-    public WheelModule(int anglePort, int speedPort, String id, boolean angleInverted, boolean speedInverted) {
+    public WheelModule(int anglePort, int speedPort, String id, boolean angleInverted,
+            boolean speedInverted) {
         this.id = id;
 
         angleMotor = new TalonSRX(anglePort);
@@ -45,7 +42,8 @@ public class WheelModule extends Subsystem {
         speedMotor.configPeakOutputReverse(-1);
         speedMotor.setInverted(speedInverted);
 
-        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,
+                RobotMap.TIMEOUT);
 
         angleMotor.setSensorPhase(false);
         angleMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
@@ -107,8 +105,8 @@ public class WheelModule extends Subsystem {
     }
 
     /**
-     * Called through the calculateVector method in the SwerveDrive class. Signals
-     * the two motors to start moving
+     * Called through the calculateVector method in the SwerveDrive class. Signals the two motors to
+     * start moving
      * 
      * @param speed of the module
      * @param angle of the module
@@ -126,17 +124,14 @@ public class WheelModule extends Subsystem {
         lastAngle = angle;
 
         angle *= RobotMap.COUNTPERDEG;
-        
-       // System.out.println(id + " running at " + speed);
+
         speedMotor.set(ControlMode.PercentOutput, speed);
-        // angleMotor.set(ControlMode.PercentOutput, 1);
         angleMotor.set(ControlMode.MotionMagic, angle);
-        // SmartDashboard.putNumber("Angle Error", angleMotor.getClosedLoopError());
     }
 
-    public void setSpeed(double speed) {
-        speedMotor.set(ControlMode.PercentOutput, speed);
-    }
+    // public void setDriveSpeed(double speed) {
+    // speedMotor.set(ControlMode.PercentOutput, speed);
+    // }
 
     public void setAngle(double angle) {
         angle = adjustAngle(angle);
@@ -145,10 +140,11 @@ public class WheelModule extends Subsystem {
         angleMotor.set(ControlMode.MotionMagic, angle);
     }
 
-    public void driveAtVoltage(double voltage) {
-        speedMotor.set(ControlMode.PercentOutput, voltage / 12);
-        angleMotor.set(ControlMode.MotionMagic, 0);
+    public void setDrivePosition(double position) {
+        speedMotor.setSelectedSensorPosition(0);
+        speedMotor.set(ControlMode.MotionMagic, position);
     }
+
 
     /*
      * ===================== helper methods =====================
@@ -166,15 +162,15 @@ public class WheelModule extends Subsystem {
         return speedMotor.getSelectedSensorPosition(0);
     }
 
-    public void setDrivePosition(int position) {
-        speedMotor.setSelectedSensorPosition(position);
+    public int getDriveError() {
+        return speedMotor.getClosedLoopError(0);
     }
 
     public double getVoltage() {
         return speedMotor.getMotorOutputVoltage();
     }
 
-    public TalonSRX getSpeedMotor() {
-        return speedMotor;
+    public void setDrivePosition(int position) {
+        speedMotor.setSelectedSensorPosition(position);
     }
 }
