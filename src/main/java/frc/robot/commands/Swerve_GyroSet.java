@@ -10,19 +10,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Arm_SetRotation extends Command {
+public class Swerve_GyroSet extends Command {
+
+    private int angle;
     
-    private double angle;
-  
-    public Arm_SetRotation(double angle) {
-        requires(Robot.arm);
+    public Swerve_GyroSet(int angle) {
+        requires(Robot.swerve);
         this.angle = angle;
     }
     
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.arm.setRotation(angle);
+        Robot.swerve.setGyro(angle);
     }
     
     // Called repeatedly when this Command is scheduled to run

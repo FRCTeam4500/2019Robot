@@ -9,7 +9,8 @@ public class PIDController {
     private double allowableError, lastError = 0, sumOfErrors = 0;
     private PIDInputInterface<Double> pidInput;
 
-    public PIDController(String id, double kP, double kI, double kD, double allowableError, PIDInputInterface<Double> pidInput) {
+    public PIDController(String id, double kP, double kI, double kD, double allowableError,
+            PIDInputInterface<Double> pidInput) {
         this.id = id;
         this.kP = kP;
         this.kI = kI;
@@ -26,17 +27,10 @@ public class PIDController {
         double error = target - getPIDInput();
         double D = ((error - lastError) / 0.02);
         System.out.println("Error is " + error);
-        System.out.println("D is " + D);
-        System.out.println("I is " + sumOfErrors);
-        if (Robot.pidChooser.getSelected()) {
-            this.kP = Robot.pref.getDouble(id + "_kP", this.kP);
-            this.kI = Robot.pref.getDouble(id + "_kI", this.kI);
-            this.kD = Robot.pref.getDouble(id + "_kD", this.kD);
-        }
+        System.out.println("dX is " + (error - lastError));
+        System.out.println("I is " + sumOfErrors + " kI is " + kI);
 
-        double output =  kP * error + 
-                         kI * sumOfErrors +
-                         kD * D;
+        double output = kP * error + kI * sumOfErrors + kD * D;
 
         sumOfErrors += error * 0.02;
         lastError = error;
