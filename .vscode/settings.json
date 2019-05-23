@@ -10,7 +10,7 @@
         ".classpath": true,
         ".project": true
     },
-    "wpilib.online": false,
+    "wpilib.online": true,
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,

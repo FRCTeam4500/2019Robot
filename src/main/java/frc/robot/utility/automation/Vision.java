@@ -9,31 +9,41 @@ public class Vision {
 
     private NetworkTableInstance nt;
     private NetworkTable table;
-    // private NetworkTableEntry centerX, centerY;
-    private NetworkTableEntry centerDat;
-    private NetworkTableEntry angleDat;
+    private NetworkTableEntry camtran;
+    private double[] camArray;
 
     public Vision() {
         nt = NetworkTableInstance.getDefault();
-        table = nt.getTable("SmartDashboard");
-        // centerX = table.getEntry("centerX");
-        // centerY = table.getEntry("centerY");
-        centerDat = table.getEntry("rPI_center");
-        angleDat = table.getEntry("rPI_angle");
-        
-        RobotMap.imgW = table.getEntry("imgW").getDouble(0);
-        RobotMap.imgCenterW = RobotMap.imgW / 2;
-        RobotMap.imgH = table.getEntry("imgH").getDouble(0);
-        RobotMap.imgCenterH = RobotMap.imgH / 2;
+        table = nt.getTable("limelight");
 
-        RobotMap.focalLength = RobotMap.imgW / (2 * Math.tan((RobotMap.FOV*Math.PI/180)/2));
+        camtran = table.getEntry("camtran");
     }
 
-    public double[] getCenter() {
-        return centerDat.getDoubleArray(new double[] {0});
+    public double[] getTranslationalData() {
+        return camtran.getDoubleArray(new double[6]);
     }
 
-    public double getAngle() {
-        return angleDat.getDouble(0);
+    public double getTranslationalX() {
+        return getTranslationalData()[0];
+    }
+
+    public double getTranslationalY() {
+        return getTranslationalData()[1];
+    }
+
+    public double getTranslationalZ() {
+        return getTranslationalData()[2];
+    }
+
+    public double getTranslationalPitch() {
+        return getTranslationalData()[3];
+    }
+
+    public double getTranslationalYaw() {
+        return getTranslationalData()[4];
+    }
+
+    public double getTranslationalRoll() {
+        return getTranslationalData()[5];
     }
 }

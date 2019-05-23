@@ -148,21 +148,4 @@ public class RobotMap {
 
     public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
     public static final int MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL = 1;
-
-    /*
-     * =================== Methods ===================
-     */
-
-    public static void dashboardDisplay() {
-        SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
-        SmartDashboard.putNumber("Elevator Position",
-                Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
-        SmartDashboard.putNumber("Elevator Position from Subsystem",
-                Robot.elevator.getElevatorPosition());
-        SmartDashboard.putNumber("Elevator Error",
-                Robot.elevator.getElevatorMotor().getClosedLoopError());
-        SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
-        SmartDashboard.putNumber("ArmVelocity", Robot.arm.getArmVelocity());
-        SmartDashboard.putNumber("ArmError", Robot.arm.getArmError());
-    }
 }

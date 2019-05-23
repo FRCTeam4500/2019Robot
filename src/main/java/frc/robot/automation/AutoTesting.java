@@ -8,12 +8,11 @@
 package frc.robot.automation;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.pid.Controllers;
 
-public class Automation_xAlign extends Command {
-    public Automation_xAlign() {
+public class AutoTesting extends Command {
+    public AutoTesting() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.swerve);
     }
@@ -26,15 +25,13 @@ public class Automation_xAlign extends Command {
         Controllers.xController.setD(Robot.xTuner.getD());
 
         setTimeout(5);
-        Controllers.xController.setSetpoint(0);
         Controllers.xController.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Controllers.xController.setSetpoint(0);
-        SmartDashboard.putNumber("xError", Controllers.xController.getError());
+        Controllers.xController.setSetpoint(Robot.vision.getTranslationalX());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.pid.Controllers;
 
-public class Automation_xAlign extends Command {
-    public Automation_xAlign() {
+public class Automation_zAlign extends Command {
+    public Automation_zAlign() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.swerve);
     }
@@ -21,27 +21,27 @@ public class Automation_xAlign extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Controllers.xController.setP(Robot.xTuner.getP());
-        Controllers.xController.setI(Robot.xTuner.getI());
-        Controllers.xController.setD(Robot.xTuner.getD());
+        Controllers.zController.setP(Robot.zTuner.getP());
+        Controllers.zController.setI(Robot.zTuner.getI());
+        Controllers.zController.setD(Robot.zTuner.getD());
 
         setTimeout(5);
-        Controllers.xController.setSetpoint(0);
-        Controllers.xController.enable();
+        Controllers.zController.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Controllers.xController.setSetpoint(0);
-        SmartDashboard.putNumber("xError", Controllers.xController.getError());
+        Controllers.zController.setSetpoint(0);
+        SmartDashboard.putNumber("zError", Controllers.xController.getError());
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        if (Controllers.xController.onTarget() || isTimedOut()) {
-            Controllers.xController.disable();
+        if (Controllers.zController.onTarget() || isTimedOut()) {
+            Controllers.zController.disable();
             return true;
         }
         return false;

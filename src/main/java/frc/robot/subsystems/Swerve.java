@@ -44,7 +44,7 @@ public class Swerve extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        // setDefaultCommand(new Swerve_Drive());
+        setDefaultCommand(new Swerve_Drive());
     }
 
     /*
@@ -162,6 +162,13 @@ public class Swerve extends Subsystem {
         bl.setAngle(blAngle);
         fr.setAngle(frAngle);
         fl.setAngle(flAngle);
+    }
+
+    public void driveWithoutPID(double angle, double speed) {
+        br.driveWithoutPID(angle, speed);
+        bl.driveWithoutPID(angle, speed);
+        fr.driveWithoutPID(angle, speed);
+        fl.driveWithoutPID(angle, speed);
     }
 
     public void setDrivePosition(double pos) {

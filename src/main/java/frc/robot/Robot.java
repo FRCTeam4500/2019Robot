@@ -7,20 +7,24 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.Robot_Group_PreConfigure;
-import frc.robot.subsystems.Cargo;
+import frc.robot.pid.Controllers;
 import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Cargo;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Lift;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.PneumaticsCompressor;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.WheelModule;
 import frc.robot.utility.CameraInstance;
+import frc.robot.utility.DashboardDisplay;
 import frc.robot.utility.Logger;
+import frc.robot.utility.PIDTuner;
 import frc.robot.utility.automation.Vision;
 
 /**
@@ -40,9 +44,12 @@ public class Robot extends TimedRobot {
     public static Hatch hatch;
     public static Lift lift;
 
+    public static PIDTuner xTuner, zTuner, yawTuner;
+
     public static Vision vision;
     public static Logger logger;
     public static CameraInstance camOne;
+    public static Preferences prefs;
     public static OI oi;
 
     /**
@@ -69,6 +76,14 @@ public class Robot extends TimedRobot {
         vision = new Vision();
         camOne = new CameraInstance(CameraInstance.StreamType.COMPLEX, 0);
         camOne.start();
+
+        prefs = Preferences.getInstance();
+        DashboardDisplay.initRun();
+        xTuner = new PIDTuner(prefs, "pX", 0, "iX", 0, "dX", 0, "spX", 0);
+        zTuner = new PIDTuner(prefs, "pZ", 0, "iZ", 0, "dZ", 0, "spZ", 0);
+        // yTuner = new PIDTuner(prefs, "pY", 0, "iY", 0, "dY", 0);
+        // yawTuner = new PIDTuner(prefs, "pYaw", 0, "iYaw", 0, "dYaw", 0);
+        Controllers.initialize();
 
         oi = new OI();
     }
@@ -99,8 +114,8 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        Robot.swerve.calculateVectors(0, 0, -1);
-        // RobotMap.dashboardDisplay();
+        // Robot.swerve.calculateVectors(0, 0, -1);
+        DashboardDisplay.displayText();
     }
 
     /**
@@ -145,7 +160,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        RobotMap.dashboardDisplay();
+        DashboardDisplay.displayText();
     }
 
     /**
@@ -153,6 +168,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        RobotMap.dashboardDisplay();
+        DashboardDisplay.displayText();
     }
 }
