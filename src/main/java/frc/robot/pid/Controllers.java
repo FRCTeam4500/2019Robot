@@ -15,8 +15,8 @@ import frc.robot.Robot;
  */
 public class Controllers {
 
-    private static PnpZOutput zOutput;
-    private static PnpZSource zSource;
+    private static PnpHypOutput hypOutput;
+    private static PnpHypSource hypSource;
 
     private static PnpXOutput xOutput;
     private static PnpXSource xSource;
@@ -25,27 +25,30 @@ public class Controllers {
     private static PnpYawSource yawSource;
 
 
-    public static PIDController xController, zController, yawController;
+    public static PIDController xController, hypController, yawController;
 
     public static void initialize() {
         xSource = new PnpXSource();
         xOutput = new PnpXOutput();
         xController = new PIDController(Robot.xTuner.getP(), Robot.xTuner.getI(),
                 Robot.xTuner.getD(), xSource, xOutput);
-        xController.setInputRange(-20, 20);
-        xController.setOutputRange(-1, 1);
-        xController.setPercentTolerance(0);
+        xController.setInputRange(-30, 30);
+        xController.setOutputRange(-0.5, 0.5);
+        xController.setPercentTolerance(0.5);
 
-        zSource = new PnpZSource();
-        zOutput = new PnpZOutput();
-        zController = new PIDController(0, 0, 0, zSource, zOutput);
-        zController.setInputRange(0, 20);
-        zController.setOutputRange(-1, 1);
-        zController.setPercentTolerance(15.0);
+        hypSource = new PnpHypSource();
+        hypOutput = new PnpHypOutput();
+        hypController = new PIDController(Robot.hypTuner.getP(), Robot.hypTuner.getI(),
+                Robot.hypTuner.getD(), hypSource, hypOutput);
+        hypController.setInputRange(0, 100);
+        hypController.setOutputRange(-0.25, 0.25);
+        hypController.setPercentTolerance(10);
 
-        // yawController = new PIDController(0, 0, 0, yawSource, yawOutput);
-        // yawController.setInputRange(-180, 180);
-        // yawController.setOutputRange(-180, 180);
-        // yawController.setPercentTolerance(15.0);
+        yawSource = new PnpYawSource();
+        yawOutput = new PnpYawOutput();
+        yawController = new PIDController(0, 0, 0, yawSource, yawOutput);
+        yawController.setInputRange(-120, 120);
+        yawController.setOutputRange(-0.5, 0.5);
+        yawController.setPercentTolerance(5);
     }
 }

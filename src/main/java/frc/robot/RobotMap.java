@@ -72,6 +72,9 @@ public class RobotMap {
     public final static double L = 29.75;
     public final static double W = 29.75;
     public final static double COUNTPERDEG = 16.2539;
+    public final static double vMAX = 29.9;
+    public final static double LLFPS = 22;
+
 
     public final static double angleP = 1.03858, angleI = 0.004, angleD = 8, angleF = 0.51;
     public final static int angleV = 4012, angleA = 4012;
@@ -137,6 +140,9 @@ public class RobotMap {
     public final static double brKa = 0;
     public final static int ticksPerRotation = 0;
 
+    public static double hypAngle;
+    public static final double camDist = 3.5;
+
     /*
      * =================== Lift ========================
      */
@@ -148,4 +154,8 @@ public class RobotMap {
 
     public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
     public static final int MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL = 1;
+
+    public static double deg2rad(double deg) {
+        return (Math.PI / 180) * deg;
+    }
 }

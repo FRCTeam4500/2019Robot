@@ -59,6 +59,18 @@ public class Swerve extends Subsystem {
         return gyro.getAngle();
     }
 
+    public double getYaw() {
+        return gyro.getYaw();
+    }
+
+    public double getPitch() {
+        return gyro.getPitch();
+    }
+
+    public double getRoll() {
+        return gyro.getRoll();
+    }
+
     public void setGyro(int angle) {
         resetGyro();
         gyro.setAngleAdjustment(angle);

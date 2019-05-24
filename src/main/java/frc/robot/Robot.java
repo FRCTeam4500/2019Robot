@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
     public static Hatch hatch;
     public static Lift lift;
 
-    public static PIDTuner xTuner, zTuner, yawTuner;
+    public static PIDTuner xTuner, hypTuner, yawTuner;
 
     public static Vision vision;
     public static Logger logger;
@@ -69,7 +69,7 @@ public class Robot extends TimedRobot {
         cargo = new Cargo();
         hatch = new Hatch();
         lift = new Lift();
-        // compress = new PneumaticsCompressor();
+        compress = new PneumaticsCompressor();
 
         logger = new Logger();
 
@@ -80,9 +80,9 @@ public class Robot extends TimedRobot {
         prefs = Preferences.getInstance();
         DashboardDisplay.initRun();
         xTuner = new PIDTuner(prefs, "pX", 0, "iX", 0, "dX", 0, "spX", 0);
-        zTuner = new PIDTuner(prefs, "pZ", 0, "iZ", 0, "dZ", 0, "spZ", 0);
+        hypTuner = new PIDTuner(prefs, "pHyp", 0, "iHyp", 0, "dHyp", 0, "spHyp", 0);
         // yTuner = new PIDTuner(prefs, "pY", 0, "iY", 0, "dY", 0);
-        // yawTuner = new PIDTuner(prefs, "pYaw", 0, "iYaw", 0, "dYaw", 0);
+        yawTuner = new PIDTuner(prefs, "pYaw", 0, "iYaw", 0, "dYaw", 0, "spYaw", 0);
         Controllers.initialize();
 
         oi = new OI();

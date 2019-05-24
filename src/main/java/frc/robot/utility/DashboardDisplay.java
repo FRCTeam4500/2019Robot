@@ -9,8 +9,8 @@ package frc.robot.utility;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.automation.Automation_xAlign;
-import frc.robot.automation.Automation_zAlign;
+import frc.robot.automation.Automation_yawAlign;
+import frc.robot.automation.Automation_hypAlign;
 
 /**
  * This class should contain all the code for displaying information to the Shuffleboard
@@ -22,6 +22,7 @@ public class DashboardDisplay {
      */
     public static void displayText() {
         SmartDashboard.putNumber("gyro", Robot.swerve.getGyro());
+        SmartDashboard.putNumber("gyroYaw", Robot.swerve.getYaw());
         SmartDashboard.putNumber("Elevator Position",
                 Robot.elevator.getElevatorMotor().getSelectedSensorPosition());
         SmartDashboard.putNumber("Elevator Position from Subsystem",
@@ -37,7 +38,12 @@ public class DashboardDisplay {
         SmartDashboard.putNumber("TranslationalZ", Robot.vision.getTranslationalZ());
         SmartDashboard.putNumber("TranslationalPitch", Robot.vision.getTranslationalPitch());
         SmartDashboard.putNumber("TranslationalYaw", Robot.vision.getTranslationalYaw());
+        SmartDashboard.putNumber("TranslationalYawAdj",
+                Robot.vision.convertYaw(Robot.vision.getTranslationalYaw()));
         SmartDashboard.putNumber("TranslationalRoll", Robot.vision.getTranslationalRoll());
+        SmartDashboard.putNumber("TranslationalHyp",
+                Math.sqrt(Math.pow(Robot.vision.getTranslationalX(), 2)
+                        + Math.pow(Robot.vision.getTranslationalZ(), 2)));
     }
 
     /**
@@ -45,7 +51,7 @@ public class DashboardDisplay {
      * initializers)
      */
     public static void initRun() {
-        SmartDashboard.putData(new Automation_xAlign());
-        SmartDashboard.putData(new Automation_zAlign());
+        SmartDashboard.putData(new Automation_yawAlign());
+        SmartDashboard.putData(new Automation_hypAlign());
     }
 }

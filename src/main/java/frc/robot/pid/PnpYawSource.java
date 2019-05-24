@@ -9,6 +9,7 @@ package frc.robot.pid;
 
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import frc.robot.Robot;
 import frc.robot.utility.automation.Vision;
 
 /**
@@ -28,6 +29,6 @@ public class PnpYawSource extends Vision implements PIDSource {
 
     @Override
     public double pidGet() {
-        return getTranslationalYaw();
+        return Robot.swerve.getYaw();
     }
 }

@@ -145,11 +145,14 @@ public class WheelModule extends Subsystem {
     }
 
     public void driveWithoutPID(double angle, double speed) {
+        // speed = 0;
         angle = adjustAngle(angle);
         angle *= RobotMap.COUNTPERDEG;
 
-        speedMotor.set(ControlMode.PercentOutput, speed);
         angleMotor.set(ControlMode.MotionMagic, angle);
+        if (angleMotor.getClosedLoopError() < 100) {
+            speedMotor.set(ControlMode.PercentOutput, speed);
+        }
     }
 
 

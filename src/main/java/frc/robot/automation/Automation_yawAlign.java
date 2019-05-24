@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.pid.Controllers;
 
-public class Automation_xAlign extends Command {
-    public Automation_xAlign() {
+public class Automation_yawAlign extends Command {
+    public Automation_yawAlign() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.swerve);
     }
@@ -21,27 +21,27 @@ public class Automation_xAlign extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Controllers.xController.setP(Robot.xTuner.getP());
-        Controllers.xController.setI(Robot.xTuner.getI());
-        Controllers.xController.setD(Robot.xTuner.getD());
+        Controllers.yawController.setP(Robot.yawTuner.getP());
+        Controllers.yawController.setI(Robot.yawTuner.getI());
+        Controllers.yawController.setD(Robot.yawTuner.getD());
 
         setTimeout(1000);
-        Controllers.xController.setSetpoint(0);
-        Controllers.xController.enable();
+        Controllers.yawController.setSetpoint(90);
+        Controllers.yawController.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Controllers.xController.setSetpoint(0);
-        SmartDashboard.putNumber("xError", Controllers.xController.getError());
+        Controllers.yawController.setSetpoint(90);
+        SmartDashboard.putNumber("yawError", Controllers.yawController.getError());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        if (Controllers.xController.onTarget() || isTimedOut()) {
-            Controllers.xController.disable();
+        if (Controllers.yawController.onTarget() || isTimedOut()) {
+            Controllers.yawController.disable();
             return true;
         }
         return false;

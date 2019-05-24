@@ -19,6 +19,6 @@ public class PnpXOutput implements PIDOutput {
     @Override
     public void pidWrite(double output) {
         SmartDashboard.putNumber("xControllerOutput", output);
-        Robot.swerve.driveWithoutPID(90, output);
+        Robot.swerve.driveWithoutPID(90, -output);
     }
 }
