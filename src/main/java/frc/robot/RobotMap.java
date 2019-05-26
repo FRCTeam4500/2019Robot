@@ -143,6 +143,11 @@ public class RobotMap {
     public static double hypAngle;
     public static final double camDist = 3.5;
 
+    public static final double transXMax = 0;
+    public static final double transZMax = 0;
+    public static final double yawMax = 0;
+    public static final double targetYaw = 0;
+
     /*
      * =================== Lift ========================
      */

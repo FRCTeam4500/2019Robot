@@ -85,4 +85,11 @@ public class Vision {
     public double getTranslationalRoll() {
         return getTranslationalData()[5];
     }
+
+    public double getHypotenuse() {
+        double x = getTranslationalX();
+        double z = getTranslationalZ();
+
+        return Math.sqrt(x * x + z * z);
+    }
 }
