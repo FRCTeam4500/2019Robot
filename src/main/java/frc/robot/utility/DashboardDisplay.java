@@ -10,6 +10,7 @@ package frc.robot.utility;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.automation.Automation_yawAlign;
+import frc.robot.automation.Swerve_Controller;
 import frc.robot.automation.Automation_hypAlign;
 
 /**
@@ -53,5 +54,6 @@ public class DashboardDisplay {
     public static void initRun() {
         SmartDashboard.putData(new Automation_yawAlign());
         SmartDashboard.putData(new Automation_hypAlign());
+        SmartDashboard.putData(new Swerve_Controller());
     }
 }

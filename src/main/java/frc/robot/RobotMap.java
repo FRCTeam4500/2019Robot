@@ -10,9 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
- * This provides flexibility changing wiring, makes checking the wiring easier and significantly
- * reduces the number of magic numbers floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
 public class RobotMap {
 
@@ -46,7 +47,6 @@ public class RobotMap {
     public final static int RIGHTGRAB = 10;
     public final static int TOPGRAB = 13;
 
-
     /*
      * ====================== Hatch =========================
      */
@@ -75,7 +75,6 @@ public class RobotMap {
     public final static double vMAX = 29.9;
     public final static double LLFPS = 22;
 
-
     public final static double angleP = 1.03858, angleI = 0.004, angleD = 8, angleF = 0.51;
     public final static int angleV = 4012, angleA = 4012;
 
@@ -95,8 +94,6 @@ public class RobotMap {
     // 2 = half speed
     // etc
     public final static int REDUCER_Z = 2;
-
-
 
     /*
      * =================== Vision Configuration ===================
@@ -143,10 +140,17 @@ public class RobotMap {
     public static double hypAngle;
     public static final double camDist = 3.5;
 
-    public static final double transXMax = 0;
-    public static final double transZMax = 0;
-    public static final double yawMax = 0;
-    public static final double targetYaw = 0;
+    public static final double transXMax = 50;
+    public static final double transZMax = 100;
+    public static final double yawMax = 45;
+    public static final double targetYaw = 90;
+
+    public static double pidXTarget;
+    public static double pidXCurrent;
+    public static double pidYTarget;
+    public static double pidYCurrent;
+    public static double pidZTarget;
+    public static final double Z_OFFSET = 0;
 
     /*
      * =================== Lift ========================
@@ -162,5 +166,9 @@ public class RobotMap {
 
     public static double deg2rad(double deg) {
         return (Math.PI / 180) * deg;
+    }
+
+    public static double rad2deg(double rad) {
+        return (180 / Math.PI) * rad;
     }
 }

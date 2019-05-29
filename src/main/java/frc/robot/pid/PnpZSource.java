@@ -9,6 +9,8 @@ package frc.robot.pid;
 
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotMap;
 import frc.robot.utility.automation.Vision;
 
 /**
@@ -28,6 +30,12 @@ public class PnpZSource extends Vision implements PIDSource {
 
     @Override
     public double pidGet() {
-        return getTranslationalZ();
+        double[] history = getHistory(Data.Z);
+        double deltaZ = history[1] - history[0];
+        double deltaT = 1 / RobotMap.LLFPS;
+        double velocity = deltaZ / deltaT;
+        SmartDashboard.putNumber("zVel", velocity);
+        RobotMap.pidYCurrent = velocity < RobotMap.vMAX ? history[1] : history[0];
+        return velocity < RobotMap.vMAX ? history[1] : history[0];
     }
 }

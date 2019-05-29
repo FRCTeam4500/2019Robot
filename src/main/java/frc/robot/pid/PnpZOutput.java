@@ -10,6 +10,7 @@ package frc.robot.pid;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -19,6 +20,7 @@ public class PnpZOutput implements PIDOutput {
     @Override
     public void pidWrite(double output) {
         SmartDashboard.putNumber("zControllerOutput", output);
-        Robot.swerve.driveWithoutPID(0, output);
+        RobotMap.pidYTarget = -output;
+        // Robot.swerve.driveWithoutPID(0, output);
     }
 }

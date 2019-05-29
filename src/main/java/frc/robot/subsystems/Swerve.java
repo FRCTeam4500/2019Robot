@@ -8,9 +8,11 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.Swerve_Drive;
 
@@ -80,8 +82,9 @@ public class Swerve extends Subsystem {
      */
 
     /**
-     * Calculates a vector (contains a magnitude (speed) and heading (angle)) for each of the four
-     * wheel modules. Then calls the drive method in the four modules to start the desired movement
+     * Calculates a vector (contains a magnitude (speed) and heading (angle)) for
+     * each of the four wheel modules. Then calls the drive method in the four
+     * modules to start the desired movement
      * 
      * @param x coordinate of the joystick
      * @param y coordinate of the joystick
@@ -142,6 +145,115 @@ public class Swerve extends Subsystem {
         fl.drive(flSpeed, flAngle);
     }
 
+    public void calculateVisionVectors(double z) {
+        double L = RobotMap.L;
+        double W = RobotMap.W;
+        double r = Math.sqrt((L * L) + (W * W));
+
+        double x = -1 * RobotMap.pidXCurrent;
+        double y = -1 * (RobotMap.pidYCurrent - RobotMap.Z_OFFSET);
+
+        double max = y > x ? y : x;
+        if (max > 1) {
+            x /= max;
+            y /= max;
+        }
+
+        double a = x - z * (L / r) + 0;
+        double b = x + z * (L / r);
+        double c = y - z * (W / r) + 0;
+        double d = y + z * (W / r);
+
+        double brSpeed = Math.sqrt((a * a) + (c * c));
+        double blSpeed = Math.sqrt((a * a) + (d * d));
+        double frSpeed = Math.sqrt((b * b) + (c * c));
+        double flSpeed = Math.sqrt((b * b) + (d * d));
+
+        double brAngle = (RobotMap.rad2deg(Math.atan2(a, c)));
+        double blAngle = (RobotMap.rad2deg(Math.atan2(a, d)));
+        double frAngle = (RobotMap.rad2deg(Math.atan2(b, c)));
+        double flAngle = (RobotMap.rad2deg(Math.atan2(b, d)));
+
+        br.drive(brSpeed, brAngle);
+        bl.drive(blSpeed, blAngle);
+        fr.drive(frSpeed, frAngle);
+        fl.drive(flSpeed, flAngle);
+    }
+
+    // public void calculateVisionVectors(double x, double y, double z) {
+    // double L = RobotMap.L;
+    // double W = RobotMap.W;
+    // double r = Math.sqrt((L * L) + (W * W));
+    // y *= -1;
+
+    // double speeds[] = getVisionSpeed(x, y, z, L, W, r);
+    // double angles[] = getVisionAngle(z, L, W, r);
+
+    // br.drive(speeds[0], angles[0]);
+    // bl.drive(speeds[1], angles[1]);
+    // fr.drive(speeds[2], angles[2]);
+    // fl.drive(speeds[3], angles[3]);
+    // }
+
+    // private double[] getVisionSpeed(double x, double y, double z, double L,
+    // double W, double r) {
+    // double a = x - z * (L / r) + 0;
+    // double b = x + z * (L / r);
+    // double c = y - z * (W / r) + 0;
+    // double d = y + z * (W / r);
+
+    // double brSpeed = Math.sqrt((a * a) + (c * c));
+    // double blSpeed = Math.sqrt((a * a) + (d * d));
+    // double frSpeed = Math.sqrt((b * b) + (c * c));
+    // double flSpeed = Math.sqrt((b * b) + (d * d));
+
+    // double max = brSpeed;
+    // if (brSpeed > max) {
+    // max = brSpeed;
+    // }
+    // if (blSpeed > max) {
+    // max = blSpeed;
+    // }
+    // if (frSpeed > max) {
+    // max = frSpeed;
+    // }
+    // if (flSpeed > max) {
+    // max = flSpeed;
+    // }
+
+    // if (max > 1) {
+    // brSpeed /= max;
+    // blSpeed /= max;
+    // frSpeed /= max;
+    // flSpeed /= max;
+    // }
+
+    // return new double[] { brSpeed, blSpeed, frSpeed, flSpeed };
+    // }
+
+    // private double[] getVisionAngle(double z, double L, double W, double r) {
+    // double x = -1 * RobotMap.pidXCurrent;
+    // double y = -1 * (RobotMap.pidYCurrent - RobotMap.Z_OFFSET);
+
+    // double max = y > x ? y : x;
+    // if (max > 1) {
+    // x /= max;
+    // y /= max;
+    // }
+
+    // double a = x - z * (L / r) + 0;
+    // double b = x + z * (L / r);
+    // double c = y - z * (W / r) + 0;
+    // double d = y + z * (W / r);
+
+    // double brAngle = (RobotMap.rad2deg(Math.atan2(a, c)));
+    // double blAngle = (RobotMap.rad2deg(Math.atan2(a, d)));
+    // double frAngle = (RobotMap.rad2deg(Math.atan2(b, c)));
+    // double flAngle = (RobotMap.rad2deg(Math.atan2(b, d)));
+
+    // return new double[] { brAngle, blAngle, frAngle, flAngle };
+    // }
+
     // public void setSpeed(double speed) {
     // br.setSpeed(speed);
     // bl.setSpeed(speed);
@@ -149,32 +261,32 @@ public class Swerve extends Subsystem {
     // fl.setSpeed(speed);
     // }
 
-    public void setAngle(double x, double y, double z) {
-        double L = RobotMap.L;
-        double W = RobotMap.W;
-        double r = Math.sqrt((L * L) + (W * W));
-        y *= -1;
+    // public void setAngle(double x, double y, double z) {
+    // double L = RobotMap.L;
+    // double W = RobotMap.W;
+    // double r = Math.sqrt((L * L) + (W * W));
+    // y *= -1;
 
-        double gyro = getGyro() * Math.PI / 180;
-        double temp = y * Math.cos(gyro) + x * Math.sin(gyro);
-        x = -y * Math.sin(gyro) + x * Math.cos(gyro);
-        y = temp;
+    // double gyro = getGyro() * Math.PI / 180;
+    // double temp = y * Math.cos(gyro) + x * Math.sin(gyro);
+    // x = -y * Math.sin(gyro) + x * Math.cos(gyro);
+    // y = temp;
 
-        double a = x - z * (L / r) + 0;
-        double b = x + z * (L / r);
-        double c = y - z * (W / r) + 0;
-        double d = y + z * (W / r);
+    // double a = x - z * (L / r) + 0;
+    // double b = x + z * (L / r);
+    // double c = y - z * (W / r) + 0;
+    // double d = y + z * (W / r);
 
-        double brAngle = (Math.atan2(a, c) * 180 / Math.PI);
-        double blAngle = (Math.atan2(a, d) * 180 / Math.PI);
-        double frAngle = (Math.atan2(b, c) * 180 / Math.PI);
-        double flAngle = (Math.atan2(b, d) * 180 / Math.PI);
+    // double brAngle = (Math.atan2(a, c) * 180 / Math.PI);
+    // double blAngle = (Math.atan2(a, d) * 180 / Math.PI);
+    // double frAngle = (Math.atan2(b, c) * 180 / Math.PI);
+    // double flAngle = (Math.atan2(b, d) * 180 / Math.PI);
 
-        br.setAngle(brAngle);
-        bl.setAngle(blAngle);
-        fr.setAngle(frAngle);
-        fl.setAngle(flAngle);
-    }
+    // br.setAngle(brAngle);
+    // bl.setAngle(blAngle);
+    // fr.setAngle(frAngle);
+    // fl.setAngle(flAngle);
+    // }
 
     public void driveWithoutPID(double angle, double speed) {
         br.driveWithoutPID(angle, speed);
@@ -204,7 +316,7 @@ public class Swerve extends Subsystem {
         int frError = fr.getAngleError();
         int blError = bl.getAngleError();
         int brError = br.getAngleError();
-        return new int[] {flError, frError, blError, brError};
+        return new int[] { flError, frError, blError, brError };
     }
 
     /**
@@ -217,7 +329,7 @@ public class Swerve extends Subsystem {
         int frPosition = fr.getAnglePosition();
         int blPosition = bl.getAnglePosition();
         int brPosition = br.getAnglePosition();
-        return new int[] {flPosition, frPosition, blPosition, brPosition};
+        return new int[] { flPosition, frPosition, blPosition, brPosition };
     }
 
     /**
@@ -231,7 +343,7 @@ public class Swerve extends Subsystem {
         int blQ = bl.getDrivePosition();
         int brQ = br.getDrivePosition();
 
-        return new int[] {flQ, frQ, blQ, brQ};
+        return new int[] { flQ, frQ, blQ, brQ };
     }
 
     /**
@@ -244,7 +356,7 @@ public class Swerve extends Subsystem {
         double frV = fr.getVoltage();
         double blV = bl.getVoltage();
         double brV = br.getVoltage();
-        return new double[] {flV, frV, blV, brV};
+        return new double[] { flV, frV, blV, brV };
     }
 
     /*

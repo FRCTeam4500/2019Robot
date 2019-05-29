@@ -28,9 +28,10 @@ import frc.robot.utility.PIDTuner;
 import frc.robot.utility.automation.Vision;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to each mode, as described in the TimedRobot
+ * documentation. If you change the name of this class or the package after
+ * creating this project, you must also update the build.gradle file in the
  * project.
  */
 public class Robot extends TimedRobot {
@@ -44,7 +45,7 @@ public class Robot extends TimedRobot {
     public static Hatch hatch;
     public static Lift lift;
 
-    public static PIDTuner xTuner, hypTuner, yawTuner;
+    public static PIDTuner xTuner, hypTuner, yawTuner, zTuner;
 
     public static Vision vision;
     public static Logger logger;
@@ -53,8 +54,8 @@ public class Robot extends TimedRobot {
     public static OI oi;
 
     /**
-     * This function is run when the robot is first started up and should be used for any
-     * initialization code.
+     * This function is run when the robot is first started up and should be used
+     * for any initialization code.
      */
     @Override
     public void robotInit() {
@@ -79,22 +80,23 @@ public class Robot extends TimedRobot {
 
         prefs = Preferences.getInstance();
         DashboardDisplay.initRun();
-        xTuner = new PIDTuner(prefs, "pX", 0, "iX", 0, "dX", 0, "spX", 0);
+        xTuner = new PIDTuner(prefs, "pX", 0.01, "iX", 0, "dX", 0, "spX", 0);
         hypTuner = new PIDTuner(prefs, "pHyp", 0, "iHyp", 0, "dHyp", 0, "spHyp", 0);
-        // yTuner = new PIDTuner(prefs, "pY", 0, "iY", 0, "dY", 0);
-        yawTuner = new PIDTuner(prefs, "pYaw", 0, "iYaw", 0, "dYaw", 0, "spYaw", 0);
+        zTuner = new PIDTuner(prefs, "pZ", 0.01, "iZ", 0, "dZ", 0, "spZ", 0);
+        yawTuner = new PIDTuner(prefs, "pYaw", 0.01, "iYaw", 0, "dYaw", 0, "spYaw", 0);
         Controllers.initialize();
 
         oi = new OI();
     }
 
     /**
-     * This function is called every robot packet, no matter the mode. Use this for items like
-     * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
+     * This function is called every robot packet, no matter the mode. Use this for
+     * items like diagnostics that you want ran during disabled, autonomous,
+     * teleoperated and test.
      *
      * <p>
-     * This runs after the mode specific periodic functions, but before LiveWindow and
-     * SmartDashboard integrated updating.
+     * This runs after the mode specific periodic functions, but before LiveWindow
+     * and SmartDashboard integrated updating.
      */
     @Override
     public void robotPeriodic() {
@@ -104,8 +106,9 @@ public class Robot extends TimedRobot {
     }
 
     /**
-     * This function is called once each time the robot enters Disabled mode. You can use it to
-     * reset any subsystem information you want to clear when the robot is disabled.
+     * This function is called once each time the robot enters Disabled mode. You
+     * can use it to reset any subsystem information you want to clear when the
+     * robot is disabled.
      */
     @Override
     public void disabledInit() {
@@ -119,15 +122,16 @@ public class Robot extends TimedRobot {
     }
 
     /**
-     * This autonomous (along with the chooser code above) shows how to select between different
-     * autonomous modes using the dashboard. The sendable chooser code works with the Java
-     * SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the chooser code and
-     * uncomment the getString code to get the auto name from the text box below the Gyro
+     * This autonomous (along with the chooser code above) shows how to select
+     * between different autonomous modes using the dashboard. The sendable chooser
+     * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+     * remove all of the chooser code and uncomment the getString code to get the
+     * auto name from the text box below the Gyro
      *
      * <p>
-     * You can add additional auto modes by adding additional commands to the chooser code above
-     * (like the commented example) or additional comparisons to the switch structure below with
-     * additional strings & commands.
+     * You can add additional auto modes by adding additional commands to the
+     * chooser code above (like the commented example) or additional comparisons to
+     * the switch structure below with additional strings & commands.
      */
     @Override
     public void autonomousInit() {

@@ -19,7 +19,12 @@ public class PnpHypOutput implements PIDOutput {
 
     @Override
     public void pidWrite(double output) {
-        // SmartDashboard.putString("hypControllerOutput", output + ":" + RobotMap.hypAngle);
-        Robot.swerve.driveWithoutPID(RobotMap.hypAngle, -output);
+        // double x = output * Math.cos(RobotMap.deg2rad(RobotMap.hypAngle));
+        // double y = output * Math.sin(RobotMap.deg2rad(RobotMap.hypAngle));
+        // // System.out.println("x : y");
+        // // SmartDashboard.putString("hypControllerOutput", output + ":" +
+        // // RobotMap.hypAngle);
+        // Robot.swerve.driveWithoutPID(RobotMap.hypAngle, -output);
+        // Robot.swerve.calculateVisionVectors(output);
     }
 }

@@ -21,34 +21,45 @@ public class Controllers {
     private static PnpXOutput xOutput;
     private static PnpXSource xSource;
 
+    private static PnpZOutput zOutput;
+    private static PnpZSource zSource;
+
     private static PnpYawOutput yawOutput;
     private static PnpYawSource yawSource;
 
-
-    public static PIDController xController, hypController, yawController;
+    public static PIDController xController, hypController, yawController, zController;
 
     public static void initialize() {
         xSource = new PnpXSource();
         xOutput = new PnpXOutput();
-        xController = new PIDController(Robot.xTuner.getP(), Robot.xTuner.getI(),
-                Robot.xTuner.getD(), xSource, xOutput);
+        xController = new PIDController(Robot.xTuner.getP(), Robot.xTuner.getI(), Robot.xTuner.getD(), xSource,
+                xOutput);
         xController.setInputRange(-30, 30);
-        xController.setOutputRange(-0.5, 0.5);
-        xController.setPercentTolerance(0.5);
+        xController.setOutputRange(-0.35, 0.35);
+        xController.setPercentTolerance(2);
 
-        hypSource = new PnpHypSource();
-        hypOutput = new PnpHypOutput();
-        hypController = new PIDController(Robot.hypTuner.getP(), Robot.hypTuner.getI(),
-                Robot.hypTuner.getD(), hypSource, hypOutput);
-        hypController.setInputRange(0, 100);
-        hypController.setOutputRange(-0.25, 0.25);
-        hypController.setPercentTolerance(10);
+        zSource = new PnpZSource();
+        zOutput = new PnpZOutput();
+        zController = new PIDController(Robot.zTuner.getP(), Robot.zTuner.getI(), Robot.zTuner.getD(), zSource,
+                zOutput);
+        zController.setInputRange(-80, 0);
+        zController.setOutputRange(-0.35, 0.35);
+        zController.setPercentTolerance(2);
+
+        // hypSource = new PnpHypSource();
+        // hypOutput = new PnpHypOutput();
+        // hypController = new PIDController(Robot.hypTuner.getP(),
+        // Robot.hypTuner.getI(), Robot.hypTuner.getD(),
+        // hypSource, hypOutput);
+        // hypController.setInputRange(0, 100);
+        // hypController.setOutputRange(-0.25, 0.25);
+        // hypController.setPercentTolerance(10);
 
         yawSource = new PnpYawSource();
         yawOutput = new PnpYawOutput();
         yawController = new PIDController(0, 0, 0, yawSource, yawOutput);
         yawController.setInputRange(-120, 120);
-        yawController.setOutputRange(-0.5, 0.5);
-        yawController.setPercentTolerance(5);
+        yawController.setOutputRange(-0.25, 0.25);
+        yawController.setPercentTolerance(1);
     }
 }

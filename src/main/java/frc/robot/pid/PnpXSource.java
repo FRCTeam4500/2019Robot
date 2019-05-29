@@ -35,6 +35,7 @@ public class PnpXSource extends Vision implements PIDSource {
         double deltaT = 1 / RobotMap.LLFPS;
         double velocity = deltaX / deltaT;
         SmartDashboard.putNumber("xVel", velocity);
+        RobotMap.pidXCurrent = velocity < RobotMap.vMAX ? history[1] : history[0];
         return velocity < RobotMap.vMAX ? history[1] : history[0];
     }
 }
