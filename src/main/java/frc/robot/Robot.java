@@ -8,21 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.commands.Robot_Group_PreConfigure;
-import frc.robot.subsystems.Cargo;
-import frc.robot.automation.Automation_Group_Test;
-import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Hatch;
-import frc.robot.subsystems.Lift;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.PneumaticsCompressor;
-import frc.robot.subsystems.Swerve;
-import frc.robot.subsystems.WheelModule;
-import frc.robot.utility.CameraInstance;
-import frc.robot.utility.Logger;
-import frc.robot.utility.automation.Vision;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,46 +19,13 @@ import frc.robot.utility.automation.Vision;
  */
 public class Robot extends TimedRobot {
 
-    public static WheelModule fl, fr, bl, br;
-    public static Swerve swerve;
-    public static Elevator elevator;
-    public static Arm arm;
-    public static Cargo cargo;
-    public static PneumaticsCompressor compress;
-    public static Hatch hatch;
-    public static Lift lift;
-
-    public static Vision vision;
-    public static Logger logger;
-    public static CameraInstance camOne;
-    public static OI oi;
-
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
     @Override
     public void robotInit() {
-        bl = new WheelModule(RobotMap.BLANGLEPORT, RobotMap.BLSPEEDPORT, "bl", false, true);
-        br = new WheelModule(RobotMap.BRANGLEPORT, RobotMap.BRSPEEDPORT, "br", false, false);
-        fl = new WheelModule(RobotMap.FLANGLEPORT, RobotMap.FLSPEEDPORT, "fl", false, true);
-        fr = new WheelModule(RobotMap.FRANGLEPORT, RobotMap.FRSPEEDPORT, "fr", false, false);
 
-        swerve = new Swerve(fl, fr, bl, br);
-        elevator = new Elevator();
-        arm = new Arm();
-        cargo = new Cargo();
-        hatch = new Hatch();
-        lift = new Lift();
-        // compress = new PneumaticsCompressor();
-
-        logger = new Logger();
-
-        vision = new Vision();
-        camOne = new CameraInstance(CameraInstance.StreamType.COMPLEX, 0);
-        camOne.start();
-
-        oi = new OI();
     }
 
     /**
@@ -84,9 +38,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
-        if (elevator.requiresReset()) {
-            elevator.resetElevatorPosition();
-        }
+
     }
 
     /**
@@ -100,7 +52,6 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        RobotMap.dashboardDisplay();
     }
 
     /**
@@ -116,12 +67,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        logger.writeHeader("autonomousInit");
 
-        Command preconfigure = new Robot_Group_PreConfigure();
-        preconfigure.start();
-
-        logger.writeHeader("autonomousPeriodic");
     }
 
     /**
@@ -134,9 +80,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        logger.writeHeader("teleopInit");
 
-        logger.writeHeader("teleopPeriodic");
     }
 
     /**
@@ -145,7 +89,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        RobotMap.dashboardDisplay();
+
     }
 
     /**
@@ -153,6 +97,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        RobotMap.dashboardDisplay();
+
     }
 }
