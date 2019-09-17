@@ -1,10 +1,10 @@
-package frc.robot.swerve.test;
+package frc.robot.swerve;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import frc.robot.components.test.MockAngleSetter;
-import frc.robot.components.test.MockSpeedSetter;
+import frc.robot.components.MockAngleSetter;
+import frc.robot.components.MockSpeedSetter;
 import frc.robot.swerve.Swerve;
 import frc.robot.swerve.WheelModule;
 

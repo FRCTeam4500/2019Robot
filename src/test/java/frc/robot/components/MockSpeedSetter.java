@@ -1,4 +1,4 @@
-package frc.robot.components.test;
+package frc.robot.components;
 
 import frc.robot.components.ISpeedSetter;
 
