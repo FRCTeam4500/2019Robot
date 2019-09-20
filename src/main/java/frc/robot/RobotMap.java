@@ -34,4 +34,18 @@ public class RobotMap {
     public static final int BACK_LIFT_SOLENOID_REVERSE_CHANNEL = 0;
     public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
     public static final int MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL = 0;
+    public static final double ANGLE_P = 0;
+    public static final double ANGLE_I = 0;
+    public static final double ANGLE_D = 0;
+    public static final double ANGLE_F = 0;
+    public static final int ANGLE_V = 0;
+    public static final int ANGLE_A = 0;
+    public static final int BL_ANGLE_PORT = 0;
+    public static final int BR_ANGLE_PORT = 0;
+    public static final int FL_ANGLE_PORT = 0;
+    public static final int FR_ANGLE_PORT = 0;
+    public static final int BL_SPEED_PORT = 0;
+    public static final int BR_SPEED_PORT = 0;
+    public static final int FL_SPEED_PORT = 0;
+    public static final int FR_SPEED_PORT = 0;
 }
