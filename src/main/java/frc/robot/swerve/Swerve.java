@@ -8,6 +8,7 @@
 package frc.robot.swerve;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.components.IAngleGetter;
 
 /**
  * Add your docs here.
@@ -20,9 +21,10 @@ public class Swerve extends Subsystem {
     private WheelModule fl, fr, bl, br;
     private double rotationCoefficient = 1;
     private double r;
+    private IAngleGetter fieldAngleGetter;
 
     public Swerve(double length, double width, WheelModule fl, WheelModule fr, WheelModule bl,
-            WheelModule br) {
+            WheelModule br, IAngleGetter fieldAngleGetter) {
         this.length = length;
         this.width = width;
         this.fl = fl;
@@ -30,6 +32,7 @@ public class Swerve extends Subsystem {
         this.bl = bl;
         this.br = br;
         r = Math.sqrt(width * width + length * length) / 2;
+        this.fieldAngleGetter = fieldAngleGetter;
     }
 
     public void moveRobotCentric(double x, double y, double w) {
@@ -61,6 +64,20 @@ public class Swerve extends Subsystem {
         fr.drive(frAngle, frSpeed);
         bl.drive(blAngle, blSpeed);
         br.drive(brAngle, brSpeed);
+    }
+
+    public void moveAngleCentric(double x, double y, double w, double angle) {
+        double s = Math.sin(angle);
+        double c = Math.cos(angle);
+
+        double xnew = x * c - y * s;
+        double ynew = x * s + y * c;
+
+        moveRobotCentric(xnew, ynew, w);
+    }
+
+    public void moveFieldCentric(double x, double y, double w) {
+        moveAngleCentric(x, y, w, fieldAngleGetter.getAngle());
     }
 
     @Override
