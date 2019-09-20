@@ -5,10 +5,11 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.components;
+package frc.robot.components.hardware;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI.Port;
+import frc.robot.components.IAngleGetter;
 
 /**
  * Add your docs here.

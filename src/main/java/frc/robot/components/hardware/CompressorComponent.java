@@ -5,9 +5,10 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.components;
+package frc.robot.components.hardware;
 
 import edu.wpi.first.wpilibj.Compressor;
+import frc.robot.components.ICompressor;
 
 /**
  * Add your docs here.

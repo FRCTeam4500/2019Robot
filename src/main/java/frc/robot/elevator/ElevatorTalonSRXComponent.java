@@ -9,7 +9,7 @@ package frc.robot.elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.components.IPositionSetter;
-import frc.robot.components.TalonSRXComponent;
+import frc.robot.components.hardware.TalonSRXComponent;
 
 /**
  * Add your docs here.

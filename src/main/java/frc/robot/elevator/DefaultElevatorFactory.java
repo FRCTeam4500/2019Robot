@@ -10,7 +10,7 @@ package frc.robot.elevator;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.RobotMap;
-import frc.robot.components.TalonSRXComponent;
+import frc.robot.components.hardware.TalonSRXComponent;
 
 /**
  * Add your docs here.

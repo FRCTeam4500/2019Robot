@@ -8,7 +8,7 @@
 package frc.robot.lift;
 
 import frc.robot.RobotMap;
-import frc.robot.components.DoubleSolenoidComponent;
+import frc.robot.components.hardware.DoubleSolenoidComponent;
 
 /**
  * Add your docs here.

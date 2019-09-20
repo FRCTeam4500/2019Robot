@@ -8,7 +8,7 @@
 package frc.robot.compressor;
 
 import frc.robot.RobotMap;
-import frc.robot.components.CompressorComponent;
+import frc.robot.components.hardware.CompressorComponent;
 
 /**
  * Add your docs here.

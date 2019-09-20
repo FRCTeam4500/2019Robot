@@ -5,17 +5,18 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.components;
+package frc.robot.components.hardware;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import frc.robot.components.ISpeedSetter;
 
 /**
  * Add your docs here.
  */
-public class TalonSRXComponent extends TalonSRX implements ISpeedSetter, IAngleSetter {
+public class VictorSPXComponent extends VictorSPX implements ISpeedSetter {
 
-    public TalonSRXComponent(int deviceNumber) {
+    public VictorSPXComponent(int deviceNumber) {
         super(deviceNumber);
     }
 
@@ -24,8 +25,4 @@ public class TalonSRXComponent extends TalonSRX implements ISpeedSetter, IAngleS
         set(ControlMode.PercentOutput, speed);
     }
 
-    @Override
-    public void setAngle(double angle) {
-        set(ControlMode.Position, angle);
-    }
 }

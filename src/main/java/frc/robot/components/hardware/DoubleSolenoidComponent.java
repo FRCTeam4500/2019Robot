@@ -5,9 +5,10 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.components;
+package frc.robot.components.hardware;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import frc.robot.components.IDoubleSolenoid;
 
 /**
  * Add your docs here.

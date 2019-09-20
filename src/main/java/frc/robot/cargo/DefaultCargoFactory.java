@@ -9,8 +9,8 @@ package frc.robot.cargo;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.RobotMap;
-import frc.robot.components.TalonSRXComponent;
-import frc.robot.components.VictorSPXComponent;
+import frc.robot.components.hardware.TalonSRXComponent;
+import frc.robot.components.hardware.VictorSPXComponent;
 
 /**
  * Add your docs here.

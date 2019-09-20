@@ -8,7 +8,7 @@
 package frc.robot.hatch;
 
 import frc.robot.RobotMap;
-import frc.robot.components.DoubleSolenoidComponent;
+import frc.robot.components.hardware.DoubleSolenoidComponent;
 
 /**
  * Add your docs here.

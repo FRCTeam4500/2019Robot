@@ -10,8 +10,8 @@ package frc.robot.swerve;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import edu.wpi.first.wpilibj.SPI.Port;
 import frc.robot.RobotMap;
-import frc.robot.components.AHRSAngleGetterComponent;
-import frc.robot.components.TalonSRXComponent;
+import frc.robot.components.hardware.TalonSRXComponent;
+import frc.robot.components.hardware.AHRSAngleGetterComponent;
 
 /**
  * Add your docs here.
