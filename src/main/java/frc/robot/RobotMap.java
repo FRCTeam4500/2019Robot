@@ -22,4 +22,10 @@ public class RobotMap {
     public static final int COMPRESSOR = 0;
     public static final int ELEVATOR_MOTOR = 0;
     public static final int ELEVATOR_MAX = 0;
+    public static final int HATCH_PANEL_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int HATCH_PANEL_SOLENOID_REVERSE_CHANNEL = 0;
+    public static final int HATCH_NAIL_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int HATCH_NAIL_SOLENOID_REVERSE_CHANNEL = 0;
+    public static final int HATCH_CLAW_SOLENOID_REVERSE_CHANNEL = 0;
+    public static final int HATCH_CLAW_SOLENOID_FORWARD_CHANNEL = 0;
 }
