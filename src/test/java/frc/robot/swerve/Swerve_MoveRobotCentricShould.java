@@ -26,7 +26,7 @@ public class Swerve_MoveRobotCentricShould {
         brs = new MockSpeedSetter();
 
         swerve = new Swerve(1, 1, new WheelModule(fla, fls), new WheelModule(fra, frs),
-                new WheelModule(bla, bls), new WheelModule(bra, brs));
+                new WheelModule(bla, bls), new WheelModule(bra, brs), null);
     }
 
     @Test
