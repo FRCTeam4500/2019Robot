@@ -8,7 +8,9 @@
 package frc.robot.swerve;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import edu.wpi.first.wpilibj.SPI.Port;
 import frc.robot.RobotMap;
+import frc.robot.components.AHRSAngleGetterComponent;
 import frc.robot.components.TalonSRXComponent;
 
 /**
@@ -21,7 +23,7 @@ public class DefaultSwerveFactory {
         var fl = MakeWheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, false, true);
         var fr = MakeWheelModule(RobotMap.FR_ANGLE_PORT, RobotMap.FR_SPEED_PORT, false, false);
 
-        return new Swerve(1, 1, fl, fr, bl, br);
+        return new Swerve(1, 1, fl, fr, bl, br, new AHRSAngleGetterComponent(Port.kMXP));
     }
 
     private static WheelModule MakeWheelModule(int anglePort, int speedPort, boolean angleInverted,
