@@ -1,7 +1,6 @@
 package frc.robot.swerve;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import frc.robot.components.MockAngleSetter;
 import frc.robot.components.MockSpeedSetter;
@@ -39,6 +38,7 @@ public class Swerve_MoveRobotCentricShould {
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveForward() {
         swerve.moveRobotCentric(0, 1, 0);
 
@@ -46,13 +46,18 @@ public class Swerve_MoveRobotCentricShould {
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveBackward() {
         swerve.moveRobotCentric(0, -1, 0);
 
-        assertAllAtAngle(WheelFace.BACKWARD);
+        assertWithDelta(WheelFace.BACKWARD, Math.abs(fla.getAngle()));
+        assertWithDelta(WheelFace.BACKWARD, Math.abs(fra.getAngle()));
+        assertWithDelta(WheelFace.BACKWARD, Math.abs(bla.getAngle()));
+        assertWithDelta(WheelFace.BACKWARD, Math.abs(bra.getAngle()));
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveLeft() {
         swerve.moveRobotCentric(-1, 0, 0);
 
@@ -60,6 +65,7 @@ public class Swerve_MoveRobotCentricShould {
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveRight() {
         swerve.moveRobotCentric(1, 0, 0);
 
@@ -67,14 +73,16 @@ public class Swerve_MoveRobotCentricShould {
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveCW() {
-        swerve.moveRobotCentric(0, 0, 1);
+        swerve.moveRobotCentric(0, 0, -1);
 
         assertAtAngles(WheelFace.FORWARD_RIGHT, WheelFace.BACKWARD_RIGHT, WheelFace.FORWARD_LEFT,
                 WheelFace.BACKWARD_LEFT);
         assertAtFullSpeed();
     }
 
+    @Test
     public void NotMove() {
         swerve.moveRobotCentric(0, 0, 0);
 
@@ -84,29 +92,33 @@ public class Swerve_MoveRobotCentricShould {
         assertWithDelta(0, brs.getSpeed());
     }
 
+    @Test
     public void MoveForwardLeft() {
-        swerve.moveRobotCentric(1, 1, 0);
+        swerve.moveRobotCentric(-1, 1, 0);
 
         assertAllAtAngle(WheelFace.FORWARD_LEFT);
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveBackwardLeft() {
-        swerve.moveRobotCentric(1, -1, 0);
+        swerve.moveRobotCentric(-1, -1, 0);
 
         assertAllAtAngle(WheelFace.BACKWARD_LEFT);
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveForwardRight() {
-        swerve.moveRobotCentric(-1, 1, 0);
+        swerve.moveRobotCentric(1, 1, 0);
 
         assertAllAtAngle(WheelFace.FORWARD_RIGHT);
         assertAtFullSpeed();
     }
 
+    @Test
     public void MoveBackwardRight() {
-        swerve.moveRobotCentric(-1, -1, 0);
+        swerve.moveRobotCentric(1, -1, 0);
 
         assertAllAtAngle(WheelFace.BACKWARD_RIGHT);
         assertAtFullSpeed();

@@ -30,4 +30,9 @@ public class WheelModule extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+
+    public void drive(double angle, double speed) {
+        angleSetter.setAngle(angle);
+        speedSetter.setSpeed(speed);
+    }
 }
