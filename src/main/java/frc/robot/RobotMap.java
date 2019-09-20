@@ -28,4 +28,10 @@ public class RobotMap {
     public static final int HATCH_NAIL_SOLENOID_REVERSE_CHANNEL = 0;
     public static final int HATCH_CLAW_SOLENOID_REVERSE_CHANNEL = 0;
     public static final int HATCH_CLAW_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int FRONT_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int FRONT_LIFT_SOLENOID_REVERSE_CHANNEL = 0;
+    public static final int BACK_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int BACK_LIFT_SOLENOID_REVERSE_CHANNEL = 0;
+    public static final int MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL = 0;
+    public static final int MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL = 0;
 }
