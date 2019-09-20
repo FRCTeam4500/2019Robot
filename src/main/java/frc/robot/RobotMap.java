@@ -20,4 +20,6 @@ public class RobotMap {
     public static final int RIGHT_GRAB = 0;
     public static final int TOP_GRAB = 0;
     public static final int COMPRESSOR = 0;
+    public static final int ELEVATOR_MOTOR = 0;
+    public static final int ELEVATOR_MAX = 0;
 }
