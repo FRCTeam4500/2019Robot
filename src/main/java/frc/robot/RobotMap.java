@@ -16,4 +16,7 @@ public class RobotMap {
     public static final int TIMEOUT = 0;
     public static final int ARM_MAX = 0;
     public static final int ARM_MIN = 0;
+    public static final int LEFT_GRAB = 0;
+    public static final int RIGHT_GRAB = 0;
+    public static final int TOP_GRAB = 0;
 }
