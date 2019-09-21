@@ -27,9 +27,9 @@ public class Robot extends TimedRobot {
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
-    public Swerve swerve;
-    public IMainOI oi;
-    public Lift lift;
+    private Swerve swerve;
+    private IMainOI oi;
+    private Lift lift;
 
     @Override
     public void robotInit() {
