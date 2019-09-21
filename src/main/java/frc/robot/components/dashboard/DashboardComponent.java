@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Add your docs here.
  */
 public abstract class DashboardComponent {
-    private String name;
+    public final String name;
 
     public DashboardComponent(String name) {
         this.name = name;
