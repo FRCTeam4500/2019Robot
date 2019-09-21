@@ -34,17 +34,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
-
         lift = DashboardLiftFactory.MakeLift();
-
-        oi = new XboxOI();
-
         swerve = DashboardSwerveFactory.MakeSwerve();
-        var drive = new DriveCommand(swerve, oi);
-        swerve.setDefaultCommand(drive);
 
-
-
+        oi = new XboxOI(swerve, lift);
     }
 
     /**
