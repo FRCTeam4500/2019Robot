@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.lift.DashboardLiftFactory;
 import frc.robot.lift.Lift;
 import frc.robot.swerve.DashboardSwerveFactory;
-import frc.robot.swerve.DriveCommand;
 import frc.robot.swerve.Swerve;
 
 
@@ -28,9 +27,9 @@ public class Robot extends TimedRobot {
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
-    public static Swerve swerve;
-    public static IMainOI oi;
-    public static Lift lift;
+    public Swerve swerve;
+    public IMainOI oi;
+    public Lift lift;
 
     @Override
     public void robotInit() {
