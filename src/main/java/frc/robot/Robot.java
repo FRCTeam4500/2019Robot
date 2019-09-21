@@ -9,6 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.elevator.DashboardElevatorFactory;
+import frc.robot.elevator.Elevator;
 import frc.robot.hatch.DashboardHatchFactory;
 import frc.robot.hatch.Hatch;
 import frc.robot.lift.DashboardLiftFactory;
@@ -33,14 +35,16 @@ public class Robot extends TimedRobot {
     private IMainOI oi;
     private Lift lift;
     private Hatch hatch;
+    private Elevator elevator;
 
     @Override
     public void robotInit() {
         lift = DashboardLiftFactory.MakeLift();
         swerve = DashboardSwerveFactory.MakeSwerve();
         hatch = DashboardHatchFactory.MakeHatch();
+        elevator = DashboardElevatorFactory.MakeElevator();
 
-        oi = new XboxOI(swerve, lift, hatch);
+        oi = new XboxOI(swerve, lift, hatch, elevator);
     }
 
     /**
