@@ -10,6 +10,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.hatch.Hatch;
+import frc.robot.hatch.Hatch_ExtendClawCommand;
+import frc.robot.hatch.Hatch_ExtendNailCommand;
+import frc.robot.hatch.Hatch_ExtendPanelCommand;
+import frc.robot.hatch.Hatch_RetractClawCommand;
+import frc.robot.hatch.Hatch_RetractNailCommand;
+import frc.robot.hatch.Hatch_RetractPanelCommand;
 import frc.robot.lift.Lift;
 import frc.robot.lift.Lift_ExtendBackCommand;
 import frc.robot.lift.Lift_ExtendFrontCommand;
@@ -27,7 +34,7 @@ public class XboxOI implements IMainOI {
 
     private XboxController controller = new XboxController(0);
 
-    public XboxOI(Swerve swerve, Lift lift) {
+    public XboxOI(Swerve swerve, Lift lift, Hatch hatch) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
@@ -35,6 +42,11 @@ public class XboxOI implements IMainOI {
         var aButton = new JoystickButton(controller, 1);
         var bButton = new JoystickButton(controller, 2);
         var xButton = new JoystickButton(controller, 3);
+        var yButton = new JoystickButton(controller, 4);
+        var leftBumper = new JoystickButton(controller, 5);
+        var rightBumper = new JoystickButton(controller, 6);
+        var specialLeft = new JoystickButton(controller, 7);
+        var specialRight = new JoystickButton(controller, 8);
 
         aButton.whenPressed(new Lift_ExtendMiddleCommand(lift));
         aButton.whenReleased(new Lift_RetractMiddleCommand(lift));
@@ -44,6 +56,15 @@ public class XboxOI implements IMainOI {
 
         xButton.whenPressed(new Lift_ExtendFrontCommand(lift));
         xButton.whenReleased(new Lift_RetractFrontCommand(lift));
+
+        leftBumper.whenPressed(new Hatch_ExtendNailCommand(hatch));
+        leftBumper.whenReleased(new Hatch_RetractNailCommand(hatch));
+
+        specialLeft.whenPressed(new Hatch_ExtendPanelCommand(hatch));
+        specialLeft.whenReleased(new Hatch_RetractPanelCommand(hatch));
+
+        specialRight.whenPressed(new Hatch_ExtendClawCommand(hatch));
+        specialRight.whenReleased(new Hatch_RetractClawCommand(hatch));
     }
 
     @Override
