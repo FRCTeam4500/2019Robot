@@ -10,22 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.hatch.Hatch;
-import frc.robot.hatch.Hatch_ExtendClawCommand;
-import frc.robot.hatch.Hatch_ExtendNailCommand;
-import frc.robot.hatch.Hatch_ExtendPanelCommand;
-import frc.robot.hatch.Hatch_RetractClawCommand;
-import frc.robot.hatch.Hatch_RetractNailCommand;
-import frc.robot.hatch.Hatch_RetractPanelCommand;
-import frc.robot.lift.Lift;
-import frc.robot.lift.Lift_ExtendBackCommand;
-import frc.robot.lift.Lift_ExtendFrontCommand;
-import frc.robot.lift.Lift_ExtendMiddleCommand;
-import frc.robot.lift.Lift_RetractBackCommand;
-import frc.robot.lift.Lift_RetractFrontCommand;
-import frc.robot.lift.Lift_RetractMiddleCommand;
-import frc.robot.swerve.DriveCommand;
-import frc.robot.swerve.Swerve;
+
+import frc.robot.hatch.*;
+import frc.robot.lift.*;
+import frc.robot.swerve.*;
 
 /**
  * Add your docs here.
