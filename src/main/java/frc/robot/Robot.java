@@ -9,6 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.swerve.DashboardSwerveFactory;
+import frc.robot.swerve.Drive;
+import frc.robot.swerve.Swerve;
 
 
 /**
@@ -23,9 +26,16 @@ public class Robot extends TimedRobot {
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
+    private Swerve swerve;
+    private IMainOI oi;
+
     @Override
     public void robotInit() {
+        oi = new XboxOI();
 
+        swerve = DashboardSwerveFactory.MakeSwerve();
+        var drive = new Drive(swerve, oi);
+        swerve.setDefaultCommand(drive);
     }
 
     /**
