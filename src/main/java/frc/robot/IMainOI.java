@@ -7,8 +7,10 @@
 
 package frc.robot;
 
+import frc.robot.swerve.ISwerveOI;
+
 /**
  * Add your docs here.
  */
-public interface IMainOI {
+public interface IMainOI extends ISwerveOI {
 }
