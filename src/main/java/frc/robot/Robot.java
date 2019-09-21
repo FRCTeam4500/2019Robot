@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.swerve.DashboardSwerveFactory;
-import frc.robot.swerve.Drive;
+import frc.robot.swerve.DriveCommand;
 import frc.robot.swerve.Swerve;
 
 
@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
         oi = new XboxOI();
 
         swerve = DashboardSwerveFactory.MakeSwerve();
-        var drive = new Drive(swerve, oi);
+        var drive = new DriveCommand(swerve, oi);
         swerve.setDefaultCommand(drive);
     }
 
