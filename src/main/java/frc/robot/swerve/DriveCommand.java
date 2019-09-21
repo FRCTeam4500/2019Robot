@@ -9,11 +9,11 @@ package frc.robot.swerve;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Drive extends Command {
+public class DriveCommand extends Command {
     private Swerve swerve;
     private ISwerveOI oi;
 
-    public Drive(Swerve swerve, ISwerveOI oi) {
+    public DriveCommand(Swerve swerve, ISwerveOI oi) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(swerve);
