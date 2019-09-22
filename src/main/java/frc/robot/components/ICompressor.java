@@ -14,4 +14,14 @@ public interface ICompressor {
     void start();
 
     void stop();
+
+    boolean enabled();
+
+    default void toggle() {
+        if (enabled()) {
+            stop();
+        } else {
+            start();
+        }
+    }
 }

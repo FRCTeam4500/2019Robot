@@ -31,4 +31,9 @@ public class DashboardCompressorComponent extends DashboardComponent implements 
         isCompressing = false;
         putBoolean(isCompressing);
     }
+
+    @Override
+    public boolean enabled() {
+        return isCompressing;
+    }
 }

@@ -36,4 +36,8 @@ public class Compressor extends Subsystem {
     public void stop() {
         compressor.stop();
     }
+
+    public void toggle() {
+        compressor.toggle();
+    }
 }
