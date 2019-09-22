@@ -63,7 +63,6 @@ public class Hatch extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        // TODO Auto-generated method stub
 
     }
 }
