@@ -7,11 +7,12 @@
 
 package frc.robot;
 
+import frc.robot.arm.IArmOI;
 import frc.robot.cargo.ICargoOI;
 import frc.robot.swerve.ISwerveOI;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI {
+public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI {
 }
