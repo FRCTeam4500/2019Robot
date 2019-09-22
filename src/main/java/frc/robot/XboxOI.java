@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.hatch.*;
 import frc.robot.lift.*;
 import frc.robot.swerve.*;
+import frc.robot.arm.Arm;
+import frc.robot.arm.Arm_DriveCommand;
 import frc.robot.cargo.Cargo;
 import frc.robot.cargo.Cargo_DriveCommand;
 import frc.robot.compressor.Compressor;
@@ -28,7 +30,7 @@ public class XboxOI implements IMainOI {
     private XboxController controller = new XboxController(0);
 
     public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor,
-            Cargo cargo) {
+            Cargo cargo, Arm arm) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
@@ -66,6 +68,8 @@ public class XboxOI implements IMainOI {
         rightBumper.whenPressed(new Compressor_ToggleCommand(compressor));
 
         cargo.setDefaultCommand(new Cargo_DriveCommand(cargo, this));
+
+        arm.setDefaultCommand(new Arm_DriveCommand(arm, this));
     }
 
     @Override
@@ -108,6 +112,17 @@ public class XboxOI implements IMainOI {
             return 1;
         } else {
             return 0;
+        }
+    }
+
+    @Override
+    public double getArmAngle() {
+        if (controller.getPOV() == 270) {
+            return Math.PI;
+        } else if (controller.getPOV() == 90) {
+            return Math.PI / 2;
+        } else {
+            return 3 * Math.PI / 4;
         }
     }
 }
