@@ -13,7 +13,7 @@ import frc.robot.components.dashboard.DashboardAngleSetterComponent;
  * Add your docs here.
  */
 public class DashboardArmFactory {
-    public static Arm MakeAr() {
+    public static Arm MakeArm() {
         return new Arm(new DashboardAngleSetterComponent("Arm"));
     }
 }
