@@ -31,7 +31,7 @@ public class WheelModule extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 
-    public void drive(double angle, double speed) {
+    protected void drive(double angle, double speed) {
         angleSetter.setAngle(angle);
         speedSetter.setSpeed(speed);
     }

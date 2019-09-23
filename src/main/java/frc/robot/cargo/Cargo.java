@@ -30,7 +30,7 @@ public class Cargo extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 
-    public void setMotors(double sideSpeed, double topSpeed) {
+    protected void setMotors(double sideSpeed, double topSpeed) {
         leftGrab.setSpeed(sideSpeed);
         topGrab.setSpeed(topSpeed);
         rightGrab.setSpeed(-sideSpeed);

@@ -25,39 +25,39 @@ public class Hatch extends Subsystem {
         this.clawPiston = clawPiston;
     }
 
-    public void extendNail() {
+    protected void extendNail() {
         nailPiston.extend();
     }
 
-    public void retractNail() {
+    protected void retractNail() {
         nailPiston.retract();
     }
 
-    public void toggleNailExtension() {
+    protected void toggleNailExtension() {
         nailPiston.toggleExtension();
     }
 
-    public void extendPanel() {
+    protected void extendPanel() {
         panelPiston.extend();
     }
 
-    public void retractPanel() {
+    protected void retractPanel() {
         panelPiston.retract();
     }
 
-    public void togglePanelExtension() {
+    protected void togglePanelExtension() {
         panelPiston.toggleExtension();
     }
 
-    public void extendClaw() {
+    protected void extendClaw() {
         clawPiston.extend();
     }
 
-    public void retractClaw() {
+    protected void retractClaw() {
         clawPiston.retract();
     }
 
-    public void toggleClawExtension() {
+    protected void toggleClawExtension() {
         clawPiston.toggleExtension();
     }
 

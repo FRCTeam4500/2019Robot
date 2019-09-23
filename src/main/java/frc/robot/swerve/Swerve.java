@@ -35,7 +35,7 @@ public class Swerve extends Subsystem {
         this.fieldAngleGetter = fieldAngleGetter;
     }
 
-    public void moveRobotCentric(double x, double y, double w) {
+    protected void moveRobotCentric(double x, double y, double w) {
         double wkr = w * rotationCoefficient / r;
 
         double a = x + wkr * width / 2;
@@ -66,7 +66,7 @@ public class Swerve extends Subsystem {
         br.drive(brAngle, brSpeed);
     }
 
-    public void moveAngleCentric(double x, double y, double w, double angle) {
+    protected void moveAngleCentric(double x, double y, double w, double angle) {
         double s = Math.sin(angle);
         double c = Math.cos(angle);
 
@@ -76,7 +76,7 @@ public class Swerve extends Subsystem {
         moveRobotCentric(xnew, ynew, w);
     }
 
-    public void moveFieldCentric(double x, double y, double w) {
+    protected void moveFieldCentric(double x, double y, double w) {
         moveAngleCentric(x, y, w, fieldAngleGetter.getAngle());
     }
 

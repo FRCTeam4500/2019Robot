@@ -29,15 +29,15 @@ public class Compressor extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 
-    public void start() {
+    protected void start() {
         compressor.start();
     }
 
-    public void stop() {
+    protected void stop() {
         compressor.stop();
     }
 
-    public void toggle() {
+    protected void toggle() {
         compressor.toggle();
     }
 }

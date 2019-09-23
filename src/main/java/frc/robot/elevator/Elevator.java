@@ -22,7 +22,7 @@ public class Elevator extends Subsystem {
         this.positionSetter = positionSetter;
     }
 
-    public void setLevel(int level) {
+    protected void setLevel(int level) {
         positionSetter.setPosition(level);
     }
 

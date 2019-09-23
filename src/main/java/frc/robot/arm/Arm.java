@@ -28,7 +28,7 @@ public class Arm extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 
-    public void setAngle(double angle) {
+    protected void setAngle(double angle) {
         angleSetter.setAngle(angle);
     }
 }
