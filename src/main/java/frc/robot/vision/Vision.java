@@ -42,11 +42,11 @@ public class Vision extends Subsystem {
         return vision.getSkew();
     }
 
-    protected void setCameraMode(IVision.CameraMode mode) {
+    public void setCameraMode(IVision.CameraMode mode) {
         vision.setCameraMode(mode);
     }
 
-    protected void setPipeline(int index) {
+    public void setPipeline(int index) {
         vision.setPipeline(index);
     }
 
