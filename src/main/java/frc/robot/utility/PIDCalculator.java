@@ -16,6 +16,7 @@ public class PIDCalculator {
     private double previousError;
     private double setpoint;
     private double setpointDelta;
+    private boolean hasRun;
 
     public PIDCalculator(double kP, double kI, double kD) {
         this.kP = kP;
@@ -32,6 +33,7 @@ public class PIDCalculator {
 
     public void reset() {
         integral = previousError = 0;
+        hasRun = false;
     }
 
     public void setSetpoint(double setpoint) {
@@ -72,10 +74,15 @@ public class PIDCalculator {
     }
 
     public double getOutput(double input, double deltaTime) {
-        double error = setpoint - input;
-        integral += error * deltaTime;
-        double derivative = (error - previousError) / deltaTime;
-        return kP * error + kI * integral * kD * derivative;
+        if (hasRun) {
+            double error = setpoint - input;
+            integral += error * deltaTime;
+            double derivative = (error - previousError) / deltaTime;
+            return kP * error + kI * integral + kD * derivative;
+        } else {
+            hasRun = true;
+            return kP * (setpoint - input);
+        }
     }
 
     public boolean isWithinRange(double input) {
