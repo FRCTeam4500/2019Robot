@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        setupDashboardSubsystems();
+        setupCustomSubsystems();
 
         oi = new XboxOI(swerve, lift, hatch, elevator, compressor, cargo, arm);
     }
