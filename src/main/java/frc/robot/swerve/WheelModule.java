@@ -20,6 +20,8 @@ public class WheelModule extends Subsystem {
     private IAngleSetter angleSetter;
     private ISpeedSetter speedSetter;
 
+    private double lastAngle;
+
     public WheelModule(IAngleSetter angleSetter, ISpeedSetter speedSetter) {
         this.angleSetter = angleSetter;
         this.speedSetter = speedSetter;
@@ -32,7 +34,17 @@ public class WheelModule extends Subsystem {
     }
 
     public void drive(double angle, double speed) {
-        angleSetter.setAngle(angle);
+        // https://stackoverflow.com/questions/1878907/the-smallest-difference-between-2-angles
+
+        double actualDifference = angle - lastAngle;
+        double shortestDifference = customMod(actualDifference + Math.PI, 2 * Math.PI) - Math.PI;
+        angleSetter.setAngle(lastAngle + shortestDifference);
         speedSetter.setSpeed(speed);
+
+        lastAngle += shortestDifference;
+    }
+
+    private double customMod(double a, double n) {
+        return a - Math.floor(a / n) * n;
     }
 }
