@@ -9,19 +9,27 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.arm.Arm;
 import frc.robot.arm.DashboardArmFactory;
+import frc.robot.arm.DefaultArmFactory;
 import frc.robot.cargo.Cargo;
 import frc.robot.cargo.DashboardCargoFactory;
+import frc.robot.cargo.DefaultCargoFactory;
 import frc.robot.compressor.Compressor;
 import frc.robot.compressor.DashboardCompressorFactory;
+import frc.robot.compressor.DefaultCompressorFactory;
 import frc.robot.elevator.DashboardElevatorFactory;
+import frc.robot.elevator.DefaultElevatorFactory;
 import frc.robot.elevator.Elevator;
 import frc.robot.hatch.DashboardHatchFactory;
+import frc.robot.hatch.DefaultHatchFactory;
 import frc.robot.hatch.Hatch;
 import frc.robot.lift.DashboardLiftFactory;
+import frc.robot.lift.DefaultLiftFactory;
 import frc.robot.lift.Lift;
 import frc.robot.swerve.DashboardSwerveFactory;
+import frc.robot.swerve.DefaultSwerveFactory;
 import frc.robot.swerve.Swerve;
 
 
@@ -32,6 +40,10 @@ import frc.robot.swerve.Swerve;
  * project.
  */
 public class Robot extends TimedRobot {
+
+    enum SubsystemType {
+        Dashboard, Hardware
+    }
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -49,12 +61,20 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         lift = DashboardLiftFactory.MakeLift();
-        swerve = DashboardSwerveFactory.MakeSwerve();
+        swerve = DefaultSwerveFactory.MakeSwerve();
         hatch = DashboardHatchFactory.MakeHatch();
-        elevator = DashboardElevatorFactory.MakeElevator();
-        compressor = DashboardCompressorFactory.MakeCompressor();
+        elevator = DefaultElevatorFactory.MakeElevator();
+        compressor = DefaultCompressorFactory.MakeCompressor();
         cargo = DashboardCargoFactory.MakeCargo();
-        arm = DashboardArmFactory.MakeArm();
+        arm = DefaultArmFactory.MakeArm();
+
+        setupSubsystems(SubsystemType.Hardware, // Swerve
+                SubsystemType.Dashboard, // Lift
+                SubsystemType.Dashboard, // Hatch
+                SubsystemType.Hardware, // Elevator
+                SubsystemType.Hardware, // Compressor
+                SubsystemType.Dashboard, // Cargo
+                SubsystemType.Hardware); // Arm
 
         oi = new XboxOI(swerve, lift, hatch, elevator, compressor, cargo, arm);
     }
@@ -129,5 +149,63 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
 
+    }
+
+    private void setupSubsystems(SubsystemType swerveType, SubsystemType liftType,
+            SubsystemType hatchType, SubsystemType elevatorType, SubsystemType compressorType,
+            SubsystemType cargoType, SubsystemType armType) {
+        if (swerveType == SubsystemType.Hardware) {
+            swerve = DefaultSwerveFactory.MakeSwerve();
+        } else {
+            swerve = DashboardSwerveFactory.MakeSwerve();
+        }
+
+        if (liftType == SubsystemType.Hardware) {
+            lift = DefaultLiftFactory.MakeLift();
+        } else {
+            lift = DashboardLiftFactory.MakeLift();
+        }
+
+        if (hatchType == SubsystemType.Hardware) {
+            hatch = DefaultHatchFactory.MakeHatch();
+        } else {
+            hatch = DashboardHatchFactory.MakeHatch();
+        }
+
+        if (elevatorType == SubsystemType.Hardware) {
+            elevator = DefaultElevatorFactory.MakeElevator();
+        } else {
+            elevator = DashboardElevatorFactory.MakeElevator();
+        }
+
+        if (compressorType == SubsystemType.Hardware) {
+            compressor = DefaultCompressorFactory.MakeCompressor();
+        } else {
+            compressor = DashboardCompressorFactory.MakeCompressor();
+        }
+
+        if (cargoType == SubsystemType.Hardware) {
+            cargo = DefaultCargoFactory.MakeCargo();
+        } else {
+            cargo = DashboardCargoFactory.MakeCargo();
+        }
+
+        if (armType == SubsystemType.Hardware) {
+            arm = DefaultArmFactory.MakeArm();
+        } else {
+            arm = DashboardArmFactory.MakeArm();
+        }
+    }
+
+    private void setupDashboardSubsystems() {
+        setupSubsystems(SubsystemType.Dashboard, SubsystemType.Dashboard, SubsystemType.Dashboard,
+                SubsystemType.Dashboard, SubsystemType.Dashboard, SubsystemType.Dashboard,
+                SubsystemType.Dashboard);
+    }
+
+    private void setupHardwareSubsystems() {
+        setupSubsystems(SubsystemType.Hardware, SubsystemType.Hardware, SubsystemType.Hardware,
+                SubsystemType.Hardware, SubsystemType.Hardware, SubsystemType.Hardware,
+                SubsystemType.Hardware);
     }
 }
