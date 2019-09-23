@@ -44,13 +44,6 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
-        lift = DashboardLiftFactory.MakeLift();
-        swerve = DefaultSwerveFactory.MakeSwerve();
-        hatch = DashboardHatchFactory.MakeHatch();
-        elevator = DefaultElevatorFactory.MakeElevator();
-        compressor = DefaultCompressorFactory.MakeCompressor();
-        cargo = DashboardCargoFactory.MakeCargo();
-        arm = DefaultArmFactory.MakeArm();
 
         setupSubsystems(SubsystemType.Hardware, // Swerve
                 SubsystemType.Dashboard, // Lift
