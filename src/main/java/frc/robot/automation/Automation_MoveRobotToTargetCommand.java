@@ -68,7 +68,7 @@ public class Automation_MoveRobotToTargetCommand extends Command {
     protected boolean isFinished() {
         return xCalculator.isWithinRange(vision.getHorizontalOffsetFromCrosshair())
                 && yCalculator.isWithinRange(vision.getVerticalOffsetFromCrosshar())
-                && wCalculator.isWithinRange(vision.getSkew());
+                && wCalculator.isWithinRange(vision.getSkew()) || !vision.hasValidTargets();
     }
 
     // Called once after isFinished returns true
