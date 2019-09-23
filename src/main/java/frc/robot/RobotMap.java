@@ -64,5 +64,8 @@ public class RobotMap {
     public static final int FL_SPEED_PORT = 7;
     public static final int FR_SPEED_PORT = 4;
 
+    // Misc
     public static final int TIMEOUT = 0;
+    public static final double TICKS_PER_DEGREE = 16.2539;
+    public static final double TICKS_PER_RADIAN = TICKS_PER_DEGREE * 2 * Math.PI / 360;
 }
