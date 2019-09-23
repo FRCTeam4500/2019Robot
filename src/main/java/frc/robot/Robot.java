@@ -9,29 +9,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.arm.Arm;
-import frc.robot.arm.DashboardArmFactory;
-import frc.robot.arm.DefaultArmFactory;
-import frc.robot.cargo.Cargo;
-import frc.robot.cargo.DashboardCargoFactory;
-import frc.robot.cargo.DefaultCargoFactory;
-import frc.robot.compressor.Compressor;
-import frc.robot.compressor.DashboardCompressorFactory;
-import frc.robot.compressor.DefaultCompressorFactory;
-import frc.robot.elevator.DashboardElevatorFactory;
-import frc.robot.elevator.DefaultElevatorFactory;
-import frc.robot.elevator.Elevator;
-import frc.robot.hatch.DashboardHatchFactory;
-import frc.robot.hatch.DefaultHatchFactory;
-import frc.robot.hatch.Hatch;
-import frc.robot.lift.DashboardLiftFactory;
-import frc.robot.lift.DefaultLiftFactory;
-import frc.robot.lift.Lift;
-import frc.robot.swerve.DashboardSwerveFactory;
-import frc.robot.swerve.DefaultSwerveFactory;
-import frc.robot.swerve.Swerve;
-
+import frc.robot.arm.*;
+import frc.robot.cargo.*;
+import frc.robot.compressor.*;
+import frc.robot.elevator.*;
+import frc.robot.hatch.*;
+import frc.robot.lift.*;
+import frc.robot.swerve.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
