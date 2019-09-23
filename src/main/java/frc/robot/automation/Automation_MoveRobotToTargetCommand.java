@@ -26,13 +26,19 @@ public class Automation_MoveRobotToTargetCommand extends Command {
             PIDValues xCalculatorValues, PIDValues yCalculatorValues, PIDValues wCalculatorValues) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        this(vision, swerve, new PIDCalculator(xCalculatorValues),
+                new PIDCalculator(yCalculatorValues), new PIDCalculator(wCalculatorValues));
+    }
+
+    public Automation_MoveRobotToTargetCommand(Vision vision, Swerve swerve,
+            PIDCalculator xCalculator, PIDCalculator yCalculator, PIDCalculator wCalculator) {
         requires(vision);
         requires(swerve);
         this.vision = vision;
         this.swerve = swerve;
-        xCalculator = new PIDCalculator(xCalculatorValues);
-        yCalculator = new PIDCalculator(yCalculatorValues);
-        wCalculator = new PIDCalculator(wCalculatorValues);
+        this.xCalculator = xCalculator;
+        this.yCalculator = yCalculator;
+        this.wCalculator = wCalculator;
     }
 
     // Called just before this Command runs the first time
