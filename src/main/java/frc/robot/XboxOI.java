@@ -62,8 +62,8 @@ public class XboxOI implements IMainOI {
         specialRight.whenPressed(new Hatch_ExtendClawCommand(hatch));
         specialRight.whenReleased(new Hatch_RetractClawCommand(hatch));
 
-        yButton.whenPressed(new Elevator_SetLevelCommand(elevator, 100));
-        yButton.whenReleased(new Elevator_SetLevelCommand(elevator, 0));
+        yButton.whenPressed(new Elevator_SetLevelCommand(elevator, RobotMap.ELEVATOR_MEDIUM));
+        yButton.whenReleased(new Elevator_SetLevelCommand(elevator, RobotMap.ELEVATOR_LOW));
 
         rightBumper.whenPressed(new Compressor_ToggleCommand(compressor));
 
@@ -118,11 +118,11 @@ public class XboxOI implements IMainOI {
     @Override
     public double getArmAngle() {
         if (controller.getPOV() == 270) {
-            return Math.PI;
+            return RobotMap.ARM_MAX;
         } else if (controller.getPOV() == 90) {
-            return Math.PI / 2;
+            return RobotMap.ARM_MIN;
         } else {
-            return 3 * Math.PI / 4;
+            return (RobotMap.ARM_MAX + RobotMap.ARM_MIN) / 2;
         }
     }
 }
