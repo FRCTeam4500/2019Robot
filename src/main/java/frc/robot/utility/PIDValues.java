@@ -19,16 +19,18 @@ public class PIDValues {
     public final double I;
     public final double D;
     public final double F;
+    public final double SetpointDelta;
 
-    public PIDValues(double p, double i, double d, double f) {
+    public PIDValues(double p, double i, double d, double f, double setpointDelta) {
         P = p;
         I = i;
         D = d;
         F = f;
+        SetpointDelta = setpointDelta;
     }
 
-    public PIDValues(double p, double i, double d) {
-        this(p, i, d, 0);
+    public PIDValues(double p, double i, double d, double setpointDelta) {
+        this(p, i, d, 0, setpointDelta);
     }
 
     public PIDController toPidController(PIDSource source, PIDOutput output) {
