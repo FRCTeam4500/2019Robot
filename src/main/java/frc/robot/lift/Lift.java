@@ -24,39 +24,39 @@ public class Lift extends Subsystem {
         this.back = back;
     }
 
-    protected void extendFront() {
+    public void extendFront() {
         front.extend();
     }
 
-    protected void retractFront() {
+    public void retractFront() {
         front.retract();
     }
 
-    protected void toggleFront() {
+    public void toggleFront() {
         front.toggleExtension();
     }
 
-    protected void extendMiddle() {
+    public void extendMiddle() {
         middle.extend();
     }
 
-    protected void retractMiddle() {
+    public void retractMiddle() {
         middle.retract();
     }
 
-    protected void toggleMiddle() {
+    public void toggleMiddle() {
         middle.toggleExtension();
     }
 
-    protected void extendBack() {
+    public void extendBack() {
         back.extend();
     }
 
-    protected void retractBack() {
+    public void retractBack() {
         back.retract();
     }
 
-    protected void toggleBack() {
+    public void toggleBack() {
         back.toggleExtension();
     }
 
