@@ -67,5 +67,5 @@ public class RobotMap {
     // Misc
     public static final int TIMEOUT = 0;
     public static final double TICKS_PER_DEGREE = 16.2539;
-    public static final double TICKS_PER_RADIAN = TICKS_PER_DEGREE * 2 * Math.PI / 360;
+    public static final double TICKS_PER_RADIAN = TICKS_PER_DEGREE * 360 / 2 / Math.PI;
 }
