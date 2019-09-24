@@ -11,6 +11,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.Swerve_Drive;
 
 /**
  * Add your docs here.
@@ -42,7 +43,7 @@ public class Swerve extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        // setDefaultCommand(new Swerve_Drive());
+        setDefaultCommand(new Swerve_Drive());
     }
 
     /*
