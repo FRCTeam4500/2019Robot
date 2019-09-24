@@ -18,10 +18,10 @@ import frc.robot.components.hardware.AHRSAngleGetterComponent;
  */
 public class DefaultSwerveFactory {
     public static Swerve MakeSwerve() {
-        var bl = MakeWheelModule(RobotMap.BL_ANGLE_PORT, RobotMap.BL_SPEED_PORT, false, true);
-        var br = MakeWheelModule(RobotMap.BR_ANGLE_PORT, RobotMap.BR_SPEED_PORT, false, false);
-        var fl = MakeWheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, false, true);
-        var fr = MakeWheelModule(RobotMap.FR_ANGLE_PORT, RobotMap.FR_SPEED_PORT, false, false);
+        var bl = MakeWheelModule(RobotMap.BL_ANGLE_PORT, RobotMap.BL_SPEED_PORT, true, false);
+        var br = MakeWheelModule(RobotMap.BR_ANGLE_PORT, RobotMap.BR_SPEED_PORT, true, false);
+        var fl = MakeWheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, true, false);
+        var fr = MakeWheelModule(RobotMap.FR_ANGLE_PORT, RobotMap.FR_SPEED_PORT, true, false);
 
         return new Swerve(1, 1, fl, fr, bl, br, new AHRSAngleGetterComponent(Port.kMXP));
     }
