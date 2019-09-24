@@ -79,17 +79,17 @@ public class XboxOI implements IMainOI {
 
     @Override
     public double getY() {
-        return withDeadzone(controller.getY(Hand.kLeft), 0.05);
+        return -withDeadzone(controller.getY(Hand.kLeft), 0.05);
     }
 
     @Override
     public double getZ() {
-        return withDeadzone(controller.getX(Hand.kRight), 0.05);
+        return -withDeadzone(controller.getX(Hand.kRight), 0.05);
     }
 
     private double withDeadzone(double input, double deadzone) {
         if (Math.abs(input) >= deadzone) {
-            return input;
+            return input * 0.5;
         } else {
             return 0;
         }
