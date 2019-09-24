@@ -16,7 +16,7 @@ import frc.robot.components.IAngleSetter;
  */
 public class DashboardAngleSetterComponent extends DashboardComponent implements IAngleSetter {
 
-    private double angle = 0;
+    protected double angle = 0;
 
     public DashboardAngleSetterComponent(String name, String subsystem) {
         super(name + " " + "Angle Setter Component", subsystem);

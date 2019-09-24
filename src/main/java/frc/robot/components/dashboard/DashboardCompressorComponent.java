@@ -16,7 +16,7 @@ import frc.robot.components.ICompressor;
  */
 public class DashboardCompressorComponent extends DashboardComponent implements ICompressor {
 
-    private boolean isCompressing = false;
+    protected boolean isCompressing = false;
 
     public DashboardCompressorComponent(String name, String subsystem) {
         super(name + " " + "Compressor Component", subsystem);

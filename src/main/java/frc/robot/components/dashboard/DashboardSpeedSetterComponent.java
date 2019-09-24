@@ -16,7 +16,7 @@ import frc.robot.components.ISpeedSetter;
  */
 public class DashboardSpeedSetterComponent extends DashboardComponent implements ISpeedSetter {
 
-    private double speed;
+    protected double speed;
 
     public DashboardSpeedSetterComponent(String name, String subsystem) {
         super(name + " " + "Speed Setter Component", subsystem);

@@ -17,7 +17,7 @@ import frc.robot.components.IDoubleSolenoid;
 public class DashboardDoubleSolenoidComponent extends DashboardComponent
         implements IDoubleSolenoid {
 
-    private boolean _isExtended = false;
+    protected boolean _isExtended = false;
 
     public DashboardDoubleSolenoidComponent(String name, String subsystem) {
         super(name + " " + "Double Solenoid Component", subsystem);

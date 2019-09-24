@@ -16,7 +16,7 @@ import frc.robot.components.IPositionSetter;
  */
 public class DashboardPositionSetterComponent extends DashboardComponent
         implements IPositionSetter {
-    private double position;
+    protected double position;
 
     public DashboardPositionSetterComponent(String name, String subsystem) {
         super(name + " " + "Position Setter Component", subsystem);

@@ -15,7 +15,7 @@ import frc.robot.components.IAngleGetter;
  * Add your docs here.
  */
 public class DashboardAngleGetterComponent extends DashboardComponent implements IAngleGetter {
-    private double angle;
+    protected double angle;
 
     public DashboardAngleGetterComponent(String name, String subsystem) {
         super(name + " " + "Angle Getter Component", subsystem);
