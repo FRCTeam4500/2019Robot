@@ -175,12 +175,14 @@ public class Robot extends TimedRobot {
                 SubsystemType.Dashboard);
     }
 
+    @SuppressWarnings("unused") // Code is here as a helper method for quick switching
     private void setupHardwareSubsystems() {
         setupSubsystems(SubsystemType.Hardware, SubsystemType.Hardware, SubsystemType.Hardware,
                 SubsystemType.Hardware, SubsystemType.Hardware, SubsystemType.Hardware,
                 SubsystemType.Hardware);
     }
 
+    @SuppressWarnings("unused") // Code is here as a helper method for quick switching
     private void setupCustomSubsystems() {
         setupSubsystems(SubsystemType.Hardware, // Swerve
                 SubsystemType.Dashboard, // Lift
