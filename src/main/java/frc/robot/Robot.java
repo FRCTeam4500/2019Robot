@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Cargo;
-import frc.robot.automation.Automation_Group_Test;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Lift;
