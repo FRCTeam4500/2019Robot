@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
         cargo = new Cargo();
         hatch = new Hatch();
         lift = new Lift();
-        // compress = new PneumaticsCompressor();
+        compress = new PneumaticsCompressor();
 
         logger = new Logger();
 
