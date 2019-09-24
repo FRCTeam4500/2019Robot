@@ -29,20 +29,21 @@ public class XboxOI implements IMainOI {
 
     private XboxController controller = new XboxController(0);
 
+    JoystickButton aButton = new JoystickButton(controller, 1),
+            bButton = new JoystickButton(controller, 2),
+            xButton = new JoystickButton(controller, 3),
+            yButton = new JoystickButton(controller, 4),
+            leftBumper = new JoystickButton(controller, 5),
+            rightBumper = new JoystickButton(controller, 6),
+            specialLeft = new JoystickButton(controller, 7),
+            specialRight = new JoystickButton(controller, 8);
+
     public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor,
             Cargo cargo, Arm arm) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
 
-        var aButton = new JoystickButton(controller, 1);
-        var bButton = new JoystickButton(controller, 2);
-        var xButton = new JoystickButton(controller, 3);
-        var yButton = new JoystickButton(controller, 4);
-        var leftBumper = new JoystickButton(controller, 5);
-        var rightBumper = new JoystickButton(controller, 6);
-        var specialLeft = new JoystickButton(controller, 7);
-        var specialRight = new JoystickButton(controller, 8);
 
         aButton.whenPressed(new Lift_ExtendMiddleCommand(lift));
         aButton.whenReleased(new Lift_RetractMiddleCommand(lift));
@@ -124,5 +125,17 @@ public class XboxOI implements IMainOI {
         } else {
             return (RobotMap.ARM_MAX + RobotMap.ARM_MIN) / 2;
         }
+    }
+
+    @Override
+    public void close() {
+        aButton.close();
+        bButton.close();
+        xButton.close();
+        yButton.close();
+        leftBumper.close();
+        rightBumper.close();
+        specialLeft.close();
+        specialRight.close();
     }
 }

@@ -45,7 +45,8 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        setupCustomSubsystems();
+        setupDashboardSubsystems();
+        // setupCustomSubsystems();
 
         oi = new XboxOI(swerve, lift, hatch, elevator, compressor, cargo, arm);
     }
@@ -184,9 +185,14 @@ public class Robot extends TimedRobot {
         setupSubsystems(SubsystemType.Hardware, // Swerve
                 SubsystemType.Dashboard, // Lift
                 SubsystemType.Dashboard, // Hatch
-                SubsystemType.Hardware, // Elevator
+                SubsystemType.Dashboard, // Elevator
                 SubsystemType.Hardware, // Compressor
                 SubsystemType.Dashboard, // Cargo
-                SubsystemType.Hardware); // Arm
+                SubsystemType.Dashboard); // Arm
+    }
+
+    @Override
+    public void close() {
+        oi.close();
     }
 }

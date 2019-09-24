@@ -14,5 +14,7 @@ import frc.robot.swerve.ISwerveOI;
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI {
+public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
+    default void close() {
+    }
 }
