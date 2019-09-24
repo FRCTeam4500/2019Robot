@@ -7,6 +7,8 @@
 
 package frc.robot.components.dashboard;
 
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.components.IPositionSetter;
 
 /**
@@ -14,14 +16,21 @@ import frc.robot.components.IPositionSetter;
  */
 public class DashboardPositionSetterComponent extends DashboardComponent
         implements IPositionSetter {
+    private double position;
 
-    public DashboardPositionSetterComponent(String name) {
-        super(name + " " + "Position");
+    public DashboardPositionSetterComponent(String name, String subsystem) {
+        super(name + " " + "Position Setter Component", subsystem);
     }
 
     @Override
     public void setPosition(double position) {
-        putNumber(position);
+        this.position = position;
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType(BuiltInWidgets.kNumberBar.getWidgetName());
+        builder.addDoubleProperty("Position", () -> position, null);
     }
 
 }

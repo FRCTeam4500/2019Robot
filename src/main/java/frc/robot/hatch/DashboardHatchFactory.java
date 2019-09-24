@@ -14,8 +14,8 @@ import frc.robot.components.dashboard.DashboardDoubleSolenoidComponent;
  */
 public class DashboardHatchFactory {
     public static Hatch MakeHatch() {
-        return new Hatch(new DashboardDoubleSolenoidComponent("Hatch Nail"),
-                new DashboardDoubleSolenoidComponent("Hatch Panel"),
-                new DashboardDoubleSolenoidComponent("Hatch Claw"));
+        return new Hatch(new DashboardDoubleSolenoidComponent("Nail", "Hatch"),
+                new DashboardDoubleSolenoidComponent("Panel", "Hatch"),
+                new DashboardDoubleSolenoidComponent("Claw", "Hatch"));
     }
 }

@@ -14,6 +14,6 @@ import frc.robot.components.dashboard.DashboardPositionSetterComponent;
  */
 public class DashboardElevatorFactory {
     public static Elevator MakeElevator() {
-        return new Elevator(new DashboardPositionSetterComponent("Elevator Level"));
+        return new Elevator(new DashboardPositionSetterComponent("Default", "Elevator"));
     }
 }

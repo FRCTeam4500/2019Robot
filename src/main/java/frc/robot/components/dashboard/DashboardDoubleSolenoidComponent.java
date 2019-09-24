@@ -7,6 +7,8 @@
 
 package frc.robot.components.dashboard;
 
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.components.IDoubleSolenoid;
 
 /**
@@ -17,8 +19,8 @@ public class DashboardDoubleSolenoidComponent extends DashboardComponent
 
     private boolean _isExtended = false;
 
-    public DashboardDoubleSolenoidComponent(String name) {
-        super(name + " " + "Is Extended");
+    public DashboardDoubleSolenoidComponent(String name, String subsystem) {
+        super(name + " " + "Double Solenoid Component", subsystem);
     }
 
     @Override
@@ -29,12 +31,16 @@ public class DashboardDoubleSolenoidComponent extends DashboardComponent
     @Override
     public void extend() {
         _isExtended = true;
-        putBoolean(_isExtended);
     }
 
     @Override
     public void retract() {
         _isExtended = false;
-        putBoolean(_isExtended);
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType(BuiltInWidgets.kBooleanBox.getWidgetName());
+        builder.addBooleanProperty("IsExtended", () -> _isExtended, value -> _isExtended = value);
     }
 }

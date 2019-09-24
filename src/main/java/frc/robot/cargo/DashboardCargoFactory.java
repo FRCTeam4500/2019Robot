@@ -14,8 +14,8 @@ import frc.robot.components.dashboard.DashboardSpeedSetterComponent;
  */
 public class DashboardCargoFactory {
     public static Cargo MakeCargo() {
-        return new Cargo(new DashboardSpeedSetterComponent("Cargo Left Grab"),
-                new DashboardSpeedSetterComponent("Cargo Top Grab"),
-                new DashboardSpeedSetterComponent("Cargo Right Grab"));
+        return new Cargo(new DashboardSpeedSetterComponent("Left Grab", "Cargo"),
+                new DashboardSpeedSetterComponent("Top Grab", "Cargo"),
+                new DashboardSpeedSetterComponent("Right Grab", "Cargo"));
     }
 }

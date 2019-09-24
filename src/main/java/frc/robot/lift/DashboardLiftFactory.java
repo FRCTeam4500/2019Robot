@@ -14,8 +14,8 @@ import frc.robot.components.dashboard.DashboardDoubleSolenoidComponent;
  */
 public class DashboardLiftFactory {
     public static Lift MakeLift() {
-        return new Lift(new DashboardDoubleSolenoidComponent("Lift Front"),
-                new DashboardDoubleSolenoidComponent("Lift Middle"),
-                new DashboardDoubleSolenoidComponent("Lift Back"));
+        return new Lift(new DashboardDoubleSolenoidComponent("Front", "Lift"),
+                new DashboardDoubleSolenoidComponent("Middle", "Lift"),
+                new DashboardDoubleSolenoidComponent("Back", "Lift"));
     }
 }

@@ -14,6 +14,6 @@ import frc.robot.components.dashboard.DashboardAngleSetterComponent;
  */
 public class DashboardArmFactory {
     public static Arm MakeArm() {
-        return new Arm(new DashboardAngleSetterComponent("Arm"));
+        return new Arm(new DashboardAngleSetterComponent("Default", "Arm"));
     }
 }

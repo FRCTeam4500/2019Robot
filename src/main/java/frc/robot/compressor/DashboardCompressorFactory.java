@@ -14,6 +14,6 @@ import frc.robot.components.dashboard.DashboardCompressorComponent;
  */
 public class DashboardCompressorFactory {
     public static Compressor MakeCompressor() {
-        return new Compressor(new DashboardCompressorComponent("Compressor"));
+        return new Compressor(new DashboardCompressorComponent("Default", "Compressor"));
     }
 }

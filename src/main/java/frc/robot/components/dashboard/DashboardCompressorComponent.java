@@ -7,6 +7,8 @@
 
 package frc.robot.components.dashboard;
 
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.components.ICompressor;
 
 /**
@@ -16,24 +18,29 @@ public class DashboardCompressorComponent extends DashboardComponent implements 
 
     private boolean isCompressing = false;
 
-    public DashboardCompressorComponent(String name) {
-        super(name + " " + "Is Compressing");
+    public DashboardCompressorComponent(String name, String subsystem) {
+        super(name + " " + "Compressor Component", subsystem);
     }
 
     @Override
     public void start() {
         isCompressing = true;
-        putBoolean(isCompressing);
     }
 
     @Override
     public void stop() {
         isCompressing = false;
-        putBoolean(isCompressing);
     }
 
     @Override
     public boolean enabled() {
         return isCompressing;
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType(BuiltInWidgets.kBooleanBox.getWidgetName());
+        builder.addBooleanProperty("IsCompressing", () -> isCompressing,
+                value -> isCompressing = value);
     }
 }

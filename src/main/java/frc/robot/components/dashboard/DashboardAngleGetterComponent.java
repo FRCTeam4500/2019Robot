@@ -7,19 +7,29 @@
 
 package frc.robot.components.dashboard;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.components.IAngleGetter;
 
 /**
  * Add your docs here.
  */
 public class DashboardAngleGetterComponent extends DashboardComponent implements IAngleGetter {
-    public DashboardAngleGetterComponent(String name) {
-        super(name + " " + "Measured Angle");
+    private double angle;
+
+    public DashboardAngleGetterComponent(String name, String subsystem) {
+        super(name + " " + "Angle Getter Component", subsystem);
     }
 
     @Override
     public double getAngle() {
-        return SmartDashboard.getNumber(name, 0.0);
+        return angle;
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.addDoubleProperty("RawValue", null, value -> angle = value);
+        builder.addDoubleProperty("Value", () -> angle * -180 / Math.PI, null);
+        builder.setSmartDashboardType(BuiltInWidgets.kGyro.getWidgetName());
     }
 }

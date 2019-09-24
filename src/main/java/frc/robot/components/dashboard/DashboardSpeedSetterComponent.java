@@ -7,6 +7,8 @@
 
 package frc.robot.components.dashboard;
 
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.components.ISpeedSetter;
 
 /**
@@ -14,12 +16,20 @@ import frc.robot.components.ISpeedSetter;
  */
 public class DashboardSpeedSetterComponent extends DashboardComponent implements ISpeedSetter {
 
-    public DashboardSpeedSetterComponent(String name) {
-        super(name + " " + "Speed");
+    private double speed;
+
+    public DashboardSpeedSetterComponent(String name, String subsystem) {
+        super(name + " " + "Speed Setter Component", subsystem);
     }
 
     @Override
     public void setSpeed(double speed) {
-        putNumber(speed);
+        this.speed = speed;
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType(BuiltInWidgets.kNumberBar.getWidgetName());
+        builder.addDoubleProperty("Value", () -> speed, null);
     }
 }

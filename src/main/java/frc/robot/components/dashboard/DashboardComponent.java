@@ -7,27 +7,15 @@
 
 package frc.robot.components.dashboard;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.SendableBase;
 
 /**
  * Add your docs here.
  */
-public abstract class DashboardComponent {
-    public final String name;
+public abstract class DashboardComponent extends SendableBase {
 
-    public DashboardComponent(String name) {
-        this.name = name;
-    }
-
-    protected void putNumber(double value) {
-        SmartDashboard.putNumber(name, value);
-    }
-
-    protected void putString(String value) {
-        SmartDashboard.putString(name, value);
-    }
-
-    protected void putBoolean(boolean value) {
-        SmartDashboard.putBoolean(name, value);
+    public DashboardComponent(String name, String subsystem) {
+        setName(name);
+        setSubsystem(subsystem);
     }
 }

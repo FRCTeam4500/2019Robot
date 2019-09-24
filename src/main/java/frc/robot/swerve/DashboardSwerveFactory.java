@@ -17,14 +17,14 @@ import frc.robot.components.dashboard.DashboardSpeedSetterComponent;
 public class DashboardSwerveFactory {
     public static Swerve MakeSwerve() {
         return new Swerve(1, 1,
-                new WheelModule(new DashboardAngleSetterComponent("Swerve FL"),
-                        new DashboardSpeedSetterComponent("Swerve FL")),
-                new WheelModule(new DashboardAngleSetterComponent("Swerve FR"),
-                        new DashboardSpeedSetterComponent("Swerve FR")),
-                new WheelModule(new DashboardAngleSetterComponent("Swerve BL"),
-                        new DashboardSpeedSetterComponent("Swerve BL")),
-                new WheelModule(new DashboardAngleSetterComponent("Swerve BR"),
-                        new DashboardSpeedSetterComponent("Swerve BR")),
-                new DashboardAngleGetterComponent("Swerve Gyro"));
+                new WheelModule(new DashboardAngleSetterComponent("FL", "Swerve"),
+                        new DashboardSpeedSetterComponent("FL", "Swerve")),
+                new WheelModule(new DashboardAngleSetterComponent("FR", "Swerve"),
+                        new DashboardSpeedSetterComponent("FR", "Swerve")),
+                new WheelModule(new DashboardAngleSetterComponent("BL", "Swerve"),
+                        new DashboardSpeedSetterComponent("BL", "Swerve")),
+                new WheelModule(new DashboardAngleSetterComponent("BR", "Swerve"),
+                        new DashboardSpeedSetterComponent("BR", "Swerve")),
+                new DashboardAngleGetterComponent("Gyro", "Swerve"));
     }
 }

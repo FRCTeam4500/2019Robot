@@ -7,11 +7,8 @@
 
 package frc.robot.components.dashboard;
 
-import edu.wpi.first.wpilibj.Sendable;
-import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.components.IAngleSetter;
 
 /**
@@ -21,22 +18,19 @@ public class DashboardAngleSetterComponent extends DashboardComponent implements
 
     private double angle = 0;
 
-    public DashboardAngleSetterComponent(String name) {
-        super(name + " " + "Angle");
-        // TODO: Cleanup sendable functionality
-        SmartDashboard.putData(name + " " + "(Gyro)", new SendableBase() {
-
-            @Override
-            public void initSendable(SendableBuilder builder) {
-                builder.setSmartDashboardType(BuiltInWidgets.kGyro.name());
-                builder.addDoubleProperty("Value", () -> -angle * 180 / Math.PI, null);
-            }
-        });
+    public DashboardAngleSetterComponent(String name, String subsystem) {
+        super(name + " " + "Angle Setter Component", subsystem);
     }
 
     @Override
     public void setAngle(double angle) {
-        putNumber(angle);
         this.angle = angle;
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType(BuiltInWidgets.kGyro.getWidgetName());
+        builder.addDoubleProperty("Value", () -> -angle * 180 / Math.PI, null);
+        builder.addDoubleProperty("RawValue", () -> angle, null);
     }
 }
