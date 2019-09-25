@@ -10,6 +10,7 @@ package frc.robot.elevator;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.RobotMap;
+import frc.robot.components.dashboard.PositionSetterDashboardDecorator;
 import frc.robot.components.hardware.TalonSRXComponent;
 
 /**
@@ -34,6 +35,7 @@ public class DefaultElevatorFactory {
         srx.config_kI(0, 0, RobotMap.TIMEOUT);
         srx.config_kD(0, 0, RobotMap.TIMEOUT);
 
-        return new Elevator(new ElevatorTalonSRXComponent(srx));
+        return new Elevator(new PositionSetterDashboardDecorator("Motor", "Elevator",
+                new ElevatorTalonSRXComponent(srx)));
     }
 }

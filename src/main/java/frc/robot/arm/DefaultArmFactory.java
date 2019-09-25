@@ -10,6 +10,7 @@ package frc.robot.arm;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.RobotMap;
+import frc.robot.components.dashboard.AngleSetterDashboardDecorator;
 import frc.robot.components.hardware.TalonSRXComponent;
 
 /**
@@ -32,6 +33,7 @@ public class DefaultArmFactory {
         srx.config_kD(0, 0, RobotMap.TIMEOUT); // 10
         srx.configAllowableClosedloopError(0, 10, RobotMap.TIMEOUT);
 
-        return new Arm(new ArmTalonSRXComponent(srx));
+        return new Arm(
+                new AngleSetterDashboardDecorator("Main", "Arm", new ArmTalonSRXComponent(srx)));
     }
 }

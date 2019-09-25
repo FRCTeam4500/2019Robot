@@ -8,6 +8,7 @@
 package frc.robot.compressor;
 
 import frc.robot.RobotMap;
+import frc.robot.components.dashboard.CompressorDashboardDecorator;
 import frc.robot.components.hardware.CompressorComponent;
 
 /**
@@ -15,6 +16,7 @@ import frc.robot.components.hardware.CompressorComponent;
  */
 public class DefaultCompressorFactory {
     public static Compressor MakeCompressor() {
-        return new Compressor(new CompressorComponent(RobotMap.COMPRESSOR));
+        return new Compressor(new CompressorDashboardDecorator("Main", "Compressor",
+                new CompressorComponent(RobotMap.COMPRESSOR)));
     }
 }

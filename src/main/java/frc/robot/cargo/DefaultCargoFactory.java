@@ -9,6 +9,7 @@ package frc.robot.cargo;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.RobotMap;
+import frc.robot.components.dashboard.SpeedSetterDashboardDecorator;
 import frc.robot.components.hardware.TalonSRXComponent;
 import frc.robot.components.hardware.VictorSPXComponent;
 
@@ -16,6 +17,8 @@ import frc.robot.components.hardware.VictorSPXComponent;
  * Add your docs here.
  */
 public class DefaultCargoFactory {
+    private static String subsystem = "Cargo";
+
     public static Cargo MakeCargo() {
         var leftGrab = new VictorSPXComponent(RobotMap.LEFT_GRAB);
         var rightGrab = new VictorSPXComponent(RobotMap.RIGHT_GRAB);
@@ -25,6 +28,10 @@ public class DefaultCargoFactory {
         rightGrab.setNeutralMode(NeutralMode.Brake);
         topGrab.setNeutralMode(NeutralMode.Brake);
 
-        return new Cargo(leftGrab, topGrab, rightGrab);
+        var decoratedLeft = new SpeedSetterDashboardDecorator("Left", subsystem, leftGrab);
+        var decoratedRight = new SpeedSetterDashboardDecorator("Right", subsystem, rightGrab);
+        var decoratedTop = new SpeedSetterDashboardDecorator("Top", subsystem, topGrab);
+
+        return new Cargo(decoratedLeft, decoratedTop, decoratedRight);
     }
 }

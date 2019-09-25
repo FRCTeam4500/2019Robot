@@ -8,12 +8,15 @@
 package frc.robot.hatch;
 
 import frc.robot.RobotMap;
+import frc.robot.components.dashboard.DoubleSolenoidDashboardDecorator;
 import frc.robot.components.hardware.DoubleSolenoidComponent;
 
 /**
  * Add your docs here.
  */
 public class DefaultHatchFactory {
+    private static String subsystem = "Hatch";
+
     public static Hatch MakeHatch() {
         var panelPiston =
                 new DoubleSolenoidComponent(0, RobotMap.HATCH_PANEL_SOLENOID_FORWARD_CHANNEL,
@@ -25,6 +28,9 @@ public class DefaultHatchFactory {
                 new DoubleSolenoidComponent(1, RobotMap.HATCH_CLAW_SOLENOID_FORWARD_CHANNEL,
                         RobotMap.HATCH_CLAW_SOLENOID_REVERSE_CHANNEL);
 
-        return new Hatch(nailPiston, panelPiston, clawPiston);
+        var decoratedPanel = new DoubleSolenoidDashboardDecorator("Panel", subsystem, panelPiston);
+        var decoratedNail = new DoubleSolenoidDashboardDecorator("Nail", subsystem, nailPiston);
+        var decoratedClaw = new DoubleSolenoidDashboardDecorator("Claw", subsystem, clawPiston);
+        return new Hatch(decoratedNail, decoratedPanel, decoratedClaw);
     }
 }

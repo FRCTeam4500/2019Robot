@@ -8,6 +8,7 @@
 package frc.robot.lift;
 
 import frc.robot.RobotMap;
+import frc.robot.components.dashboard.DoubleSolenoidDashboardDecorator;
 import frc.robot.components.hardware.DoubleSolenoidComponent;
 
 /**
@@ -21,6 +22,9 @@ public class DefaultLiftFactory {
                 RobotMap.BACK_LIFT_SOLENOID_REVERSE_CHANNEL);
         var middle = new DoubleSolenoidComponent(1, RobotMap.MIDDLE_LIFT_SOLENOID_FORWARD_CHANNEL,
                 RobotMap.MIDDLE_LIFT_SOLENOID_REVERSE_CHANNEL);
-        return new Lift(front, middle, back);
+        var decoratedBack = new DoubleSolenoidDashboardDecorator("Back", "Lift", back);
+        var decoratedFront = new DoubleSolenoidDashboardDecorator("Front", "Lift", front);
+        var decoratedMiddle = new DoubleSolenoidDashboardDecorator("Middle", "Lift", middle);
+        return new Lift(decoratedFront, decoratedMiddle, decoratedBack);
     }
 }
