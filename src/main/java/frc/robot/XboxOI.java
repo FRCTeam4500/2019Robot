@@ -119,11 +119,11 @@ public class XboxOI implements IMainOI {
     @Override
     public double getArmAngle() {
         if (controller.getPOV() == 270) {
-            return RobotMap.ARM_MAX;
+            return Math.PI / 2;
         } else if (controller.getPOV() == 90) {
-            return RobotMap.ARM_MIN;
+            return 0;
         } else {
-            return (RobotMap.ARM_MAX + RobotMap.ARM_MIN) / 2;
+            return Math.PI / 4;
         }
     }
 
