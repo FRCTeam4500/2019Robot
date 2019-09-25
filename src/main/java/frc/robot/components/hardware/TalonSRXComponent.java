@@ -10,13 +10,15 @@ package frc.robot.components.hardware;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.RobotMap;
+import frc.robot.components.IAngleGetter;
 import frc.robot.components.IAngleSetter;
 import frc.robot.components.ISpeedSetter;
 
 /**
  * Add your docs here.
  */
-public class TalonSRXComponent extends TalonSRX implements ISpeedSetter, IAngleSetter {
+public class TalonSRXComponent extends TalonSRX
+        implements ISpeedSetter, IAngleSetter, IAngleGetter {
 
     public TalonSRXComponent(int deviceNumber) {
         super(deviceNumber);
@@ -30,5 +32,10 @@ public class TalonSRXComponent extends TalonSRX implements ISpeedSetter, IAngleS
     @Override
     public void setAngle(double angle) {
         set(ControlMode.Position, angle * RobotMap.TICKS_PER_RADIAN);
+    }
+
+    @Override
+    public double getAngle() {
+        return getSelectedSensorPosition() / RobotMap.TICKS_PER_RADIAN;
     }
 }
