@@ -23,12 +23,12 @@ public class VirtualDoubleSolenoidComponent implements IDoubleSolenoid {
 
     @Override
     public void extend() {
-        _isExtended = false;
+        _isExtended = true;
     }
 
     @Override
     public void retract() {
-        _isExtended = true;
+        _isExtended = false;
     }
 
 }
