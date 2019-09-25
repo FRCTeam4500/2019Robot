@@ -5,17 +5,17 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.lift;
+package frc.robot.components.dashboard;
 
-import frc.robot.components.dashboard.DashboardDoubleSolenoidComponent;
+import edu.wpi.first.wpilibj.SendableBase;
 
 /**
  * Add your docs here.
  */
-public class DashboardLiftFactory {
-    public static Lift MakeLift() {
-        return new Lift(new DashboardDoubleSolenoidComponent("Front", "Lift"),
-                new DashboardDoubleSolenoidComponent("Middle", "Lift"),
-                new DashboardDoubleSolenoidComponent("Back", "Lift"));
+public abstract class DashboardDecorator extends SendableBase {
+
+    public DashboardDecorator(String name, String subsystem) {
+        setName(name);
+        setSubsystem(subsystem);
     }
 }

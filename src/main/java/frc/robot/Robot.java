@@ -26,7 +26,7 @@ import frc.robot.swerve.*;
 public class Robot extends TimedRobot {
 
     enum SubsystemType {
-        Dashboard, Hardware
+        Virtual, Hardware
     }
 
     /**
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        setupDashboardSubsystems();
+        setupVirtualSubsystems();
         // setupCustomSubsystems();
 
         oi = new XboxOI(swerve, lift, hatch, elevator, compressor, cargo, arm);
@@ -129,50 +129,50 @@ public class Robot extends TimedRobot {
         if (swerveType == SubsystemType.Hardware) {
             swerve = DefaultSwerveFactory.MakeSwerve();
         } else {
-            swerve = DashboardSwerveFactory.MakeSwerve();
+            swerve = VirtualSwerveFactory.MakeSwerve();
         }
 
         if (liftType == SubsystemType.Hardware) {
             lift = DefaultLiftFactory.MakeLift();
         } else {
-            lift = DashboardLiftFactory.MakeLift();
+            lift = VirtualLiftFactory.MakeLift();
         }
 
         if (hatchType == SubsystemType.Hardware) {
             hatch = DefaultHatchFactory.MakeHatch();
         } else {
-            hatch = DashboardHatchFactory.MakeHatch();
+            hatch = VirtualHatchFactory.MakeHatch();
         }
 
         if (elevatorType == SubsystemType.Hardware) {
             elevator = DefaultElevatorFactory.MakeElevator();
         } else {
-            elevator = DashboardElevatorFactory.MakeElevator();
+            elevator = VirtualElevatorFactory.MakeElevator();
         }
 
         if (compressorType == SubsystemType.Hardware) {
             compressor = DefaultCompressorFactory.MakeCompressor();
         } else {
-            compressor = DashboardCompressorFactory.MakeCompressor();
+            compressor = VirtualCompressorFactory.MakeCompressor();
         }
 
         if (cargoType == SubsystemType.Hardware) {
             cargo = DefaultCargoFactory.MakeCargo();
         } else {
-            cargo = DashboardCargoFactory.MakeCargo();
+            cargo = VirtualCargoFactory.MakeCargo();
         }
 
         if (armType == SubsystemType.Hardware) {
             arm = DefaultArmFactory.MakeArm();
         } else {
-            arm = DashboardArmFactory.MakeArm();
+            arm = VirtualArmFactory.MakeArm();
         }
     }
 
-    private void setupDashboardSubsystems() {
-        setupSubsystems(SubsystemType.Dashboard, SubsystemType.Dashboard, SubsystemType.Dashboard,
-                SubsystemType.Dashboard, SubsystemType.Dashboard, SubsystemType.Dashboard,
-                SubsystemType.Dashboard);
+    private void setupVirtualSubsystems() {
+        setupSubsystems(SubsystemType.Virtual, SubsystemType.Virtual, SubsystemType.Virtual,
+                SubsystemType.Virtual, SubsystemType.Virtual, SubsystemType.Virtual,
+                SubsystemType.Virtual);
     }
 
     @SuppressWarnings("unused") // Code is here as a helper method for quick switching
@@ -185,12 +185,12 @@ public class Robot extends TimedRobot {
     @SuppressWarnings("unused") // Code is here as a helper method for quick switching
     private void setupCustomSubsystems() {
         setupSubsystems(SubsystemType.Hardware, // Swerve
-                SubsystemType.Dashboard, // Lift
-                SubsystemType.Dashboard, // Hatch
-                SubsystemType.Dashboard, // Elevator
+                SubsystemType.Virtual, // Lift
+                SubsystemType.Virtual, // Hatch
+                SubsystemType.Virtual, // Elevator
                 SubsystemType.Hardware, // Compressor
-                SubsystemType.Dashboard, // Cargo
-                SubsystemType.Dashboard); // Arm
+                SubsystemType.Virtual, // Cargo
+                SubsystemType.Virtual); // Arm
     }
 
     @Override

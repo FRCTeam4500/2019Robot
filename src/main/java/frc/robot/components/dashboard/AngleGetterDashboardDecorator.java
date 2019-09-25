@@ -9,27 +9,27 @@ package frc.robot.components.dashboard;
 
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
-import frc.robot.components.ISpeedSetter;
+import frc.robot.components.IAngleGetter;
 
 /**
  * Add your docs here.
  */
-public class DashboardSpeedSetterComponent extends DashboardComponent implements ISpeedSetter {
+public class AngleGetterDashboardDecorator extends DashboardDecorator implements IAngleGetter {
+    private IAngleGetter getter;
 
-    protected double speed;
-
-    public DashboardSpeedSetterComponent(String name, String subsystem) {
-        super(name + " " + "Speed Setter Component", subsystem);
+    public AngleGetterDashboardDecorator(String name, String subsystem, IAngleGetter getter) {
+        super(name, subsystem);
+        this.getter = getter;
     }
 
     @Override
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public double getAngle() {
+        return getter.getAngle();
     }
 
     @Override
     public void initSendable(SendableBuilder builder) {
-        builder.setSmartDashboardType(BuiltInWidgets.kNumberBar.getWidgetName());
-        builder.addDoubleProperty("Value", () -> speed, null);
+        builder.addDoubleProperty("Value", () -> -Math.toDegrees(getAngle()), null);
+        builder.setSmartDashboardType(BuiltInWidgets.kGyro.getWidgetName());
     }
 }

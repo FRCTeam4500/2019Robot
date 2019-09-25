@@ -7,40 +7,46 @@
 
 package frc.robot.components.dashboard;
 
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.components.ICompressor;
 
 /**
  * Add your docs here.
  */
-public class DashboardCompressorComponent extends DashboardComponent implements ICompressor {
+public class CompressorDashboardDecorator extends DashboardDecorator implements ICompressor {
 
-    protected boolean isCompressing = false;
+    private boolean lastIsCompressing = false;
+    private ICompressor compressor;
 
-    public DashboardCompressorComponent(String name, String subsystem) {
+    public CompressorDashboardDecorator(String name, String subsystem, ICompressor compressor) {
         super(name + " " + "Compressor Component", subsystem);
+        this.compressor = compressor;
     }
 
     @Override
     public void start() {
-        isCompressing = true;
+        lastIsCompressing = true;
+        compressor.start();
     }
 
     @Override
     public void stop() {
-        isCompressing = false;
+        lastIsCompressing = false;
+        compressor.stop();
+    }
+
+    public boolean getLastIsCompressing() {
+        return lastIsCompressing;
     }
 
     @Override
     public boolean enabled() {
-        return isCompressing;
+        return compressor.enabled();
     }
 
     @Override
     public void initSendable(SendableBuilder builder) {
-        builder.setSmartDashboardType(BuiltInWidgets.kBooleanBox.getWidgetName());
-        builder.addBooleanProperty("IsCompressing", () -> isCompressing,
-                value -> isCompressing = value);
+        builder.addBooleanProperty("Last Is Compressing", this::getLastIsCompressing, null);
+        builder.addBooleanProperty("Real Is Compressing", this::enabled, null);
     }
 }

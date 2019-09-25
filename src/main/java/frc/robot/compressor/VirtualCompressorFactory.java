@@ -5,15 +5,17 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.elevator;
+package frc.robot.compressor;
 
-import frc.robot.components.dashboard.DashboardPositionSetterComponent;
+import frc.robot.components.dashboard.CompressorDashboardDecorator;
+import frc.robot.components.virtual.VirtualCompressorComponent;
 
 /**
  * Add your docs here.
  */
-public class DashboardElevatorFactory {
-    public static Elevator MakeElevator() {
-        return new Elevator(new DashboardPositionSetterComponent("Default", "Elevator"));
+public class VirtualCompressorFactory {
+    public static Compressor MakeCompressor() {
+        return new Compressor(new CompressorDashboardDecorator("Virtual Compressor", "Compressor",
+                new VirtualCompressorComponent()));
     }
 }

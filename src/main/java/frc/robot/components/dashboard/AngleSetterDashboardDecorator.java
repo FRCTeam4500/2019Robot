@@ -14,23 +14,29 @@ import frc.robot.components.IAngleSetter;
 /**
  * Add your docs here.
  */
-public class DashboardAngleSetterComponent extends DashboardComponent implements IAngleSetter {
+public class AngleSetterDashboardDecorator extends DashboardDecorator implements IAngleSetter {
 
-    protected double angle = 0;
+    private double lastSetAngle = 0;
+    private IAngleSetter setter;
 
-    public DashboardAngleSetterComponent(String name, String subsystem) {
+    public AngleSetterDashboardDecorator(String name, String subsystem, IAngleSetter setter) {
         super(name + " " + "Angle Setter Component", subsystem);
+        this.setter = setter;
     }
 
     @Override
     public void setAngle(double angle) {
-        this.angle = angle;
+        this.lastSetAngle = angle;
+        setter.setAngle(angle);
+    }
+
+    public double getLastSetAngle() {
+        return lastSetAngle;
     }
 
     @Override
     public void initSendable(SendableBuilder builder) {
         builder.setSmartDashboardType(BuiltInWidgets.kGyro.getWidgetName());
-        builder.addDoubleProperty("Value", () -> -angle * 180 / Math.PI, null);
-        builder.addDoubleProperty("RawValue", () -> angle, null);
+        builder.addDoubleProperty("Value", () -> -Math.toDegrees(getLastSetAngle()), null);
     }
 }

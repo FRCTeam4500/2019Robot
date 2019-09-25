@@ -5,17 +5,17 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.cargo;
+package frc.robot.arm;
 
-import frc.robot.components.dashboard.DashboardSpeedSetterComponent;
+import frc.robot.components.dashboard.AngleSetterDashboardDecorator;
+import frc.robot.components.virtual.VirtualAngleComponent;
 
 /**
  * Add your docs here.
  */
-public class DashboardCargoFactory {
-    public static Cargo MakeCargo() {
-        return new Cargo(new DashboardSpeedSetterComponent("Left Grab", "Cargo"),
-                new DashboardSpeedSetterComponent("Top Grab", "Cargo"),
-                new DashboardSpeedSetterComponent("Right Grab", "Cargo"));
+public class VirtualArmFactory {
+    public static Arm MakeArm() {
+        return new Arm(new AngleSetterDashboardDecorator("Virtual Motor", "Arm",
+                new VirtualAngleComponent()));
     }
 }

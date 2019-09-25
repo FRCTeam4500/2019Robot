@@ -14,23 +14,30 @@ import frc.robot.components.IPositionSetter;
 /**
  * Add your docs here.
  */
-public class DashboardPositionSetterComponent extends DashboardComponent
+public class PositionSetterDashboardDecorator extends DashboardDecorator
         implements IPositionSetter {
-    protected double position;
+    private double lastSetPosition;
+    private IPositionSetter setter;
 
-    public DashboardPositionSetterComponent(String name, String subsystem) {
-        super(name + " " + "Position Setter Component", subsystem);
+    public PositionSetterDashboardDecorator(String name, String subsystem, IPositionSetter setter) {
+        super(name, subsystem);
+        this.setter = setter;
     }
 
     @Override
     public void setPosition(double position) {
-        this.position = position;
+        this.lastSetPosition = position;
+        setter.setPosition(position);
+    }
+
+    public double getLastSetPosition() {
+        return lastSetPosition;
     }
 
     @Override
     public void initSendable(SendableBuilder builder) {
         builder.setSmartDashboardType(BuiltInWidgets.kNumberBar.getWidgetName());
-        builder.addDoubleProperty("Position", () -> position, null);
+        builder.addDoubleProperty("Value", this::getLastSetPosition, null);
     }
 
 }

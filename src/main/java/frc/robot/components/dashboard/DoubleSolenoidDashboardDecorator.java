@@ -7,40 +7,47 @@
 
 package frc.robot.components.dashboard;
 
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.components.IDoubleSolenoid;
 
 /**
  * Add your docs here.
  */
-public class DashboardDoubleSolenoidComponent extends DashboardComponent
+public class DoubleSolenoidDashboardDecorator extends DashboardDecorator
         implements IDoubleSolenoid {
 
-    protected boolean _isExtended = false;
+    private boolean lastIsExtended = false;
+    private IDoubleSolenoid ds;
 
-    public DashboardDoubleSolenoidComponent(String name, String subsystem) {
-        super(name + " " + "Double Solenoid Component", subsystem);
+    public DoubleSolenoidDashboardDecorator(String name, String subsystem, IDoubleSolenoid ds) {
+        super(name, subsystem);
+        this.ds = ds;
+    }
+
+    public boolean getLastIsExtended() {
+        return lastIsExtended;
     }
 
     @Override
     public boolean isExtended() {
-        return _isExtended;
+        return ds.isExtended();
     }
 
     @Override
     public void extend() {
-        _isExtended = true;
+        lastIsExtended = true;
+        ds.extend();
     }
 
     @Override
     public void retract() {
-        _isExtended = false;
+        lastIsExtended = false;
+        ds.retract();
     }
 
     @Override
     public void initSendable(SendableBuilder builder) {
-        builder.setSmartDashboardType(BuiltInWidgets.kBooleanBox.getWidgetName());
-        builder.addBooleanProperty("IsExtended", () -> _isExtended, value -> _isExtended = value);
+        builder.addBooleanProperty("Last Is Extended", this::getLastIsExtended, null);
+        builder.addBooleanProperty("Real Is Extended", this::isExtended, null);
     }
 }
