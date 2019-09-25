@@ -22,7 +22,6 @@ public class VirtualSpeedComponent implements ISpeedSetter {
 
     @Override
     public void setSpeed(double speed) {
-        // TODO Auto-generated method stub
-
+        this.speed = speed;
     }
 }
