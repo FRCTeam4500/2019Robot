@@ -29,14 +29,6 @@ public class SwerveTalonSRXComponent extends TalonSRXComponent {
         if (angle == -0) {
             angle = +0;
         }
-        double currentAngle = getAngle();
-
-        double actualDifference = angle - currentAngle;
-        double shortestDifference = customMod(actualDifference + Math.PI, 2 * Math.PI) - Math.PI;
-        super.setAngle(currentAngle + shortestDifference);
-    }
-
-    private double customMod(double a, double n) {
-        return a - Math.floor(a / n) * n;
+        super.setAngle(angle);
     }
 }

@@ -34,7 +34,15 @@ public class WheelModule extends Subsystem {
     }
 
     public void drive(double angle, double speed) {
-        angleSetter.setAngle(angle);
+        double actualDifference = angle - lastAngle;
+        double shortestDifference = customMod(actualDifference + Math.PI, 2 * Math.PI) - Math.PI;
+        double finalAngle = lastAngle + shortestDifference;
+        angleSetter.setAngle(finalAngle);
         speedSetter.setSpeed(speed);
+        lastAngle = finalAngle;
+    }
+
+    private double customMod(double a, double n) {
+        return a - Math.floor(a / n) * n;
     }
 }
