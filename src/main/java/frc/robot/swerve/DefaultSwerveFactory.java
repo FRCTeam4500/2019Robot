@@ -13,6 +13,7 @@ import frc.robot.RobotMap;
 import frc.robot.components.hardware.TalonSRXComponent;
 import frc.robot.components.dashboard.AngleGetterDashboardDecorator;
 import frc.robot.components.dashboard.AngleSetterDashboardDecorator;
+import frc.robot.components.dashboard.GyroDashboardDecorator;
 import frc.robot.components.dashboard.SpeedSetterDashboardDecorator;
 import frc.robot.components.hardware.AHRSAngleGetterComponent;
 
@@ -21,23 +22,23 @@ import frc.robot.components.hardware.AHRSAngleGetterComponent;
  */
 public class DefaultSwerveFactory {
     public static Swerve MakeSwerve() {
-        var bl = MakeWheelModule(RobotMap.BL_ANGLE_PORT, RobotMap.BL_SPEED_PORT, true, false,
+        var bl = MakeWheelModule(RobotMap.BL_ANGLE_PORT, RobotMap.BL_SPEED_PORT, true, true,
                 "BL Wheel Module");
         var br = MakeWheelModule(RobotMap.BR_ANGLE_PORT, RobotMap.BR_SPEED_PORT, true, false,
                 "BR Wheel Module");
-        var fl = MakeWheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, true, false,
+        var fl = MakeWheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, true, true,
                 "FL Wheel Module");
         var fr = MakeWheelModule(RobotMap.FR_ANGLE_PORT, RobotMap.FR_SPEED_PORT, true, false,
                 "FR Wheel Module");
 
-        return new Swerve(1, 1, fl, fr, bl, br, new AngleGetterDashboardDecorator("Gyro", "Swerve",
+        return new Swerve(1, 1, fl, fr, bl, br, new GyroDashboardDecorator("Gyro", "Swerve",
                 new AHRSAngleGetterComponent(Port.kMXP)));
     }
 
     private static WheelModule MakeWheelModule(int anglePort, int speedPort, boolean angleInverted,
             boolean speedInverted, String subsystem) {
 
-        var angleMotor = new TalonSRXComponent(anglePort);
+        var angleMotor = new SwerveTalonSRXComponent(anglePort);
         var speedMotor = new TalonSRXComponent(speedPort);
 
         speedMotor.configPeakOutputForward(1);

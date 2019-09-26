@@ -8,7 +8,7 @@
 package frc.robot.swerve;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.components.IAngleGetter;
+import frc.robot.components.IGyro;
 
 /**
  * Add your docs here.
@@ -21,10 +21,11 @@ public class Swerve extends Subsystem {
     private WheelModule fl, fr, bl, br;
     private double rotationCoefficient = 1;
     private double r;
-    private IAngleGetter fieldAngleGetter;
 
-    public Swerve(double length, double width, WheelModule fl, WheelModule fr, WheelModule bl,
-            WheelModule br, IAngleGetter fieldAngleGetter) {
+    private IGyro gyro;
+
+    public Swerve(double length, double width, WheelModule fl, WheelModule fr, WheelModule bl, WheelModule br,
+            IGyro gyro) {
         this.length = length;
         this.width = width;
         this.fl = fl;
@@ -32,11 +33,15 @@ public class Swerve extends Subsystem {
         this.bl = bl;
         this.br = br;
         r = Math.sqrt(width * width + length * length) / 2;
-        this.fieldAngleGetter = fieldAngleGetter;
+        this.gyro = gyro;
     }
 
     public void moveRobotCentric(double x, double y, double w) {
         double wkr = w * rotationCoefficient / r;
+
+        if (y == 0) {
+            y = +0;
+        }
 
         double a = x + wkr * width / 2;
         double b = y + wkr * length / 2;
@@ -48,8 +53,7 @@ public class Swerve extends Subsystem {
         double blSpeed = Math.sqrt(c * c + d * d);
         double brSpeed = Math.sqrt(b * b + d * d);
 
-        double maxSpeed =
-                Math.max(1, Math.max(flSpeed, Math.max(frSpeed, Math.max(blSpeed, brSpeed))));
+        double maxSpeed = Math.max(1, Math.max(flSpeed, Math.max(frSpeed, Math.max(blSpeed, brSpeed))));
         flSpeed /= maxSpeed;
         frSpeed /= maxSpeed;
         blSpeed /= maxSpeed;
@@ -77,7 +81,11 @@ public class Swerve extends Subsystem {
     }
 
     public void moveFieldCentric(double x, double y, double w) {
-        moveAngleCentric(x, y, w, fieldAngleGetter.getAngle());
+        moveAngleCentric(x, y, w, gyro.getAngle());
+    }
+
+    public void resetGyro() {
+        gyro.reset();
     }
 
     @Override

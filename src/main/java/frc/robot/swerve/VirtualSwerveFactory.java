@@ -9,8 +9,10 @@ package frc.robot.swerve;
 
 import frc.robot.components.dashboard.AngleGetterDashboardDecorator;
 import frc.robot.components.dashboard.AngleSetterDashboardDecorator;
+import frc.robot.components.dashboard.GyroDashboardDecorator;
 import frc.robot.components.dashboard.SpeedSetterDashboardDecorator;
 import frc.robot.components.virtual.VirtualAngleComponent;
+import frc.robot.components.virtual.VirtualGyroComponent;
 import frc.robot.components.virtual.VirtualSpeedComponent;
 
 /**
@@ -39,7 +41,6 @@ public class VirtualSwerveFactory {
                                 new VirtualAngleComponent()),
                         new SpeedSetterDashboardDecorator("BR Virtual Speed Motor", "Swerve",
                                 new VirtualSpeedComponent())),
-                new AngleGetterDashboardDecorator("Virtual Gyro", "Swerve",
-                        new VirtualAngleComponent()));
+                new GyroDashboardDecorator("Virtual Gyro", "Swerve", new VirtualGyroComponent()));
     }
 }
