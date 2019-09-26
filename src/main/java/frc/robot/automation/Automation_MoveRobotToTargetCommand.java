@@ -21,6 +21,7 @@ public class Automation_MoveRobotToTargetCommand extends Command {
     private Vision vision;
     private Swerve swerve;
     private double lastTime;
+    private double lastXInput;
 
     public Automation_MoveRobotToTargetCommand(Vision vision, Swerve swerve,
             PIDValues xCalculatorValues, PIDValues yCalculatorValues, PIDValues wCalculatorValues) {
@@ -29,6 +30,7 @@ public class Automation_MoveRobotToTargetCommand extends Command {
         this(vision, swerve, new PIDCalculator(xCalculatorValues),
                 new PIDCalculator(yCalculatorValues), new PIDCalculator(wCalculatorValues));
     }
+
 
     public Automation_MoveRobotToTargetCommand(Vision vision, Swerve swerve,
             PIDCalculator xCalculator, PIDCalculator yCalculator, PIDCalculator wCalculator) {
@@ -56,19 +58,20 @@ public class Automation_MoveRobotToTargetCommand extends Command {
     protected void execute() {
         double time = Timer.getFPGATimestamp();
         double deltaTime = time - lastTime;
-        swerve.moveAngleCentric(
-                xCalculator.getOutput(vision.getHorizontalOffsetFromCrosshair(), deltaTime),
-                yCalculator.getOutput(vision.getVerticalOffsetFromCrosshar(), deltaTime),
-                wCalculator.getOutput(vision.getSkew(), deltaTime), vision.getSkew());
+        lastXInput = xCalculator.getOutput(-vision.getHorizontalOffsetFromCrosshair(), deltaTime);
+        swerve.moveFieldCentric(lastXInput,
+                yCalculator.getOutput(-vision.getVerticalOffsetFromCrosshar(), deltaTime),
+                wCalculator.getOutput(-vision.getSkew(), deltaTime));
         lastTime = time;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return xCalculator.isWithinRange(vision.getHorizontalOffsetFromCrosshair())
-                && yCalculator.isWithinRange(vision.getVerticalOffsetFromCrosshar())
-                && wCalculator.isWithinRange(vision.getSkew()) || !vision.hasValidTargets();
+        return xCalculator.isWithinRange(-vision.getHorizontalOffsetFromCrosshair())
+                && yCalculator.isWithinRange(-vision.getVerticalOffsetFromCrosshar())
+                && wCalculator.isWithinRange(-vision.getSkew()) && Math.abs(lastXInput) <= 0.01
+                || !vision.hasValidTargets();
     }
 
     // Called once after isFinished returns true
