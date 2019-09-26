@@ -32,14 +32,19 @@ public class XboxOI implements IMainOI {
     private double zDeadzone = xDeadzone;
     private XboxController controller = new XboxController(0);
 
-    JoystickButton aButton = new JoystickButton(controller, 1), bButton = new JoystickButton(controller, 2),
-            xButton = new JoystickButton(controller, 3), yButton = new JoystickButton(controller, 4),
-            leftBumper = new JoystickButton(controller, 5), rightBumper = new JoystickButton(controller, 6),
-            specialLeft = new JoystickButton(controller, 7), specialRight = new JoystickButton(controller, 8),
-            leftThumpad = new JoystickButton(controller, 9), rightThumpad = new JoystickButton(controller, 10);
+    JoystickButton aButton = new JoystickButton(controller, 1),
+            bButton = new JoystickButton(controller, 2),
+            xButton = new JoystickButton(controller, 3),
+            yButton = new JoystickButton(controller, 4),
+            leftBumper = new JoystickButton(controller, 5),
+            rightBumper = new JoystickButton(controller, 6),
+            specialLeft = new JoystickButton(controller, 7),
+            specialRight = new JoystickButton(controller, 8),
+            leftThumpad = new JoystickButton(controller, 9),
+            rightThumpad = new JoystickButton(controller, 10);
 
-    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor, Cargo cargo,
-            Arm arm) {
+    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor,
+            Cargo cargo, Arm arm) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
@@ -120,11 +125,11 @@ public class XboxOI implements IMainOI {
     @Override
     public double getArmAngle() {
         if (controller.getPOV() == 270) {
-            return Math.PI / 2;
+            return RobotMap.ARM_MAX;
         } else if (controller.getPOV() == 90) {
-            return 0;
+            return RobotMap.ARM_MIN;
         } else {
-            return Math.PI / 4;
+            return RobotMap.ARM_MAX / 2;
         }
     }
 
