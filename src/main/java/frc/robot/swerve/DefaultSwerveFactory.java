@@ -22,31 +22,26 @@ import frc.robot.components.hardware.AHRSAngleGetterComponent;
  */
 public class DefaultSwerveFactory {
     public static Swerve MakeSwerve() {
-        var bl = MakeWheelModule(RobotMap.BL_ANGLE_PORT, RobotMap.BL_SPEED_PORT, true, true,
-                "BL Wheel Module");
-        var br = MakeWheelModule(RobotMap.BR_ANGLE_PORT, RobotMap.BR_SPEED_PORT, true, false,
-                "BR Wheel Module");
-        var fl = MakeWheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, true, true,
-                "FL Wheel Module");
-        var fr = MakeWheelModule(RobotMap.FR_ANGLE_PORT, RobotMap.FR_SPEED_PORT, true, false,
-                "FR Wheel Module");
+        var bl = MakeWheelModule(RobotMap.BL_ANGLE_PORT, RobotMap.BL_SPEED_PORT, true, true, "BL Wheel Module");
+        var br = MakeWheelModule(RobotMap.BR_ANGLE_PORT, RobotMap.BR_SPEED_PORT, true, false, "BR Wheel Module");
+        var fl = MakeWheelModule(RobotMap.FL_ANGLE_PORT, RobotMap.FL_SPEED_PORT, true, true, "FL Wheel Module");
+        var fr = MakeWheelModule(RobotMap.FR_ANGLE_PORT, RobotMap.FR_SPEED_PORT, true, false, "FR Wheel Module");
 
-        return new Swerve(1, 1, fl, fr, bl, br, new GyroDashboardDecorator("Gyro", "Swerve",
-                new AHRSAngleGetterComponent(Port.kMXP)));
+        return new Swerve(1, 1, fl, fr, bl, br,
+                new GyroDashboardDecorator("Gyro", "Swerve", new AHRSAngleGetterComponent(Port.kMXP)));
     }
 
     private static WheelModule MakeWheelModule(int anglePort, int speedPort, boolean angleInverted,
             boolean speedInverted, String subsystem) {
 
-        var angleMotor = new SwerveTalonSRXComponent(anglePort);
+        var angleMotor = new TalonSRXComponent(anglePort);
         var speedMotor = new TalonSRXComponent(speedPort);
 
         speedMotor.configPeakOutputForward(1);
         speedMotor.configPeakOutputReverse(-1);
         speedMotor.setInverted(speedInverted);
 
-        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,
-                RobotMap.TIMEOUT);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.TIMEOUT);
 
         angleMotor.setSensorPhase(false);
         angleMotor.configAllowableClosedloopError(0, 0, RobotMap.TIMEOUT);
@@ -61,7 +56,8 @@ public class DefaultSwerveFactory {
 
         var sentAngle = new AngleSetterDashboardDecorator("Sent Angle", subsystem, angleMotor);
         var sentSpeed = new SpeedSetterDashboardDecorator("Sent Speed", subsystem, speedMotor);
-        // The constructor automatically adds to live window, so while this is not used by the
+        // The constructor automatically adds to live window, so while this is not used
+        // by the
         // swerve, it is used by the live window
         @SuppressWarnings("unused")
         var actualAngle = new AngleGetterDashboardDecorator("Actual Angle", subsystem, angleMotor);
