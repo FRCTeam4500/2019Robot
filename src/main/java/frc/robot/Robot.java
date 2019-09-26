@@ -46,8 +46,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        // setupVirtualSubsystems();
-        setupCustomSubsystems();
+        if (isSimulation()) {
+            setupVirtualSubsystems();
+        } else {
+            setupCustomSubsystems();
+        }
 
         oi = new XboxOI(swerve, lift, hatch, elevator, compressor, cargo, arm);
     }
@@ -172,7 +175,6 @@ public class Robot extends TimedRobot {
         }
     }
 
-    @SuppressWarnings("unused")
     private void setupVirtualSubsystems() {
         setupSubsystems(SubsystemType.Virtual, SubsystemType.Virtual, SubsystemType.Virtual, SubsystemType.Virtual,
                 SubsystemType.Virtual, SubsystemType.Virtual, SubsystemType.Virtual);
@@ -184,7 +186,7 @@ public class Robot extends TimedRobot {
                 SubsystemType.Hardware, SubsystemType.Hardware, SubsystemType.Hardware);
     }
 
-    @SuppressWarnings("unused") // Code is here as a helper method for quick switching
+    // Code is here as a helper method for quick switching
     private void setupCustomSubsystems() {
         setupSubsystems(SubsystemType.Hardware, // Swerve
                 SubsystemType.Virtual, // Lift
