@@ -17,8 +17,7 @@ import frc.robot.components.ISpeedSetter;
 /**
  * Add your docs here.
  */
-public class TalonSRXComponent extends TalonSRX
-        implements ISpeedSetter, IAngleSetter, IAngleGetter {
+public class TalonSRXComponent extends TalonSRX implements ISpeedSetter, IAngleSetter, IAngleGetter {
 
     public TalonSRXComponent(int deviceNumber) {
         super(deviceNumber);
@@ -31,7 +30,7 @@ public class TalonSRXComponent extends TalonSRX
 
     @Override
     public void setAngle(double angle) {
-        set(ControlMode.Position, angle * RobotMap.TICKS_PER_RADIAN);
+        set(ControlMode.MotionMagic, angle * RobotMap.TICKS_PER_RADIAN);
     }
 
     @Override
