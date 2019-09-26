@@ -21,6 +21,9 @@ public class VirtualPIDAngleComponent implements IAngleGetter, IAngleSetter {
     private PIDController controller;
     private double angle;
 
+    private static double min = 0;
+    private static double max = 10;
+
     public VirtualPIDAngleComponent(PIDValues values) {
         controller = values.toPidController(new PIDSource() {
 
@@ -38,6 +41,7 @@ public class VirtualPIDAngleComponent implements IAngleGetter, IAngleSetter {
                 return PIDSourceType.kDisplacement;
             }
         }, this::addToAngle);
+        controller.enable();
     }
 
     @Override
@@ -51,6 +55,13 @@ public class VirtualPIDAngleComponent implements IAngleGetter, IAngleSetter {
     }
 
     private void addToAngle(double value) {
+        if (value > max) {
+            value = max;
+        } else if (-min < value && value < min) {
+            value = 0;
+        } else if (value < -max) {
+            value = -max;
+        }
         angle += value;
     }
 }
