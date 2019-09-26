@@ -17,6 +17,36 @@ public class PIDCalculator {
     private double setpoint;
     private double setpointDelta;
     private boolean hasRun;
+    private double maxOutput = 1;
+    private double minOutput = -1;
+
+    /**
+     * @param maxOutput the maxOutput to set
+     */
+    public void setMaxOutput(double maxOutput) {
+        this.maxOutput = maxOutput;
+    }
+
+    /**
+     * @return the maxOutput
+     */
+    public double getMaxOutput() {
+        return maxOutput;
+    }
+
+    /**
+     * @return the minOutput
+     */
+    public double getMinOutput() {
+        return minOutput;
+    }
+
+    /**
+     * @param minOutput the minOutput to set
+     */
+    public void setMinOutput(double minOutput) {
+        this.minOutput = minOutput;
+    }
 
     public PIDCalculator(double kP, double kI, double kD) {
         this.kP = kP;
@@ -78,10 +108,12 @@ public class PIDCalculator {
             double error = setpoint - input;
             integral += error * deltaTime;
             double derivative = (error - previousError) / deltaTime;
-            return kP * error + kI * integral + kD * derivative;
+            double output = kP * error + kI * integral + kD * derivative;
+            return ExtendedMath.clamp(minOutput, maxOutput, output);
         } else {
             hasRun = true;
-            return kP * (setpoint - input);
+            double output = kP * (setpoint - input);
+            return ExtendedMath.clamp(minOutput, maxOutput, output);
         }
     }
 
