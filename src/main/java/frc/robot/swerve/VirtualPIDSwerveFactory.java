@@ -11,7 +11,6 @@ import frc.robot.components.dashboard.AngleGetterDashboardDecorator;
 import frc.robot.components.dashboard.AngleSetterDashboardDecorator;
 import frc.robot.components.dashboard.GyroDashboardDecorator;
 import frc.robot.components.dashboard.SpeedSetterDashboardDecorator;
-import frc.robot.components.virtual.VirtualAngleComponent;
 import frc.robot.components.virtual.VirtualGyroComponent;
 import frc.robot.components.virtual.VirtualPIDAngleComponent;
 import frc.robot.components.virtual.VirtualSpeedComponent;

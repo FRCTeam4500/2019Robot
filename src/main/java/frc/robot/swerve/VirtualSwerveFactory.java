@@ -7,7 +7,6 @@
 
 package frc.robot.swerve;
 
-import frc.robot.components.dashboard.AngleGetterDashboardDecorator;
 import frc.robot.components.dashboard.AngleSetterDashboardDecorator;
 import frc.robot.components.dashboard.GyroDashboardDecorator;
 import frc.robot.components.dashboard.SpeedSetterDashboardDecorator;
