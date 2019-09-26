@@ -27,23 +27,22 @@ import frc.robot.elevator.*;
  */
 public class XboxOI implements IMainOI {
 
+    private double xDeadzone = 0.2;
+    private double yDeadzone = xDeadzone;
+    private double zDeadzone = xDeadzone;
     private XboxController controller = new XboxController(0);
 
-    JoystickButton aButton = new JoystickButton(controller, 1),
-            bButton = new JoystickButton(controller, 2),
-            xButton = new JoystickButton(controller, 3),
-            yButton = new JoystickButton(controller, 4),
-            leftBumper = new JoystickButton(controller, 5),
-            rightBumper = new JoystickButton(controller, 6),
-            specialLeft = new JoystickButton(controller, 7),
-            specialRight = new JoystickButton(controller, 8);
+    JoystickButton aButton = new JoystickButton(controller, 1), bButton = new JoystickButton(controller, 2),
+            xButton = new JoystickButton(controller, 3), yButton = new JoystickButton(controller, 4),
+            leftBumper = new JoystickButton(controller, 5), rightBumper = new JoystickButton(controller, 6),
+            specialLeft = new JoystickButton(controller, 7), specialRight = new JoystickButton(controller, 8),
+            leftThumpad = new JoystickButton(controller, 9), rightThumpad = new JoystickButton(controller, 10);
 
-    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor,
-            Cargo cargo, Arm arm) {
+    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor, Cargo cargo,
+            Arm arm) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
-
 
         aButton.whenPressed(new Lift_ExtendMiddleCommand(lift));
         aButton.whenReleased(new Lift_RetractMiddleCommand(lift));
@@ -71,26 +70,28 @@ public class XboxOI implements IMainOI {
         cargo.setDefaultCommand(new Cargo_DriveCommand(cargo, this));
 
         arm.setDefaultCommand(new Arm_DriveCommand(arm, this));
+
+        leftThumpad.whenPressed(new Swerve_ResetGyroCommand(swerve));
     }
 
     @Override
     public double getX() {
-        return withDeadzone(controller.getX(Hand.kLeft), 0.05);
+        return withDeadzone(controller.getX(Hand.kLeft), xDeadzone);
     }
 
     @Override
     public double getY() {
-        return -withDeadzone(controller.getY(Hand.kLeft), 0.05);
+        return -withDeadzone(controller.getY(Hand.kLeft), yDeadzone);
     }
 
     @Override
     public double getZ() {
-        return -withDeadzone(controller.getX(Hand.kRight), 0.05);
+        return -withDeadzone(controller.getX(Hand.kRight), zDeadzone);
     }
 
     private double withDeadzone(double input, double deadzone) {
         if (Math.abs(input) >= deadzone) {
-            return input * 0.5;
+            return input * 0.3;
         } else {
             return 0;
         }
