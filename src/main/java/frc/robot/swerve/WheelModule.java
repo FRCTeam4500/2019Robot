@@ -8,6 +8,7 @@
 package frc.robot.swerve;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.components.IAngleGetter;
 import frc.robot.components.IAngleSetter;
 import frc.robot.components.ISpeedSetter;
 
@@ -19,12 +20,18 @@ public class WheelModule extends Subsystem {
     // here. Call these from Commands.
     private IAngleSetter angleSetter;
     private ISpeedSetter speedSetter;
-
+    private IAngleGetter angleGetter;
     private double lastAngle;
 
     public WheelModule(IAngleSetter angleSetter, ISpeedSetter speedSetter) {
         this.angleSetter = angleSetter;
         this.speedSetter = speedSetter;
+    }
+
+    public WheelModule(IAngleSetter angleSetter, ISpeedSetter speedSetter,
+            IAngleGetter angleGetter) {
+        this(angleSetter, speedSetter);
+        this.angleGetter = angleGetter;
     }
 
     @Override
@@ -34,6 +41,9 @@ public class WheelModule extends Subsystem {
     }
 
     public void drive(double angle, double speed) {
+        if (angleGetter != null) {
+            lastAngle = angleGetter.getAngle();
+        }
         double actualDifference = angle - lastAngle;
         double shortestDifference = customMod(actualDifference + Math.PI, 2 * Math.PI) - Math.PI;
         double finalAngle = lastAngle + shortestDifference;
