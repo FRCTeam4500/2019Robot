@@ -30,9 +30,6 @@ public class SwerveTalonSRXComponent extends TalonSRXComponent {
             angle = +0;
         }
         double currentAngle = getAngle();
-        if (Math.abs(currentAngle) >= 2 * Math.PI) {
-            SmartDashboard.putBoolean("hit", true);
-        }
 
         double actualDifference = angle - currentAngle;
         double shortestDifference = customMod(actualDifference + Math.PI, 2 * Math.PI) - Math.PI;
