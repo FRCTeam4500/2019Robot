@@ -11,11 +11,13 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.arm.*;
 import frc.robot.cargo.*;
+import frc.robot.components.hardware.LimelightVisionComponent;
 import frc.robot.compressor.*;
 import frc.robot.elevator.*;
 import frc.robot.hatch.*;
 import frc.robot.lift.*;
 import frc.robot.swerve.*;
+import frc.robot.vision.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -41,6 +43,7 @@ public class Robot extends TimedRobot {
     private Compressor compressor;
     private Cargo cargo;
     private Arm arm;
+    private Vision vision;
 
     @Override
     public void robotInit() {
@@ -49,9 +52,9 @@ public class Robot extends TimedRobot {
             setupVirtualSubsystems();
         } else {
             setupCustomSubsystems();
+            vision = new Vision(new LimelightVisionComponent());
         }
-
-        oi = new XboxOI(swerve, lift, hatch, elevator, compressor, cargo, arm);
+        oi = new XboxOI(swerve, lift, hatch, elevator, compressor, cargo, arm, vision);
     }
 
     /**

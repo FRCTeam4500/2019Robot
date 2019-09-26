@@ -14,8 +14,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.hatch.*;
 import frc.robot.lift.*;
 import frc.robot.swerve.*;
+import frc.robot.utility.PIDCalculator;
+import frc.robot.vision.Vision;
 import frc.robot.arm.Arm;
 import frc.robot.arm.Arm_DriveCommand;
+import frc.robot.automation.Automation_MoveRobotToTargetCommand;
 import frc.robot.cargo.Cargo;
 import frc.robot.cargo.Cargo_DriveCommand;
 import frc.robot.compressor.Compressor;
@@ -31,20 +34,16 @@ public class XboxOI implements IMainOI {
     private double yDeadzone = xDeadzone;
     private double zDeadzone = xDeadzone;
     private XboxController controller = new XboxController(0);
+    private double swerveSensitivity = 0.3;
 
-    JoystickButton aButton = new JoystickButton(controller, 1),
-            bButton = new JoystickButton(controller, 2),
-            xButton = new JoystickButton(controller, 3),
-            yButton = new JoystickButton(controller, 4),
-            leftBumper = new JoystickButton(controller, 5),
-            rightBumper = new JoystickButton(controller, 6),
-            specialLeft = new JoystickButton(controller, 7),
-            specialRight = new JoystickButton(controller, 8),
-            leftThumpad = new JoystickButton(controller, 9),
-            rightThumpad = new JoystickButton(controller, 10);
+    JoystickButton aButton = new JoystickButton(controller, 1), bButton = new JoystickButton(controller, 2),
+            xButton = new JoystickButton(controller, 3), yButton = new JoystickButton(controller, 4),
+            leftBumper = new JoystickButton(controller, 5), rightBumper = new JoystickButton(controller, 6),
+            specialLeft = new JoystickButton(controller, 7), specialRight = new JoystickButton(controller, 8),
+            leftThumpad = new JoystickButton(controller, 9), rightThumpad = new JoystickButton(controller, 10);
 
-    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor,
-            Cargo cargo, Arm arm) {
+    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor, Cargo cargo, Arm arm,
+            Vision vision) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
@@ -77,6 +76,16 @@ public class XboxOI implements IMainOI {
         arm.setDefaultCommand(new Arm_DriveCommand(arm, this));
 
         leftThumpad.whenPressed(new Swerve_ResetGyroCommand(swerve));
+
+        var xCalc = new PIDCalculator(0.04, 0, 0);
+        xCalc.setMinOutput(-swerveSensitivity);
+        xCalc.setMaxOutput(swerveSensitivity);
+        xCalc.setSetpointDelta(0.5);
+        var yCalc = new PIDCalculator(0, 0, 0);
+        yCalc.setSetpointDelta(100000);
+        var zCalc = new PIDCalculator(0, 0, 0);
+        zCalc.setSetpointDelta(100000);
+        rightThumpad.whenPressed(new Automation_MoveRobotToTargetCommand(vision, swerve, xCalc, yCalc, zCalc));
     }
 
     @Override
@@ -96,7 +105,7 @@ public class XboxOI implements IMainOI {
 
     private double withDeadzone(double input, double deadzone) {
         if (Math.abs(input) >= deadzone) {
-            return input * 0.3;
+            return input * swerveSensitivity;
         } else {
             return 0;
         }
