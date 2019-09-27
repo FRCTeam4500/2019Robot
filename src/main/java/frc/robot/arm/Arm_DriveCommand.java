@@ -13,6 +13,8 @@ package frc.robot.arm;
 public class Arm_DriveCommand extends Arm_BaseCommand {
 
     private IArmOI oi;
+    private double lastAngle;
+    private int count;
 
     public Arm_DriveCommand(Arm arm, IArmOI oi) {
         super(arm);
@@ -21,11 +23,17 @@ public class Arm_DriveCommand extends Arm_BaseCommand {
 
     @Override
     protected void initialize() {
+        count = 0;
     }
 
     @Override
     protected void execute() {
-        arm.setAngle(oi.getArmAngle());
+        double currentAngle = oi.getArmAngle();
+        if (currentAngle != lastAngle) {
+            arm.setAngle(currentAngle);
+            lastAngle = currentAngle;
+            count++;
+        }
     }
 
     @Override
@@ -39,6 +47,13 @@ public class Arm_DriveCommand extends Arm_BaseCommand {
 
     @Override
     protected void interrupted() {
+    }
+
+    /**
+     * @return the count
+     */
+    public int getCount() {
+        return count;
     }
 
 }
