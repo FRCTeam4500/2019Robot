@@ -23,17 +23,16 @@ public class Automation_MoveRobotToTargetCommand extends Command {
     private double lastTime;
     private double lastXInput;
 
-    public Automation_MoveRobotToTargetCommand(Vision vision, Swerve swerve,
-            PIDValues xCalculatorValues, PIDValues yCalculatorValues, PIDValues wCalculatorValues) {
+    public Automation_MoveRobotToTargetCommand(Vision vision, Swerve swerve, PIDValues xCalculatorValues,
+            PIDValues yCalculatorValues, PIDValues wCalculatorValues) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        this(vision, swerve, new PIDCalculator(xCalculatorValues),
-                new PIDCalculator(yCalculatorValues), new PIDCalculator(wCalculatorValues));
+        this(vision, swerve, new PIDCalculator(xCalculatorValues), new PIDCalculator(yCalculatorValues),
+                new PIDCalculator(wCalculatorValues));
     }
 
-
-    public Automation_MoveRobotToTargetCommand(Vision vision, Swerve swerve,
-            PIDCalculator xCalculator, PIDCalculator yCalculator, PIDCalculator wCalculator) {
+    public Automation_MoveRobotToTargetCommand(Vision vision, Swerve swerve, PIDCalculator xCalculator,
+            PIDCalculator yCalculator, PIDCalculator wCalculator) {
         requires(vision);
         requires(swerve);
         this.vision = vision;
@@ -59,9 +58,9 @@ public class Automation_MoveRobotToTargetCommand extends Command {
         double time = Timer.getFPGATimestamp();
         double deltaTime = time - lastTime;
         lastXInput = xCalculator.getOutput(-vision.getHorizontalOffsetFromCrosshair(), deltaTime);
-        swerve.moveFieldCentric(lastXInput,
-                yCalculator.getOutput(-vision.getVerticalOffsetFromCrosshar(), deltaTime),
-                wCalculator.getOutput(-vision.getSkew(), deltaTime));
+        swerve.moveAngleCentric(lastXInput, yCalculator.getOutput(-vision.getVerticalOffsetFromCrosshar(), deltaTime),
+                wCalculator.getOutput(vision.getHorizontalOffsetFromCrosshair(), deltaTime),
+                -vision.getHorizontalOffsetFromCrosshair());
         lastTime = time;
     }
 
@@ -70,7 +69,7 @@ public class Automation_MoveRobotToTargetCommand extends Command {
     protected boolean isFinished() {
         return xCalculator.isWithinRange(-vision.getHorizontalOffsetFromCrosshair())
                 && yCalculator.isWithinRange(-vision.getVerticalOffsetFromCrosshar())
-                && wCalculator.isWithinRange(-vision.getSkew()) && Math.abs(lastXInput) <= 0.01
+                && wCalculator.isWithinRange(-vision.getHorizontalOffsetFromCrosshair()) && Math.abs(lastXInput) <= 0.01
                 || !vision.hasValidTargets();
     }
 
