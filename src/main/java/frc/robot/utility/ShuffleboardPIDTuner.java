@@ -25,8 +25,8 @@ public class ShuffleboardPIDTuner extends SendableBase {
     @Override
     public void initSendable(SendableBuilder builder) {
         builder.setSmartDashboardType("RobotPreferences");
-        builder.addDoubleProperty("kP", calculator::getkP, calculator::setkP);
-        builder.addDoubleProperty("kI", calculator::getkI, calculator::setkI);
+        builder.addDoubleProperty("__kP", calculator::getkP, calculator::setkP);
+        builder.addDoubleProperty("_kI", calculator::getkI, calculator::setkI);
         builder.addDoubleProperty("kD", calculator::getkD, calculator::setkD);
         builder.addDoubleProperty("maxOutput", calculator::getMaxOutput, calculator::setMaxOutput);
         builder.addDoubleProperty("minOutput", calculator::getMinOutput, calculator::setMaxOutput);
