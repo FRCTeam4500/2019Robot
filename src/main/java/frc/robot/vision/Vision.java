@@ -50,6 +50,30 @@ public class Vision extends Subsystem {
         vision.setPipeline(index);
     }
 
+    public double getX() {
+        return vision.getX();
+    }
+
+    public double getY() {
+        return vision.getY();
+    }
+
+    public double getZ() {
+        return vision.getZ();
+    }
+
+    public double getPitch() {
+        return vision.getPitch();
+    }
+
+    public double getYaw() {
+        return vision.getYaw();
+    }
+
+    public double getRoll() {
+        return vision.getRoll();
+    }
+
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

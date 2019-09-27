@@ -73,4 +73,38 @@ public class LimelightVisionComponent implements IVision {
     private void setEntry(String key, Number value) {
         table.getEntry(key).setNumber(value);
     }
+
+    private double[] getCameraTranslationEntry() {
+        return table.getEntry("camtran").getDoubleArray(new double[6]);
+    }
+
+    @Override
+    public double getX() {
+        return getCameraTranslationEntry()[0];
+    }
+
+    @Override
+    public double getY() {
+        return getCameraTranslationEntry()[1];
+    }
+
+    @Override
+    public double getZ() {
+        return getCameraTranslationEntry()[2];
+    }
+
+    @Override
+    public double getYaw() {
+        return getCameraTranslationEntry()[4];
+    }
+
+    @Override
+    public double getPitch() {
+        return getCameraTranslationEntry()[3];
+    }
+
+    @Override
+    public double getRoll() {
+        return getCameraTranslationEntry()[5];
+    }
 }

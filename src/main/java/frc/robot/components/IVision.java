@@ -28,4 +28,16 @@ public interface IVision {
     void setCameraMode(CameraMode mode);
 
     void setPipeline(int index);
+
+    double getX();
+
+    double getY();
+
+    double getZ();
+
+    double getYaw();
+
+    double getPitch();
+
+    double getRoll();
 }
