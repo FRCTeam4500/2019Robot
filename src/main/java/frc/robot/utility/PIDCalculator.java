@@ -83,15 +83,15 @@ public class PIDCalculator {
         return setpoint;
     }
 
-    public double getP() {
+    public double getkP() {
         return kP;
     }
 
-    public double getI() {
+    public double getkI() {
         return kI;
     }
 
-    public double getD() {
+    public double getkD() {
         return kD;
     }
 
