@@ -8,6 +8,7 @@
 package frc.robot.arm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import frc.robot.components.IAngleSetter;
 import frc.robot.components.hardware.TalonSRXComponent;
 
@@ -23,7 +24,8 @@ public class ArmTalonSRXComponent implements IAngleSetter {
 
     @Override
     public void setAngle(double angle) {
-        // TODO: CLEAN THIS UP!!!! The arm is currently using raw sensor units instead of conforming
+        // TODO: CLEAN THIS UP!!!! The arm is currently using raw sensor units instead
+        // of conforming
         // to radians.
         if (srx.getSelectedSensorPosition() < angle) {
             srx.configClosedLoopPeakOutput(0, .15);
