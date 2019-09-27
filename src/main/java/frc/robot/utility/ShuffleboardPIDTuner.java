@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 /**
  * A custom tuner for {@link PIDCalculator}. Must be in test mode to tune.
  */
-public class ShuffledboardPIDTuner extends SendableBase {
+public class ShuffleboardPIDTuner extends SendableBase {
     private PIDCalculator calculator;
 
-    public ShuffledboardPIDTuner(PIDCalculator calculator, String subsystem, String name) {
+    public ShuffleboardPIDTuner(PIDCalculator calculator, String subsystem, String name) {
         super(true);
         setName(subsystem, name);
         this.calculator = calculator;
