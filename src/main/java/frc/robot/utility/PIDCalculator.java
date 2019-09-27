@@ -124,4 +124,26 @@ public class PIDCalculator {
             return false;
         }
     }
+
+    /**
+     * @param kP the kP to set
+     */
+    public void setkP(double kP) {
+        this.kP = kP;
+    }
+
+    /**
+     * @param kI the kI to set
+     */
+    public void setkI(double kI) {
+        this.kI = kI;
+    }
+
+    /**
+     * @param kD the kD to set
+     */
+    public void setkD(double kD) {
+        this.kD = kD;
+    }
+
 }
