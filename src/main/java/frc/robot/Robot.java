@@ -193,11 +193,11 @@ public class Robot extends TimedRobot {
     private void setupCustomSubsystems() {
         setupSubsystems(SubsystemType.Hardware, // Swerve
                 SubsystemType.Virtual, // Lift
-                SubsystemType.Virtual, // Hatch
+                SubsystemType.Hardware, // Hatch
                 SubsystemType.Virtual, // Elevator
                 SubsystemType.Hardware, // Compressor
-                SubsystemType.Virtual, // Cargo
-                SubsystemType.Virtual); // Arm
+                SubsystemType.Hardware, // Cargo
+                SubsystemType.Hardware); // Arm
     }
 
     @Override

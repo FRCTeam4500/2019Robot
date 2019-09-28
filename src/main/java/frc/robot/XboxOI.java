@@ -20,6 +20,7 @@ import frc.robot.vision.Vision;
 import frc.robot.arm.Arm;
 import frc.robot.arm.Arm_DriveCommand;
 import frc.robot.automation.Automation_MoveRobotToTargetCommand;
+import frc.robot.automation.Automation_VisionAssistedDriveCommand;
 import frc.robot.cargo.Cargo;
 import frc.robot.cargo.Cargo_DriveCommand;
 import frc.robot.compressor.Compressor;
@@ -38,19 +39,14 @@ public class XboxOI implements IMainOI {
     private double swerveSensitivity = 0.3;
     private ShuffleboardPIDTuner xTuner, yTuner, wTuner;
 
-    JoystickButton aButton = new JoystickButton(controller, 1),
-            bButton = new JoystickButton(controller, 2),
-            xButton = new JoystickButton(controller, 3),
-            yButton = new JoystickButton(controller, 4),
-            leftBumper = new JoystickButton(controller, 5),
-            rightBumper = new JoystickButton(controller, 6),
-            specialLeft = new JoystickButton(controller, 7),
-            specialRight = new JoystickButton(controller, 8),
-            leftThumpad = new JoystickButton(controller, 9),
-            rightThumpad = new JoystickButton(controller, 10);
+    JoystickButton aButton = new JoystickButton(controller, 1), bButton = new JoystickButton(controller, 2),
+            xButton = new JoystickButton(controller, 3), yButton = new JoystickButton(controller, 4),
+            leftBumper = new JoystickButton(controller, 5), rightBumper = new JoystickButton(controller, 6),
+            specialLeft = new JoystickButton(controller, 7), specialRight = new JoystickButton(controller, 8),
+            leftThumpad = new JoystickButton(controller, 9), rightThumpad = new JoystickButton(controller, 10);
 
-    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor,
-            Cargo cargo, Arm arm, Vision vision) {
+    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor, Cargo cargo, Arm arm,
+            Vision vision) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
@@ -84,14 +80,7 @@ public class XboxOI implements IMainOI {
 
         leftThumpad.whenPressed(new Swerve_ResetGyroCommand(swerve));
 
-        var xCalc = new PIDCalculator(0, 0, 0);
-        xTuner = new ShuffleboardPIDTuner(xCalc, "Automation", "xTuner");
-        var yCalc = new PIDCalculator(0, 0, 0);
-        yTuner = new ShuffleboardPIDTuner(yCalc, "Automation", "yTuner");
-        var wCalc = new PIDCalculator(0, 0, 0);
-        wTuner = new ShuffleboardPIDTuner(wCalc, "Automation", "wTuner");
-        rightThumpad.whenPressed(
-                new Automation_MoveRobotToTargetCommand(vision, swerve, xCalc, yCalc, wCalc));
+        rightThumpad.whenPressed(new Automation_VisionAssistedDriveCommand(vision, swerve, this));
     }
 
     @Override
