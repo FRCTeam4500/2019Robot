@@ -47,7 +47,7 @@ public class Elevator extends Subsystem {
     // Unfortunately neither the counter nor the limit switch has an onPressed
     // event, so we have to rely on the robot to reset.
     public boolean requiresReset() {
-        if (counter.getDirection() == false) {
+        if (counter.getDirection() == true) {
             countAmount++;
         }
         return countAmount > 0;
@@ -56,7 +56,18 @@ public class Elevator extends Subsystem {
     public void resetElevatorPosition() {
         counter.reset();
         countAmount = 0;
-        elevatorMotor.setSelectedSensorPosition(0);
+        elevatorMotor.setSelectedSensorPosition(RobotMap.ELEVATORLOW);
+    }
+
+    /**
+     * @return the countAmount
+     */
+    public int getCountAmount() {
+        return countAmount;
+    }
+
+    public double getElevatorLevel() {
+        return elevatorMotor.getSelectedSensorPosition();
     }
 
     public void setLevel(int level) {

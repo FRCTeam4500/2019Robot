@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Robot_Group_PreConfigure;
 import frc.robot.subsystems.Cargo;
 import frc.robot.subsystems.Arm;
@@ -83,6 +84,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
+        SmartDashboard.putNumber("Elevator Coutner", elevator.getCountAmount());
+        SmartDashboard.putNumber("elevator level", elevator.getElevatorLevel());
         if (elevator.requiresReset()) {
             elevator.resetElevatorPosition();
         }

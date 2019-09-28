@@ -22,7 +22,7 @@ public class RobotMap {
 
     public final static int ELEVATORMOTOR = 5;
     public final static int ELEVATORLOW = 10;
-    public final static int ELEVATORMEDIUM = 13500; // 15000
+    public final static int ELEVATORMEDIUM = 14000; // 15000
     public final static int ELEVATORHIGH = 23000; // 26000
     public final static int ELEVATORMAX = 26127; // 25000
     public final static int ELEVATORHATCH = 4700;
