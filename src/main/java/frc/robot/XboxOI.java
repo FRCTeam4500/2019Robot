@@ -14,12 +14,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.hatch.*;
 import frc.robot.lift.*;
 import frc.robot.swerve.*;
-import frc.robot.utility.PIDCalculator;
 import frc.robot.utility.ShuffleboardPIDTuner;
 import frc.robot.vision.Vision;
 import frc.robot.arm.Arm;
 import frc.robot.arm.Arm_DriveCommand;
-import frc.robot.automation.Automation_MoveRobotToTargetCommand;
 import frc.robot.automation.Automation_VisionAssistedDriveCommand;
 import frc.robot.cargo.Cargo;
 import frc.robot.cargo.Cargo_DriveCommand;
@@ -39,14 +37,19 @@ public class XboxOI implements IMainOI {
     private double swerveSensitivity = 0.3;
     private ShuffleboardPIDTuner xTuner, yTuner, wTuner;
 
-    JoystickButton aButton = new JoystickButton(controller, 1), bButton = new JoystickButton(controller, 2),
-            xButton = new JoystickButton(controller, 3), yButton = new JoystickButton(controller, 4),
-            leftBumper = new JoystickButton(controller, 5), rightBumper = new JoystickButton(controller, 6),
-            specialLeft = new JoystickButton(controller, 7), specialRight = new JoystickButton(controller, 8),
-            leftThumpad = new JoystickButton(controller, 9), rightThumpad = new JoystickButton(controller, 10);
+    JoystickButton aButton = new JoystickButton(controller, 1),
+            bButton = new JoystickButton(controller, 2),
+            xButton = new JoystickButton(controller, 3),
+            yButton = new JoystickButton(controller, 4),
+            leftBumper = new JoystickButton(controller, 5),
+            rightBumper = new JoystickButton(controller, 6),
+            specialLeft = new JoystickButton(controller, 7),
+            specialRight = new JoystickButton(controller, 8),
+            leftThumpad = new JoystickButton(controller, 9),
+            rightThumpad = new JoystickButton(controller, 10);
 
-    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor, Cargo cargo, Arm arm,
-            Vision vision) {
+    public XboxOI(Swerve swerve, Lift lift, Hatch hatch, Elevator elevator, Compressor compressor,
+            Cargo cargo, Arm arm, Vision vision) {
 
         var drive = new DriveCommand(swerve, this);
         swerve.setDefaultCommand(drive);
