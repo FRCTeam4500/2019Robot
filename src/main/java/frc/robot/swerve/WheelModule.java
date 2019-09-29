@@ -44,15 +44,44 @@ public class WheelModule extends Subsystem {
         if (angleGetter != null) {
             lastAngle = angleGetter.getAngle();
         }
-        double actualDifference = angle - lastAngle;
-        double shortestDifference = customMod(actualDifference + Math.PI, 2 * Math.PI) - Math.PI;
-        double finalAngle = lastAngle + shortestDifference;
+        // Get the closest angle equivalent to the target angle. Otherwise the wheel module is going
+        // to spin a lot since it will be at
+        // something like 3 pi and the target will be 0 pi; the motor will move 3 pi instead of just
+        // 1 pi without this bit
+        double shortestRadianToTarget = getShortestRadianToTarget(lastAngle, angle);
+        double targetAngle = shortestRadianToTarget + lastAngle;
+
+
+        // Sometimes it will be easier to reverse the speed instead of rotating the whole module by
+        // pi radians.
+        // These lines determine whether this is needed.
+        double oppositeAngle = targetAngle + Math.PI;
+        double shortestDistanceToOppositeAngle =
+                getShortestRadianToTarget(lastAngle, oppositeAngle);
+        double finalAngle;
+        double finalSpeed;
+        if (shortestDistanceToOppositeAngle < shortestRadianToTarget) {
+            finalAngle = lastAngle + shortestDistanceToOppositeAngle;
+            finalSpeed = -speed;
+        } else {
+            finalAngle = lastAngle + shortestRadianToTarget;
+            finalSpeed = speed;
+        }
         angleSetter.setAngle(finalAngle);
-        speedSetter.setSpeed(speed);
+        speedSetter.setSpeed(finalSpeed);
         lastAngle = finalAngle;
+
+
     }
 
     private double customMod(double a, double n) {
         return a - Math.floor(a / n) * n;
     }
+
+    private double getShortestRadianToTarget(double currentAngle, double targetAngle) {
+        double actualDifference = targetAngle - currentAngle;
+        double shortestDifference = customMod(actualDifference + Math.PI, 2 * Math.PI) - Math.PI;
+        return shortestDifference;
+    }
+
 }

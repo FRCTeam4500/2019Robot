@@ -37,6 +37,6 @@ public class VirtualPIDSwerveFactory {
         var speedSetter = new SpeedSetterDashboardDecorator(wheelModule + " Virtual Speed Setter",
                 subsystem, new VirtualSpeedComponent());
 
-        return new WheelModule(angleSetter, speedSetter, getter);
+        return new DashboardWheelModule(wheelModule, angleSetter, speedSetter, getter);
     }
 }
