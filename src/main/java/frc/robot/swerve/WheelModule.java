@@ -60,7 +60,7 @@ public class WheelModule extends Subsystem {
                 getShortestRadianToTarget(lastAngle, oppositeAngle);
         double finalAngle;
         double finalSpeed;
-        if (shortestDistanceToOppositeAngle < shortestRadianToTarget) {
+        if (Math.abs(shortestDistanceToOppositeAngle) < Math.abs(shortestRadianToTarget)) {
             finalAngle = lastAngle + shortestDistanceToOppositeAngle;
             finalSpeed = -speed;
         } else {
