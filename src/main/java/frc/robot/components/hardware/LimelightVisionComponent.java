@@ -34,12 +34,12 @@ public class LimelightVisionComponent implements IVision {
 
     @Override
     public double getHorizontalOffsetFromCrosshair() {
-        return getEntry("tx");
+        return Math.toRadians(getEntry("tx"));
     }
 
     @Override
     public double getVerticalOffsetFromCrosshar() {
-        return getEntry("ty");
+        return Math.toRadians(getEntry("ty"));
     }
 
     @Override
@@ -49,7 +49,14 @@ public class LimelightVisionComponent implements IVision {
 
     @Override
     public double getSkew() {
-        return getEntry("ts");
+        double rawDegrees = getEntry("ts");
+        double adjustedDegrees;
+        if (Math.abs(rawDegrees) < 45) {
+            adjustedDegrees = -rawDegrees;
+        } else {
+            adjustedDegrees = -(90 + rawDegrees);
+        }
+        return Math.toRadians(adjustedDegrees);
     }
 
     @Override
