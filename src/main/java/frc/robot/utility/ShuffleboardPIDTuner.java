@@ -29,7 +29,7 @@ public class ShuffleboardPIDTuner extends SendableBase {
         builder.addDoubleProperty("_kI", calculator::getkI, calculator::setkI);
         builder.addDoubleProperty("kD", calculator::getkD, calculator::setkD);
         builder.addDoubleProperty("maxOutput", calculator::getMaxOutput, calculator::setMaxOutput);
-        builder.addDoubleProperty("minOutput", calculator::getMinOutput, calculator::setMaxOutput);
+        builder.addDoubleProperty("minOutput", calculator::getMinOutput, calculator::setMinOutput);
         builder.addDoubleProperty("setpointDelta", calculator::getSetpointDelta,
                 calculator::setSetpointDelta);
     }
