@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.hatch.*;
 import frc.robot.lift.*;
 import frc.robot.swerve.*;
+import frc.robot.utility.PIDCalculator;
 import frc.robot.utility.ShuffleboardPIDTuner;
 import frc.robot.vision.Vision;
 import frc.robot.arm.Arm;
 import frc.robot.arm.Arm_DriveCommand;
-import frc.robot.automation.Automation_VisionAssistedDriveCommand;
+import frc.robot.automation.Automation_AlignRobotWithTargetCommand;
 import frc.robot.cargo.Cargo;
 import frc.robot.cargo.Cargo_DriveCommand;
 import frc.robot.compressor.Compressor;
@@ -83,7 +84,26 @@ public class XboxOI implements IMainOI {
 
         leftThumpad.whenPressed(new Swerve_ResetGyroCommand(swerve));
 
-        rightThumpad.whenPressed(new Automation_VisionAssistedDriveCommand(vision, swerve, this));
+        // rightThumpad.whenPressed(new Automation_VisionAssistedDriveCommand(vision,
+        // swerve, this));
+
+        var xCalculator = new PIDCalculator(1, 0, 0);
+        xCalculator.setMaxOutput(swerveSensitivity);
+        xCalculator.setMinOutput(-swerveSensitivity);
+        var yCalculator = new PIDCalculator(0.5, 0, 0);
+        yCalculator.setMaxOutput(swerveSensitivity);
+        yCalculator.setMinOutput(-swerveSensitivity);
+        var wCalculator = new PIDCalculator(0.5, 0, 0);
+        wCalculator.setMaxOutput(swerveSensitivity);
+        wCalculator.setMinOutput(-swerveSensitivity);
+
+        xTuner = new ShuffleboardPIDTuner(xCalculator, "Automation", "xCalculator");
+        yTuner = new ShuffleboardPIDTuner(yCalculator, "Automation", "yCalculator");
+        wTuner = new ShuffleboardPIDTuner(wCalculator, "Automation", "wCalculator");
+
+        rightThumpad.whenPressed(new Automation_AlignRobotWithTargetCommand(swerve, vision,
+                xCalculator, yCalculator, wCalculator, this));
+
     }
 
     @Override
