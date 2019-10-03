@@ -5,16 +5,17 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems.compressor;
 
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+import frc.robot.components.dashboard.CompressorDashboardDecorator;
+import frc.robot.components.virtual.VirtualCompressorComponent;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class VirtualCompressorFactory {
+    public static Compressor MakeCompressor() {
+        return new Compressor(new CompressorDashboardDecorator("Virtual Compressor", "Compressor",
+                new VirtualCompressorComponent()));
     }
 }

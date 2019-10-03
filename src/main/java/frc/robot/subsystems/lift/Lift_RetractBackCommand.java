@@ -5,16 +5,19 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+package frc.robot.subsystems.lift;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class Lift_RetractBackCommand extends Lift_BaseCommand {
+
+    public Lift_RetractBackCommand(Lift lift) {
+        super(lift);
+    }
+
+    @Override
+    protected void initialize() {
+        lift.retractBack();
     }
 }

@@ -5,16 +5,24 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems.vision;
 
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+import frc.robot.components.IVision;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class Vision_SetCameraModeCommand extends Vision_BaseCommand {
+
+    private IVision.CameraMode mode;
+
+    public Vision_SetCameraModeCommand(Vision vision, IVision.CameraMode mode) {
+        super(vision);
+        this.mode = mode;
+    }
+
+    @Override
+    protected void initialize() {
+        vision.setCameraMode(mode);
     }
 }

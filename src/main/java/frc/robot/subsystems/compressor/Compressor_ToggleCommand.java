@@ -5,16 +5,19 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+package frc.robot.subsystems.compressor;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class Compressor_ToggleCommand extends Compressor_BaseCommand {
+
+    public Compressor_ToggleCommand(Compressor compressor) {
+        super(compressor);
+    }
+
+    @Override
+    protected void initialize() {
+        compressor.toggle();
     }
 }

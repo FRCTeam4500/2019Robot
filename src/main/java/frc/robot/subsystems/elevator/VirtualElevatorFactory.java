@@ -5,16 +5,17 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems.elevator;
 
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+import frc.robot.components.dashboard.PositionSetterDashboardDecorator;
+import frc.robot.components.virtual.VirtualPositionComponent;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class VirtualElevatorFactory {
+    public static Elevator MakeElevator() {
+        return new Elevator(new PositionSetterDashboardDecorator("Virtual Elevator", "Elevator",
+                new VirtualPositionComponent()));
     }
 }

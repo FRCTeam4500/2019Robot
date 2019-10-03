@@ -5,16 +5,19 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+package frc.robot.subsystems.hatch;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class Hatch_ExtendClawCommand extends Hatch_BaseCommand {
+
+    public Hatch_ExtendClawCommand(Hatch hatch) {
+        super(hatch);
+    }
+
+    @Override
+    protected void initialize() {
+        hatch.extendClaw();
     }
 }

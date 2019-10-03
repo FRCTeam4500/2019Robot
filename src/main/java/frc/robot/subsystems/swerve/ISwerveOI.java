@@ -5,16 +5,15 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+package frc.robot.subsystems.swerve;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
-    }
+public interface ISwerveOI {
+    public double getX();
+
+    public double getY();
+
+    public double getZ();
 }

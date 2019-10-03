@@ -5,16 +5,15 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems.swerve;
 
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * Add your docs here.
- */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public abstract class Swerve_BaseCommand extends Command {
+    protected Swerve swerve;
+
+    public Swerve_BaseCommand(Swerve swerve) {
+        requires(swerve);
+        this.swerve = swerve;
     }
 }

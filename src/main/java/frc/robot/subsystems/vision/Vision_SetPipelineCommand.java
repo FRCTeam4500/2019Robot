@@ -5,16 +5,22 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+package frc.robot.subsystems.vision;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class Vision_SetPipelineCommand extends Vision_BaseCommand {
+
+    private int index;
+
+    public Vision_SetPipelineCommand(Vision vision, int index) {
+        super(vision);
+        this.index = index;
+    }
+
+    @Override
+    protected void initialize() {
+        vision.setPipeline(index);
     }
 }

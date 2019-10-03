@@ -9,16 +9,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.arm.*;
-import frc.robot.cargo.*;
+import frc.robot.subsystems.arm.*;
+import frc.robot.subsystems.cargo.*;
 import frc.robot.components.dashboard.VisionDashboardDecorator;
 import frc.robot.components.hardware.LimelightVisionComponent;
-import frc.robot.compressor.*;
-import frc.robot.elevator.*;
-import frc.robot.hatch.*;
-import frc.robot.lift.*;
-import frc.robot.swerve.*;
-import frc.robot.vision.Vision;
+import frc.robot.subsystems.compressor.*;
+import frc.robot.subsystems.elevator.*;
+import frc.robot.subsystems.hatch.*;
+import frc.robot.subsystems.lift.*;
+import frc.robot.subsystems.swerve.*;
+import frc.robot.subsystems.vision.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to

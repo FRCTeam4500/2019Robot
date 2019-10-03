@@ -10,10 +10,10 @@ package frc.robot.automation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.components.IVision.CameraMode;
-import frc.robot.swerve.ISwerveOI;
-import frc.robot.swerve.Swerve;
+import frc.robot.subsystems.swerve.ISwerveOI;
+import frc.robot.subsystems.swerve.Swerve;
 import frc.robot.utility.PIDCalculator;
-import frc.robot.vision.Vision;
+import frc.robot.subsystems.vision.Vision;
 
 public class Automation_AlignRobotWithTargetCommand extends Command {
     private Swerve swerve;

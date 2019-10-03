@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import frc.robot.components.MockAngleSetter;
 import frc.robot.components.MockSpeedSetter;
-import frc.robot.swerve.Swerve;
-import frc.robot.swerve.WheelModule;
+import frc.robot.subsystems.swerve.Swerve;
+import frc.robot.subsystems.swerve.WheelModule;
 
 public class Swerve_MoveRobotCentricShould {
 

@@ -11,20 +11,21 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import frc.robot.hatch.*;
-import frc.robot.lift.*;
-import frc.robot.swerve.*;
+import frc.robot.subsystems.hatch.*;
+import frc.robot.subsystems.lift.*;
+import frc.robot.subsystems.swerve.*;
 import frc.robot.utility.PIDCalculator;
 import frc.robot.utility.ShuffleboardPIDTuner;
-import frc.robot.vision.Vision;
-import frc.robot.arm.Arm;
-import frc.robot.arm.Arm_DriveCommand;
+import frc.robot.subsystems.vision.Vision;
+import frc.robot.subsystems.arm.Arm;
+import frc.robot.subsystems.arm.Arm_DriveCommand;
 import frc.robot.automation.Automation_AlignRobotWithTargetCommand;
-import frc.robot.cargo.Cargo;
-import frc.robot.cargo.Cargo_DriveCommand;
-import frc.robot.compressor.Compressor;
-import frc.robot.compressor.Compressor_ToggleCommand;
-import frc.robot.elevator.*;
+import frc.robot.subsystems.cargo.Cargo;
+import frc.robot.subsystems.cargo.Cargo_DriveCommand;
+import frc.robot.subsystems.compressor.Compressor;
+import frc.robot.subsystems.compressor.Compressor_ToggleCommand;
+import frc.robot.subsystems.elevator.*;
+
 
 /**
  * Add your docs here.

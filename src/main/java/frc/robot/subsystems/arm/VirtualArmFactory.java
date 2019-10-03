@@ -5,16 +5,17 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems.arm;
 
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+import frc.robot.components.dashboard.AngleSetterDashboardDecorator;
+import frc.robot.components.virtual.VirtualAngleComponent;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class VirtualArmFactory {
+    public static Arm MakeArm() {
+        return new Arm(new AngleSetterDashboardDecorator("Virtual Motor", "Arm",
+                new VirtualAngleComponent()));
     }
 }

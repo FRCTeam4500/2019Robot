@@ -5,16 +5,24 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-
-import frc.robot.subsystems.arm.IArmOI;
-import frc.robot.subsystems.cargo.ICargoOI;
-import frc.robot.subsystems.swerve.ISwerveOI;
+package frc.robot.subsystems.swerve;
 
 /**
  * Add your docs here.
  */
-public interface IMainOI extends ISwerveOI, ICargoOI, IArmOI, AutoCloseable {
-    default void close() {
+public class Swerve_ResetGyroCommand extends Swerve_BaseCommand {
+
+    public Swerve_ResetGyroCommand(Swerve swerve) {
+        super(swerve);
+    }
+
+    @Override
+    protected void initialize() {
+        swerve.resetGyro();
+    }
+
+    @Override
+    protected boolean isFinished() {
+        return true;
     }
 }

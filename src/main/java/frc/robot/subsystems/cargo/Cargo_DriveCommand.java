@@ -5,52 +5,37 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.automation;
+package frc.robot.subsystems.cargo;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.components.IVision.CameraMode;
-import frc.robot.subsystems.swerve.ISwerveOI;
-import frc.robot.subsystems.swerve.Swerve;
-import frc.robot.utility.ExtendedMath;
-import frc.robot.subsystems.vision.Vision;
 
-public class Automation_VisionAssistedDriveCommand extends Command {
-    private Vision vision;
-    private Swerve swerve;
-    private ISwerveOI oi;
-    private NetworkTableEntry entry;
+public class Cargo_DriveCommand extends Command {
+    private Cargo cargo;
+    private ICargoOI oi;
 
-    public Automation_VisionAssistedDriveCommand(Vision vision, Swerve swerve, ISwerveOI oi) {
+    public Cargo_DriveCommand(Cargo cargo, ICargoOI oi) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(vision);
-        requires(swerve);
-        this.vision = vision;
-        this.swerve = swerve;
+        requires(cargo);
+        this.cargo = cargo;
         this.oi = oi;
-        entry = NetworkTableInstance.getDefault().getEntry("Swerve Assist Value");
-        entry.setNumber(0.1);
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        vision.setCameraMode(CameraMode.VisionProcessor);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        swerve.moveRobotCentric(oi.getX(), oi.getY(),
-                ExtendedMath.clamp(-1, 1, -vision.getHorizontalOffsetFromCrosshair()) * 0.05);
+        cargo.setMotors(oi.getCargoSideSpeed(), oi.getCargoTopSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return !vision.hasValidTargets() || oi.getZ() != 0;
+        return false;
     }
 
     // Called once after isFinished returns true
